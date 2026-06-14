@@ -89,7 +89,7 @@ Replace `hilary-story-how-to-raise-capital.m4a` with your new audio file using t
 
 ## 6. Change a link or your email
 
-Open the file, search for the old link (e.g. `afrifamapoultry@gmail.com` or `youtube.com/@Afrifama`), and type the new one. Find-and-Replace-All updates every copy at once.
+Open the file, search for the old link (e.g. `hello@njugunahilary.com` or `youtube.com/@Afrifama`), and type the new one. Find-and-Replace-All updates every copy at once.
 
 ---
 
