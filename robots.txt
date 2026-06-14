@@ -1,0 +1,9 @@
+# robots.txt for njugunahilary.com
+# Updated: June 2025
+
+# Allow all web crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://njugunahilary.com/sitemap.xml
