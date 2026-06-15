@@ -53,6 +53,8 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 @keyframes fadeUp{to{opacity:1;transform:none}}
 .fn-tag{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);grid-column:1}
 .fn-date{grid-column:2;grid-row:1/3;font-size:.75rem;color:var(--muted);font-weight:500;white-space:nowrap;text-align:right;padding-top:2px}
+.fn-rt{grid-column:2;grid-row:3;font-size:.7rem;color:var(--muted);font-weight:500;white-space:nowrap;text-align:right}
+@media(max-width:680px){.fn-rt{grid-column:1;grid-row:auto;text-align:left;margin-top:-.3rem}}
 .fn-title{grid-column:1;font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1.25;margin:.15rem 0}
 .fn-title a{color:var(--ink);transition:color .2s}
 .fn-title a:hover{color:var(--gold)}
@@ -155,6 +157,7 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
     return '<div class="fn-item" style="animation-delay:' + (i * 0.07) + 's">' +
       '<span class="fn-tag">' + article.tag + '</span>' +
       '<time class="fn-date" datetime="' + article.dateISO + '">' + article.date + '</time>' +
+      '<span class="fn-rt">' + (article.readTime || estimateReadTime(article.excerpt)) + '</span>' +
       '<h2 class="fn-title"><a href="' + article.slug + '">' + article.title + '</a></h2>' +
       '<p class="fn-excerpt">' + article.excerpt + '</p>' +
       '<div class="fn-read"><a href="' + article.slug + '">Read the full note &rarr;</a></div>' +

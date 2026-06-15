@@ -224,7 +224,7 @@ section{padding:96px 0}
 footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-size:.85rem}.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;padding-bottom:28px;border-bottom:1px solid rgba(246,241,231,.12)}.fb{font-family:var(--serif);color:var(--cream);font-size:1.35rem;font-weight:700}.ftag{font-family:var(--serif);font-style:italic;color:var(--gold);margin-top:6px}.flinks{display:flex;flex-wrap:wrap;gap:20px}.flinks a:hover{color:var(--gold)}.fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:24px;font-size:.78rem;color:rgba(246,241,231,.42)}.socials{display:flex;gap:16px}.socials a:hover{color:var(--gold)}
 
 .rv{opacity:0;transform:translateY(26px);transition:.8s var(--e)}.rv.in{opacity:1;transform:none}
-@media(max-width:860px){.nl{position:fixed;inset:72px 0 auto;flex-direction:column;background:rgba(33,31,28,.97);padding:24px 28px;gap:18px;align-items:flex-start;transform:translateY(-135%);transition:.4s var(--e)}.nl.open{transform:none}.mt{display:block}.meet .grid,.tlp.on,.notes .grid,.speak .grid{grid-template-columns:1fr;gap:30px}.meet .ph,.notes .ph{max-width:330px}.tlp .ph,.speak .ph{order:-1}.thumbs{grid-template-columns:1fr}.ytwall6{grid-template-columns:repeat(2,1fr)}.yt-intro{grid-template-columns:1fr;gap:30px}.yt-h2{text-align:center}.yt-intro-text .eyebrow{justify-content:center}.yt-story{text-align:center}section{padding:68px 0}.hero{min-height:90vh}
+@media(max-width:860px){.nl{position:fixed;inset:72px 0 auto;flex-direction:column;background:rgba(33,31,28,.97);padding:24px 28px;gap:18px;align-items:flex-start;transform:translateY(-135%);transition:.4s var(--e)}.nl.open{transform:none}.mt{display:flex}.meet .grid,.tlp.on,.notes .grid,.speak .grid{grid-template-columns:1fr;gap:30px}.meet .ph,.notes .ph{max-width:330px}.tlp .ph,.speak .ph{order:-1}.thumbs{grid-template-columns:1fr}.ytwall6{grid-template-columns:repeat(2,1fr)}.yt-intro{grid-template-columns:1fr;gap:30px}.yt-h2{text-align:center}.yt-intro-text .eyebrow{justify-content:center}.yt-story{text-align:center}section{padding:68px 0}.hero{min-height:90vh}
 .hero .wrap{justify-content:flex-end;padding-bottom:56px}
 .hero .herotxt{margin:0 auto;text-align:center;max-width:100%}
 .hero .eyebrow{justify-content:center;width:auto}
@@ -235,6 +235,69 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
 .hero::after{background:linear-gradient(0deg,rgba(33,31,28,.85) 0%,rgba(33,31,28,.4) 45%,rgba(33,31,28,.08) 75%)!important}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}.field i{transform:scaleY(1)}.hero h1 .l i{transform:none}.hero p,.hbtns,.cue,.kick{opacity:1}html{scroll-behavior:auto}}
+
+/* ---- a11y / focus ---- */
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:2px}
+
+/* ---- anchor offset under fixed header ---- */
+section{scroll-margin-top:78px}
+
+/* ---- scroll progress bar ---- */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--gold);z-index:60;transition:width .12s linear}
+
+/* ---- active nav link ---- */
+.nl a.active:not(.btn){color:var(--gold)}
+
+/* ---- animated hamburger ---- */
+.mt{position:relative;width:30px;height:30px;padding:0;display:none;align-items:center;justify-content:center}
+.hb{display:block;width:20px;height:14px;position:relative}
+.hb span{position:absolute;left:0;right:0;height:2px;background:var(--cream);border-radius:2px;transition:.3s var(--e)}
+.hb span:nth-child(1){top:0}
+.hb span:nth-child(2){top:6px}
+.hb span:nth-child(3){top:12px}
+.mt.open .hb span:nth-child(1){top:6px;transform:rotate(45deg)}
+.mt.open .hb span:nth-child(2){opacity:0}
+.mt.open .hb span:nth-child(3){top:6px;transform:rotate(-45deg)}
+
+/* ---- mobile nav backdrop ---- */
+.nav-backdrop{position:fixed;inset:0;background:rgba(20,19,16,.55);opacity:0;pointer-events:none;transition:opacity .35s var(--e);z-index:45}
+.nav-backdrop.show{opacity:1;pointer-events:auto}
+@media(min-width:861px){.nav-backdrop{display:none}}
+
+/* ---- back to top ---- */
+.totop{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;background:var(--green);color:var(--cream);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px -10px rgba(33,31,28,.6);opacity:0;transform:translateY(14px);pointer-events:none;transition:.3s var(--e);z-index:40}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop:hover{background:var(--green-d);transform:translateY(-3px)}
+.totop svg{width:16px;height:16px}
+@media(prefers-reduced-motion:reduce){.totop{transition:opacity .2s}}
+
+/* ---- copy email button ---- */
+.copy-email{display:inline-flex;align-items:center;gap:8px;background:none;border:1.5px solid rgba(246,241,231,.35);color:var(--cream);font-size:.8rem;font-weight:600;padding:9px 16px;border-radius:30px;cursor:pointer;transition:.25s var(--e);font-family:var(--sans)}
+.copy-email:hover{border-color:var(--gold);color:var(--gold)}
+.copy-email.copied{border-color:var(--gold);color:var(--gold)}
+.copy-email svg{width:14px;height:14px}
+.email-row{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+
+/* ---- founder notes card polish ---- */
+.ncard{display:block;border-top:1px solid rgba(111,78,55,.25);padding:18px 14px;margin:0 -14px;border-radius:6px;transition:.25s var(--e)}
+.ncard:hover{padding-left:22px;background:rgba(111,78,55,.06);transform:translateY(-2px)}
+.ncard .cat{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ncard .rt{font-family:var(--sans);font-weight:500;letter-spacing:normal;text-transform:none;color:var(--muted);font-size:.78rem}
+.ncard .rt::before{content:"\2022";margin-right:8px;color:var(--muted)}
+
+/* ---- work with me: ways to collaborate ---- */
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;max-width:760px;margin:0 auto 36px}
+.way{display:block;text-align:left;background:rgba(246,241,231,.05);border:1px solid rgba(246,241,231,.12);border-radius:10px;padding:18px 18px;text-decoration:none;color:var(--cream);transition:.25s var(--e)}
+.way:hover{border-color:var(--gold);background:rgba(246,241,231,.09);transform:translateY(-3px)}
+.way b{display:block;font-family:var(--serif);font-size:1.05rem;font-weight:600;margin-bottom:4px}
+.way span{font-size:.82rem;color:rgba(246,241,231,.62);line-height:1.5}
+
+/* ---- featured video ---- */
+.yt-feat-label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,241,231,.5);text-align:left;margin:0 auto 14px;max-width:920px}
+.ytwall6{margin-top:14px}
+
+/* ---- journey: desktop hover affordance ---- */
+@media(hover:hover) and (min-width:861px){.tlnav button:hover{color:rgba(246,241,231,.85)}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B82L1B9XPQ"></script>
@@ -283,11 +346,13 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
   });
 </script></head><body>
 
+<div class="scroll-progress" id="scrollProgress"></div>
 <header id="hdr"><nav>
 <a class="brand" href="#top">Njuguna&nbsp;Hilary<small>Founder · Builder · Storyteller</small></a>
-<button class="mt" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')">&#9776;</button>
+<button class="mt" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span class="hb"><span></span><span></span><span></span></span></button>
 <div class="nl" id="nav"><a href="about.html">My Story</a><a href="#journey">The Journey</a><a href="#watch">Watch</a><a href="founder-notes.html">Founder Notes</a><a href="#speak">Speaking</a><a class="btn bp" href="#contact">Work With Me</a></div>
 </nav></header>
+<div class="nav-backdrop" id="navBackdrop"></div>
 
 <section class="hero" id="top"><div class="hero-bg"></div><div class="wrap">
 <div class="herotxt">
@@ -347,6 +412,12 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
 </a>
 </div>
 
+<a class="ythero" href="https://youtu.be/kSogx_GQKpI" id="ythero" target="_blank" rel="noopener" aria-label="Play: Diary of an Entrepreneur">
+<img src="https://img.youtube.com/vi/kSogx_GQKpI/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/kSogx_GQKpI/hqdefault.jpg'" alt="Diary of an Entrepreneur — featured video">
+<div class="play" aria-hidden="true"></div>
+<div class="meta"><span class="s">Featured</span><span class="t">Diary of an Entrepreneur</span></div>
+</a>
+
 <div class="yt-mural" id="ytmural">
 <div class="mural-track">
 <div class="mrow mrow-stats"><div class="mcell ms" data-delay="0"><span class="ms-stat ">1 video</span><span class="ms-sub">0 subscribers</span></div><div class="mcell ms" data-delay="180"><span class="ms-stat ">118 subs</span><span class="ms-sub">first month</span></div><div class="mcell ms" data-delay="360"><span class="ms-stat ">1,000 subs</span><span class="ms-sub">9 months in</span></div><div class="mcell ms" data-delay="540"><span class="ms-stat ">62 videos</span><span class="ms-sub">~1,400 subs</span></div><div class="mcell ms" data-delay="720"><span class="ms-stat ">2,000 subs</span><span class="ms-sub">+179 that month</span></div><div class="mcell ms" data-delay="900"><span class="ms-stat gold">5,000 subs</span><span class="ms-sub">+413 in one month</span></div><div class="mcell ms" data-delay="1080"><span class="ms-stat cream">5,720 subs</span><span class="ms-sub">769 videos</span></div></div>
@@ -355,6 +426,7 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
 </div>
 </div>
 
+<div class="yt-feat-label">More from the channel</div>
 <div class="ytwall6">
 <a class="ytile" href="https://youtu.be/z2I_T4noz0w" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/z2I_T4noz0w/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/z2I_T4noz0w/hqdefault.jpg'" alt="How to Hatch Chicken Eggs in an Incubator"><div class="pl"></div><div class="lab"><b>Farming</b>How to Hatch Chicken Eggs in an Incubator</div></a>
 <a class="ytile" href="https://youtu.be/uTSozKCy9RY" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/uTSozKCy9RY/maxresdefault.jpg" loading="lazy" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/uTSozKCy9RY/hqdefault.jpg'" alt="How to Farm Broiler Chicken Successfully in Kenya"><div class="pl"></div><div class="lab"><b>Farming</b>How to Farm Broiler Chicken Successfully in Kenya</div></a>
@@ -399,7 +471,23 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
 <span class="eyebrow" style="justify-content:center;color:var(--gold)">Work With Me</span>
 <h2>Let's build, learn, and tell better stories.</h2>
 <p>I'm open to partnerships, speaking, mentorship, agribusiness &amp; farmer-systems work, storytelling collaborations, and serious founder conversations. If that sounds like you, let's talk.</p>
-<p style="margin-bottom:30px"><a href="mailto:hello@njugunahilary.com" style="color:var(--cream);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:3px">hello@njugunahilary.com</a></p>
+
+<div class="ways">
+<a class="way" href="mailto:hello@njugunahilary.com?subject=Speaking%20invite"><b>Speaking</b><span>Talks and panels on entrepreneurship, agribusiness, and building from the ground up.</span></a>
+<a class="way" href="mailto:hello@njugunahilary.com?subject=Partnership%20idea"><b>Partnerships</b><span>Working with brands, organisations, and fellow founders on shared goals.</span></a>
+<a class="way" href="mailto:hello@njugunahilary.com?subject=Mentorship%20request"><b>Mentorship</b><span>Conversations with founders and students figuring out their own path.</span></a>
+<a class="way" href="mailto:hello@njugunahilary.com?subject=Storytelling%20collaboration"><b>Storytelling</b><span>Documenting journeys, content collaborations, and honest founder stories.</span></a>
+<a class="way" href="mailto:hello@njugunahilary.com?subject=Agribusiness%20%2F%20farmer%20systems"><b>Agribusiness</b><span>Farmer systems, feed production, and practical agribusiness operations.</span></a>
+</div>
+
+<div class="email-row">
+<a href="mailto:hello@njugunahilary.com" style="color:var(--cream);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:3px">hello@njugunahilary.com</a>
+<button class="copy-email" id="copyEmail" type="button" aria-label="Copy email address">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+<span data-default="Copy email" data-copied="Copied!">Copy email</span>
+</button>
+</div>
+
 <div class="cbtns"><a class="btn bp" href="mailto:hello@njugunahilary.com">Work With Me</a><a class="btn bl" href="mailto:hello@njugunahilary.com?subject=Let%27s%20start%20a%20conversation">Start a Conversation</a><a class="btn bl" href="https://www.youtube.com/@Afrifama" target="_blank" rel="noopener">Watch on YouTube</a></div>
 </div></section>
 
@@ -409,17 +497,77 @@ footer{background:#19170f;color:rgba(246,241,231,.66);padding:54px 0 32px;font-s
 <div class="fbot"><span>&copy; 2026 Njuguna Hilary. Afrifama is my main proof of work.</span><div class="socials"><a href="https://www.youtube.com/@Afrifama" target="_blank" rel="noopener">YouTube</a><a href="https://medium.com/@njugunahilary93" target="_blank" rel="noopener">Medium</a><a href="https://ke.linkedin.com/in/njuguna-hilary" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/hilary.njuguna/" target="_blank" rel="noopener">Instagram</a></div></div>
 </div></footer>
 
+<button class="totop" id="totop" type="button" aria-label="Back to top">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+</button>
+
 <script>
-document.querySelectorAll('#nav a').forEach(function(a){a.onclick=function(){document.getElementById('nav').classList.remove('open')}});
-var hdr=document.getElementById('hdr');addEventListener('scroll',function(){hdr.classList.toggle('hdr-solid',scrollY>60)},{passive:true});
+/* ---- mobile menu: animated toggle + backdrop + escape/outside close ---- */
+var menuBtn=document.getElementById('menuBtn'),navEl=document.getElementById('nav'),backdrop=document.getElementById('navBackdrop');
+function closeMenu(){navEl.classList.remove('open');menuBtn.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');backdrop.classList.remove('show');document.body.style.overflow=''}
+function openMenu(){navEl.classList.add('open');menuBtn.classList.add('open');menuBtn.setAttribute('aria-expanded','true');backdrop.classList.add('show');document.body.style.overflow='hidden'}
+menuBtn.addEventListener('click',function(){navEl.classList.contains('open')?closeMenu():openMenu()});
+backdrop.addEventListener('click',closeMenu);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
+document.querySelectorAll('#nav a').forEach(function(a){a.onclick=closeMenu});
+
+/* ---- header solid on scroll + scroll progress ---- */
+var hdr=document.getElementById('hdr'),progress=document.getElementById('scrollProgress');
+addEventListener('scroll',function(){
+  hdr.classList.toggle('hdr-solid',scrollY>60);
+  var h=document.documentElement;
+  var pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  progress.style.width=pct+'%';
+},{passive:true});
+
+/* ---- journey chapters: click + desktop hover ---- */
 var tb=document.querySelectorAll('#tlnav button'),tp=document.querySelectorAll('.tlp');
-tb.forEach(function(b){b.onclick=function(){tb.forEach(function(x){x.classList.remove('on')});b.classList.add('on');tp.forEach(function(p){p.classList.toggle('on',p.dataset.p===b.dataset.t)})}});
+function showChapter(b){tb.forEach(function(x){x.classList.remove('on')});b.classList.add('on');tp.forEach(function(p){p.classList.toggle('on',p.dataset.p===b.dataset.t)})}
+tb.forEach(function(b){b.onclick=function(){showChapter(b)}});
+if(matchMedia('(hover:hover) and (min-width:861px)').matches){
+  tb.forEach(function(b){b.addEventListener('mouseenter',function(){showChapter(b)})});
+}
+
+/* ---- scroll reveal ---- */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target.id!=='field')io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
 var fld=document.getElementById('field');var fio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){fld.classList.add('go')},180);fio.unobserve(fld)}})},{threshold:.4});fio.observe(fld);
 
+/* ---- active nav highlighting ---- */
+var sectionIds=['journey','watch','speak','contact'];
+var navLinks={};
+sectionIds.forEach(function(id){var l=document.querySelector('#nav a[href="#'+id+'"]');if(l)navLinks[id]=l;});
+var navIO=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    var id=e.target.id;
+    if(e.isIntersecting){
+      Object.keys(navLinks).forEach(function(k){navLinks[k].classList.toggle('active',k===id)});
+    }
+  });
+},{rootMargin:'-45% 0px -45% 0px'});
+sectionIds.forEach(function(id){var el=document.getElementById(id);if(el)navIO.observe(el)});
+
+/* ---- featured video: click to play (no autoplay) ---- */
 var yth=document.getElementById('ythero');
 if(yth){yth.addEventListener('click',function(e){e.preventDefault();yth.innerHTML='<iframe width="100%" height="100%" style="position:absolute;inset:0;border:0" src="https://www.youtube.com/embed/kSogx_GQKpI?autoplay=1&rel=0" title="Diary of an Entrepreneur" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';});}
+
+/* ---- back to top ---- */
+var totop=document.getElementById('totop');
+addEventListener('scroll',function(){totop.classList.toggle('show',scrollY>500)},{passive:true});
+totop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+
+/* ---- copy email ---- */
+var copyBtn=document.getElementById('copyEmail');
+if(copyBtn){
+  copyBtn.addEventListener('click',function(){
+    var span=copyBtn.querySelector('span');
+    navigator.clipboard.writeText('hello@njugunahilary.com').then(function(){
+      copyBtn.classList.add('copied');
+      span.textContent=span.dataset.copied;
+      setTimeout(function(){copyBtn.classList.remove('copied');span.textContent=span.dataset.default},1800);
+    });
+  });
+}
 </script>
 <script>
 (function(){

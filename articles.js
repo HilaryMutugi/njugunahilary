@@ -93,11 +93,17 @@ function renderArticleCards(containerId, limit) {
   const list = limit ? ARTICLES.slice(0, limit) : ARTICLES;
   container.innerHTML = list.map((article, i) => `
     <a class="ncard" href="${article.slug}" style="animation-delay:${i * 0.07}s">
-      <span class="cat">${article.tag} &middot; <time datetime="${article.dateISO}">${article.date}</time></span>
+      <span class="cat">${article.tag} &middot; <time datetime="${article.dateISO}">${article.date}</time><span class="rt">${article.readTime || estimateReadTime(article.excerpt)}</span></span>
       <h3>${article.title}</h3>
       <span class="m">${article.excerpt} &rarr;</span>
     </a>
   `).join('');
+}
+
+function estimateReadTime(text) {
+  const words = (text || '').trim().split(/\s+/).length;
+  const minutes = Math.max(1, Math.round(words / 45));
+  return `${minutes} min read`;
 }
 
 function renderArticleNav(containerId, currentSlug) {
