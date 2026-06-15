@@ -35,7 +35,53 @@ article .end{font-family:var(--serif);font-style:italic;font-size:1.35rem;color:
 .btn{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:600;padding:13px 24px;border-radius:3px;border:1.5px solid var(--green);color:var(--green);transition:.25s var(--e);text-decoration:none}
 .btn:hover{background:var(--green);color:var(--cream)}
 .foot .links{margin-top:26px;display:flex;flex-wrap:wrap;gap:18px;font-size:.85rem;color:var(--muted)}.foot .links a:hover{color:var(--green)}
-</style></head><body>
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B82L1B9XPQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B82L1B9XPQ');
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a[href*="work"], a[href*="contact"], .work-with-me, [data-track="work-with-me"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'work_with_me_click', { event_category: 'engagement', event_label: 'Work With Me Button' });
+      });
+    });
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'email_click', { event_category: 'engagement', event_label: el.href });
+      });
+    });
+    document.querySelectorAll('a[href*="youtube.com"], a[href*="youtu.be"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'youtube_click', { event_category: 'outbound', event_label: el.href });
+      });
+    });
+    document.querySelectorAll('a[href*="medium.com"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'medium_click', { event_category: 'outbound', event_label: el.href });
+      });
+    });
+    var articleRead = false;
+    window.addEventListener('scroll', function() {
+      if (!articleRead) {
+        var scrollPct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+        if (scrollPct >= 0.75) {
+          articleRead = true;
+          gtag('event', 'article_read', { event_category: 'engagement', event_label: window.location.pathname });
+        }
+      }
+    });
+    document.querySelectorAll('form').forEach(function(form) {
+      form.addEventListener('submit', function() {
+        gtag('event', 'form_submission', { event_category: 'lead', event_label: 'Contact Form' });
+      });
+    });
+  });
+</script></head><body>
 
 <header><nav>
 <a class="brand" href="index.html">Njuguna&nbsp;Hilary</a>
