@@ -26,7 +26,13 @@
 const ARTICLES = [
 
   // ─── NEWEST ARTICLE (just uploaded) ────────────────────
-  {
+  {{
+  slug: "founder-notes-when-the-dream-is-no-longer-yours-alone.html",
+  title: "When the Dream Is No Longer Yours Alone",
+  description: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
+  date: "June 18, 2026",
+  dateISO: "2026-06-18"
+},
     title: "I Built a Website on My Phone at 2am",
     slug: "founder-notes-i-built-a-website-on-my-phone.html",
     date: "June 15, 2026",
