@@ -24,11 +24,12 @@
  */
 
 const ARTICLES = [{
-    slug: "founder-notes-when-the-dream-is-no-longer-yours-alone.html",
     title: "When the Dream Is No Longer Yours Alone",
-    description: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
+    slug: "founder-notes-when-the-dream-is-no-longer-yours-alone.html",
     date: "June 18, 2026",
-    dateISO: "2026-06-18"
+    dateISO: "2026-06-18",
+    excerpt: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
+    tag: "Founder Notes"
   },
 
   // ─── NEWEST ARTICLE (just uploaded) ────────────────────
