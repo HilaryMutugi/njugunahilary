@@ -23,7 +23,18 @@
  * ============================================================
  */
 
-const ARTICLES = [{
+const ARTICLES = [
+  // ─── NEWEST ARTICLE (just uploaded) ────────────────────
+  {
+    title: "Proof of Life",
+    slug: "founder-notes-proof-of-life.html",
+    date: "June 20, 2026",
+    dateISO: "2026-06-20",
+    excerpt: "205 farmer applications, a website built on a phone, and the quiet admiration in mentoring rooms I rarely talk about. An honest proof of life from the road.",
+    tag: "Founder Notes"
+  },
+
+  {
     title: "When the Dream Is No Longer Yours Alone",
     slug: "founder-notes-when-the-dream-is-no-longer-yours-alone.html",
     date: "June 18, 2026",
@@ -32,7 +43,6 @@ const ARTICLES = [{
     tag: "Founder Notes"
   },
 
-  // ─── NEWEST ARTICLE (just uploaded) ────────────────────
   {
     title: "I Built a Website on My Phone at 2am",
     slug: "founder-notes-i-built-a-website-on-my-phone.html",
