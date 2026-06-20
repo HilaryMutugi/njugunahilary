@@ -26,6 +26,15 @@
 const ARTICLES = [
   // ─── NEWEST ARTICLE (just uploaded) ────────────────────
   {
+    title: "Belief",
+    slug: "founder-notes-belief.html",
+    date: "June 21, 2026",
+    dateISO: "2026-06-21",
+    excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch — one 3am commit at a time.",
+    tag: "Founder Notes"
+  },
+
+  {
     title: "Proof of Life",
     slug: "founder-notes-proof-of-life.html",
     date: "June 20, 2026",
