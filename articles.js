@@ -25,7 +25,7 @@
 
 const ARTICLES = [
   // ─── NEWEST ARTICLE (just uploaded) ────────────────────
-  {
+{
     title: "Trancing",
     slug: "founder-notes-trancing.html",
     date: "July 3, 2026",
