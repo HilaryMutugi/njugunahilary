@@ -31,7 +31,8 @@ const ARTICLES = [
     date: "July 3, 2026",
     dateISO: "2026-07-03",
     excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "light-bulb-moment.png"
   },
   {
     title: "Belief",
@@ -127,9 +128,12 @@ function renderArticleCards(containerId, limit) {
   const list = limit ? ARTICLES.slice(0, limit) : ARTICLES;
   container.innerHTML = list.map((article, i) => `
     <a class="ncard" href="${article.slug}" style="animation-delay:${i * 0.07}s">
-      <span class="cat">${article.tag} &middot; <time datetime="${article.dateISO}">${article.date}</time><span class="rt">${article.readTime || estimateReadTime(article.excerpt)}</span></span>
-      <h3>${article.title}</h3>
-      <span class="m">${article.excerpt} &rarr;</span>
+      ${article.image ? `<span class="ncard-img"><img src="${article.image}" alt="" loading="lazy"></span>` : ''}
+      <span class="ncard-body">
+        <span class="cat">${article.tag} &middot; <time datetime="${article.dateISO}">${article.date}</time><span class="rt">${article.readTime || estimateReadTime(article.excerpt)}</span></span>
+        <h3>${article.title}</h3>
+        <span class="m">${article.excerpt} &rarr;</span>
+      </span>
     </a>
   `).join('');
 }
