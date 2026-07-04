@@ -48,20 +48,26 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 .wrap{max-width:760px;margin:0 auto;padding:0 26px}
 .articles-section{padding:56px 0 80px}
 .articles-count{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(111,78,55,.18)}
-.fn-item{padding:2rem 0;border-bottom:1px solid rgba(111,78,55,.15);display:grid;grid-template-columns:1fr auto;gap:.4rem 2rem;align-items:start;opacity:0;transform:translateY(10px);animation:fadeUp .45s var(--e) forwards}
+.fn-item{padding:2rem 0;border-bottom:1px solid rgba(111,78,55,.15);display:flex;gap:20px;align-items:flex-start;opacity:0;transform:translateY(10px);animation:fadeUp .45s var(--e) forwards}
 .fn-item:first-of-type{padding-top:0}
 @keyframes fadeUp{to{opacity:1;transform:none}}
-.fn-tag{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);grid-column:1}
-.fn-date{grid-column:2;grid-row:1/3;font-size:.75rem;color:var(--muted);font-weight:500;white-space:nowrap;text-align:right;padding-top:2px}
-.fn-rt{grid-column:2;grid-row:3;font-size:.7rem;color:var(--muted);font-weight:500;white-space:nowrap;text-align:right}
-@media(max-width:680px){.fn-rt{grid-column:1;grid-row:auto;text-align:left;margin-top:-.3rem}}
+.fn-main{flex:1;min-width:0}
+.fn-thumb{flex:0 0 110px;width:110px;height:110px;border-radius:8px;overflow:hidden;background:rgba(111,78,55,.08);display:block}
+.fn-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.fn-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:.15rem}
+.fn-tag{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.fn-date{font-size:.75rem;color:var(--muted);font-weight:500;white-space:nowrap}
+.fn-rt{font-size:.7rem;color:var(--muted);font-weight:500;white-space:nowrap}
+.fn-rt::before{content:"\2022";margin-right:6px}
 .fn-title{grid-column:1;font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1.25;margin:.15rem 0}
 .fn-title a{color:var(--ink);transition:color .2s}
 .fn-title a:hover{color:var(--gold)}
-.fn-excerpt{grid-column:1/-1;font-size:.9rem;color:var(--muted);line-height:1.65;margin-top:.25rem}
-.fn-read{grid-column:1/-1;margin-top:.6rem}
+.fn-excerpt{font-size:.9rem;color:var(--muted);line-height:1.65;margin-top:.25rem}
+.fn-read{margin-top:.6rem}
 .fn-read a{font-size:.78rem;font-weight:600;letter-spacing:.05em;color:var(--green);border-bottom:1px solid transparent;transition:border-color .2s}
 .fn-read a:hover{border-color:var(--green)}
+@media(max-width:680px){.fn-item{gap:14px}.fn-thumb{flex-basis:76px;width:76px;height:76px}}
+@media(max-width:480px){.fn-item{flex-wrap:wrap}.fn-thumb{flex-basis:100%;width:100%;height:170px;order:-1}}
 
 /* ── MEDIUM ARCHIVE ───────────────────────── */
 .arch-section{background:var(--cream2);padding:48px 0 56px}
@@ -85,8 +91,6 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 @media(max-width:860px){
   .nl{display:none}
   .mt{display:block}
-  .fn-item{grid-template-columns:1fr}
-  .fn-date{grid-column:1;grid-row:auto;text-align:left;margin-top:.6rem}
 }
 </style>
 </head><body>
@@ -154,13 +158,21 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
   count.textContent = ARTICLES.length + ' article' + (ARTICLES.length !== 1 ? 's' : '');
 
   list.innerHTML = ARTICLES.map(function(article, i) {
+    var thumb = article.image
+      ? '<a class="fn-thumb" href="' + article.slug + '"><img src="' + article.image + '" alt="" loading="lazy"></a>'
+      : '';
     return '<div class="fn-item" style="animation-delay:' + (i * 0.07) + 's">' +
+      '<div class="fn-main">' +
+      '<div class="fn-meta">' +
       '<span class="fn-tag">' + article.tag + '</span>' +
       '<time class="fn-date" datetime="' + article.dateISO + '">' + article.date + '</time>' +
       '<span class="fn-rt">' + (article.readTime || estimateReadTime(article.excerpt)) + '</span>' +
+      '</div>' +
       '<h2 class="fn-title"><a href="' + article.slug + '">' + article.title + '</a></h2>' +
       '<p class="fn-excerpt">' + article.excerpt + '</p>' +
       '<div class="fn-read"><a href="' + article.slug + '">Read the full note &rarr;</a></div>' +
+      '</div>' +
+      thumb +
       '</div>';
   }).join('');
 </script>
