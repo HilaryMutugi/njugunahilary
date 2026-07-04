@@ -26,13 +26,13 @@
 const ARTICLES = [
   // ─── NEWEST ARTICLE (just uploaded) ────────────────────
 {
-    title: "Trancing",
-    slug: "founder-notes-trancing.html",
-    date: "July 3, 2026",
-    dateISO: "2026-07-03",
-    excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
-    tag: "Founder Notes"
-  },
+  slug: "light-bulb-moment",
+  title: "What Nobody Tells You About the Light Bulb Moment",
+  date: "July 3, 2026",
+  dateISO: "2026-07-03",
+  excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
+  tag: "Founder Notes"
+},
   {
     title: "Belief",
     slug: "founder-notes-belief.html",
