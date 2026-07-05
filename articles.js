@@ -32,7 +32,7 @@ const ARTICLES = [
     dateISO: "2026-07-03",
     excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
     tag: "Founder Notes",
-    image: "light-bulb-moment.png"
+    image: "images/light-bulb-moment.png"
   },
   {
     title: "Belief",
@@ -40,7 +40,8 @@ const ARTICLES = [
     date: "June 21, 2026",
     dateISO: "2026-06-21",
     excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch — one 3am commit at a time.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-belief.png"
   },
 
   {
@@ -49,7 +50,8 @@ const ARTICLES = [
     date: "June 20, 2026",
     dateISO: "2026-06-20",
     excerpt: "205 farmer applications, a website built on a phone, and the quiet admiration in mentoring rooms I rarely talk about. An honest proof of life from the road.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-proof-of-life.png"
   },
 
   {
@@ -58,7 +60,8 @@ const ARTICLES = [
     date: "June 18, 2026",
     dateISO: "2026-06-18",
     excerpt: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-dream-no-longer-yours-alone.png"
   },
 
   {
@@ -67,7 +70,8 @@ const ARTICLES = [
     date: "June 15, 2026",
     dateISO: "2026-06-15",
     excerpt: "Three nights. My phone. Zero developers. Less than six dollars. Here is what happened when I decided to stop waiting and just build.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-website-on-phone.png"
   },
 
   // ─── EXISTING ARTICLES ─────────────────────────────────
@@ -79,7 +83,8 @@ const ARTICLES = [
     date: "May 2026",           // ← replace with real date, e.g. "May 12, 2026"
     dateISO: "2026-05-01",      // ← replace with real date, e.g. "2026-05-12"
     excerpt: "For a long time, I thought building a business meant waiting until everything looked polished. Entrepreneurship has taught me something different.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-building-in-public.png"
   },
 
   {
@@ -88,7 +93,8 @@ const ARTICLES = [
     date: "April 2026",         // ← replace with real date
     dateISO: "2026-04-01",      // ← replace with real date
     excerpt: "A 1:55am reflection on a decade of dreaming, the lows that almost ended Afrifama, and a meeting that could change everything.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-meeting-with-destiny.png"
   },
 
   {
@@ -97,7 +103,8 @@ const ARTICLES = [
     date: "March 2026",         // ← replace with real date
     dateISO: "2026-03-01",      // ← replace with real date
     excerpt: "A founder's annual reflection on slow growth, an angel investor, The Alchemist, and what building quietly in Sub-Saharan Africa really feels like.",
-    tag: "Founder Notes"
+    tag: "Founder Notes",
+    image: "images/founder-notes-silence-never-ends-a-story.png"
   }
 
 ];

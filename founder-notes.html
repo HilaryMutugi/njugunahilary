@@ -38,15 +38,30 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 .mt svg{fill:var(--cream)}
 
 /* ── PAGE HEADER ──────────────────────────── */
-.page-hero{background:var(--charcoal);padding:72px 26px 56px;text-align:center}
+.page-hero{position:relative;overflow:hidden;background:var(--charcoal);min-height:calc(100vh - 64px);padding:82px 26px 76px;display:flex;align-items:center}
+.page-hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(14,13,12,.99) 0%,rgba(14,13,12,.92) 30%,rgba(14,13,12,.54) 54%,rgba(14,13,12,.16) 100%),linear-gradient(180deg,rgba(14,13,12,.14) 0%,rgba(14,13,12,.12) 68%,rgba(14,13,12,.92) 100%);pointer-events:none}
+.page-hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.18;background:radial-gradient(circle at var(--kenya-glow-x,66%) var(--kenya-glow-y,30%),rgba(201,162,75,.12) 0 1.4%,rgba(201,162,75,.055) 2.8%,rgba(201,162,75,.022) 5.5%,transparent 10%),radial-gradient(circle at 67.4% 28.2%,rgba(246,241,231,.24) 0 1px,transparent 2.2px),radial-gradient(circle at 66.1% 31.1%,rgba(201,162,75,.22) 0 1px,transparent 2.3px),radial-gradient(circle at 68.7% 30.4%,rgba(201,162,75,.18) 0 1px,transparent 2.1px),radial-gradient(circle at 64.8% 29.7%,rgba(201,162,75,.14) 0 1px,transparent 2px);mix-blend-mode:screen;transition:opacity .35s var(--e)}
+.hero-inner{position:relative;z-index:2;max-width:1280px;width:100%;margin:0 auto}
+.hero-copy{text-align:left;max-width:560px}
 .eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--green);display:inline-flex;gap:9px;align-items:center;margin-bottom:16px}
 .eyebrow::before{content:"";width:24px;height:1.5px;background:var(--gold)}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.2rem);font-weight:700;color:var(--cream);line-height:1.15;margin-bottom:16px}
-.page-hero p{font-size:1rem;color:rgba(246,241,231,.65);max-width:500px;margin:0 auto;line-height:1.7}
+.page-hero .eyebrow{color:var(--gold)}
+.page-hero h1{font-family:var(--serif);font-size:clamp(4rem,7.7vw,7.2rem);font-weight:700;color:var(--cream);line-height:.9;margin-bottom:22px}
+.page-hero p{font-size:1.08rem;color:rgba(246,241,231,.72);max-width:560px;line-height:1.75}
+.hero-rotator{display:inline-flex;align-items:center;min-height:30px;margin:0 0 20px;padding:7px 11px;border-left:2px solid var(--gold);background:rgba(246,241,231,.06);color:rgba(246,241,231,.86);font-size:.78rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-actions a{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:3px;font-size:.84rem;font-weight:600;transition:.25s var(--e)}
+.hero-actions .primary{background:var(--gold);color:var(--charcoal)}
+.hero-actions .secondary{border:1px solid rgba(246,241,231,.28);color:var(--cream)}
+.hero-actions a:hover{transform:translateY(-2px)}
+.hero-cover{position:absolute;inset:0;z-index:0}
+.hero-cover img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;filter:saturate(.94) contrast(1.04)}
+.hero-note{position:absolute;z-index:3;left:50%;bottom:-34px;transform:translateX(-50%);padding:16px 18px;border-radius:6px;background:rgba(246,241,231,.94);box-shadow:0 22px 44px -34px rgba(0,0,0,.9);color:var(--green);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.hero-note b{display:block;font-family:var(--serif);font-size:1.7rem;line-height:1;color:var(--ink);letter-spacing:0;text-transform:none}
 
 /* ── ARTICLES LIST ────────────────────────── */
-.wrap{max-width:760px;margin:0 auto;padding:0 26px}
-.articles-section{padding:56px 0 80px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+.articles-section{padding:66px 0 84px}
 .articles-count{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid rgba(111,78,55,.18)}
 .fn-item{padding:2rem 0;border-bottom:1px solid rgba(111,78,55,.15);display:flex;gap:20px;align-items:flex-start;opacity:0;transform:translateY(10px);animation:fadeUp .45s var(--e) forwards}
 .fn-item:first-of-type{padding-top:0}
@@ -91,7 +106,19 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 @media(max-width:860px){
   .nl{display:none}
   .mt{display:block}
+  .page-hero{padding:64px 24px 86px;min-height:760px}
+  .hero-copy{text-align:center}
+  .page-hero p{margin:0 auto}
+  .hero-rotator{justify-content:center}
+  .hero-actions{justify-content:center}
+  .hero-cover img{object-position:62% center}
 }
+@media(max-width:560px){
+  .page-hero h1{font-size:clamp(3.3rem,18vw,4.5rem)}
+  .page-hero{min-height:720px}
+  .hero-note{bottom:-24px;padding:12px 14px}
+}
+@media(prefers-reduced-motion:reduce){.page-hero::after{transition:none}}
 </style>
 </head><body>
 
@@ -113,12 +140,25 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 </header>
 
 <div class="page-hero">
-  <span class="eyebrow">Writing</span>
-  <h1>Founder Notes</h1>
-  <p>Honest writing about building a business in Africa. Not polished theory &mdash; just what actually happened, and what I learned from it.</p>
+  <div class="hero-cover" aria-label="Founder Notes field journal cover">
+    <img src="images/founder-notes-hero.png" alt="Late-night founder desk with notebook, laptop, and agribusiness notes">
+    <div class="hero-note"><b>8</b> Founder Notes</div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Writing</span>
+      <h1>Founder Notes</h1>
+      <div class="hero-rotator" id="hero-rotator">Field notes from the messy middle</div>
+      <p>Honest essays on entrepreneurship, belief, failure, farmer systems, and the work behind the work &mdash; written while the story is still unfolding.</p>
+      <div class="hero-actions">
+        <a class="primary" href="#all-notes">Start Reading</a>
+        <a class="secondary" href="#all-notes">Browse All Notes</a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<section class="articles-section">
+<section class="articles-section" id="all-notes">
   <div class="wrap">
     <p class="articles-count" id="articles-count"></p>
     <div id="articles-list"></div>
@@ -152,6 +192,38 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 
 <script src="articles.js"></script>
 <script>
+  var phrases = [
+    'Field notes from the messy middle',
+    'Building from scratch',
+    'The work behind the work',
+    'Before the success story',
+    'Proof, pressure, and patience'
+  ];
+  var phraseIndex = 0;
+  var rotator = document.getElementById('hero-rotator');
+  if (rotator) {
+    setInterval(function() {
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      rotator.textContent = phrases[phraseIndex];
+    }, 2600);
+  }
+
+  var hero = document.querySelector('.page-hero');
+  var canMoveGlow = hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (canMoveGlow) {
+    hero.addEventListener('pointermove', function(e) {
+      var rect = hero.getBoundingClientRect();
+      var nx = (e.clientX - rect.left) / rect.width - 0.5;
+      var ny = (e.clientY - rect.top) / rect.height - 0.5;
+      hero.style.setProperty('--kenya-glow-x', (66 + nx * 1.1).toFixed(2) + '%');
+      hero.style.setProperty('--kenya-glow-y', (30 + ny * 1).toFixed(2) + '%');
+    });
+    hero.addEventListener('pointerleave', function() {
+      hero.style.setProperty('--kenya-glow-x', '66%');
+      hero.style.setProperty('--kenya-glow-y', '30%');
+    });
+  }
+
   var count = document.getElementById('articles-count');
   var list = document.getElementById('articles-list');
 
