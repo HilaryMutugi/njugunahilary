@@ -1,6 +1,6 @@
 ﻿/**
  * ============================================================
- *  FOUNDER NOTES â€” Article Registry
+ *  FOUNDER NOTES -- Article Registry
  *  njugunahilary.com
  * ============================================================
  *
@@ -11,7 +11,7 @@
  *  2. Add one new entry at the TOP of the ARTICLES array below
  *  3. Save articles.js and upload it to GitHub too
  *
- *  Done â€” the homepage cards, archive page, and prev/next
+ *  Done -- the homepage cards, archive page, and prev/next
  *  navigation all update automatically.
  *
  *  Keep newest articles at the TOP.
@@ -49,7 +49,7 @@ const ARTICLES = [
     slug: "founder-notes-belief.html",
     date: "June 21, 2026",
     dateISO: "2026-06-21",
-    excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch â€” one 3am commit at a time.",
+    excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch &mdash; one 3am commit at a time.",
     tag: "Founder Notes",
     image: "images/founder-notes-belief.png"
   },

@@ -8,6 +8,12 @@
 <meta property="og:description" content="Honest writing about building a business in Africa.">
 <meta property="og:image" content="https://njugunahilary.com/social-preview.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://njugunahilary.com/founder-notes.html">
+<meta property="og:url" content="https://njugunahilary.com/founder-notes.html">
+<meta name="twitter:title" content="Founder Notes &mdash; Njuguna Hilary">
+<meta name="twitter:description" content="Honest field notes on entrepreneurship, belief, failure and building in Africa.">
+<meta name="twitter:image" content="https://njugunahilary.com/social-preview.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","url":"https://njugunahilary.com/founder-notes.html","name":"Founder Notes","description":"Honest field notes on entrepreneurship, belief, failure and building in Africa.","author":{"@type":"Person","name":"Njuguna Hilary","url":"https://njugunahilary.com/"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- Google tag (gtag.js) -->
@@ -120,6 +126,7 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
 }
 @media(prefers-reduced-motion:reduce){.page-hero::after{transition:none}}
 </style>
+<link rel="stylesheet" href="v14.css">
 </head><body>
 
 <header class="site-header">
@@ -133,7 +140,7 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
     <a href="index.html#speak">Speaking</a>
     <a href="index.html#contact" class="btn">Work With Me</a>
   </div>
-  <button class="mt" onclick="document.querySelector('.nl').classList.toggle('open')" aria-label="Menu">
+  <button class="mt" type="button" aria-label="Menu">
     <svg width="22" height="16" viewBox="0 0 22 16"><rect y="0" width="22" height="2" rx="1"/><rect y="7" width="22" height="2" rx="1"/><rect y="14" width="22" height="2" rx="1"/></svg>
   </button>
 </nav>
@@ -187,7 +194,7 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
     <a href="https://medium.com/@njugunahilary93" target="_blank" rel="noopener">Medium</a>
     <a href="index.html#contact">Contact</a>
   </div>
-  <p>&copy; 2026 Njuguna Hilary &nbsp;&middot;&nbsp; <a href="mailto:afrifamapoultry@gmail.com">afrifamapoultry@gmail.com</a></p>
+  <p>&copy; 2026 Njuguna Hilary &nbsp;&middot;&nbsp; <a href="mailto:hello@njugunahilary.com">hello@njugunahilary.com</a></p>
 </footer>
 
 <script src="articles.js"></script>
@@ -228,6 +235,8 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
   var list = document.getElementById('articles-list');
 
   count.textContent = ARTICLES.length + ' article' + (ARTICLES.length !== 1 ? 's' : '');
+  var heroCount = document.querySelector('.hero-note b');
+  if (heroCount) heroCount.textContent = ARTICLES.length;
 
   list.innerHTML = ARTICLES.map(function(article, i) {
     var thumb = article.image
@@ -249,4 +258,5 @@ header.site-header{position:sticky;top:0;z-index:20;background:rgba(33,31,28,.97
   }).join('');
 </script>
 
+<script src="v14.js"></script>
 </body></html>
