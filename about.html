@@ -54,6 +54,7 @@ p{margin-bottom:18px}p:last-child{margin-bottom:0}
 .impact .eyebrow{color:var(--gold);justify-content:center}.impact .eyebrow::before{background:var(--gold)}
 .statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:920px;margin:30px auto 0;align-items:start}
 .stat .n{font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,4.4vw,3.2rem);color:var(--cream);line-height:1}
+.stat .count-value{font-variant-numeric:tabular-nums}
 .stat .n b{color:var(--gold)}
 .stat .l{font-size:.8rem;color:rgba(246,241,231,.7);margin-top:12px;line-height:1.4}
 .stat{padding:4px 8px;border-left:1px solid rgba(246,241,231,.14)}.stat:first-child{border-left:0}
@@ -214,10 +215,10 @@ footer a{color:rgba(246,241,231,.75)}footer a:hover{color:var(--gold)}
 <section class="impact"><div class="wrap rv">
 <span class="eyebrow">The impact so far</span>
 <div class="statgrid">
-<div class="stat"><div class="n">150<b>+</b></div><div class="l">Farmers supported through Afrifama Feeds</div></div>
-<div class="stat"><div class="n">350<b>+</b></div><div class="l">Entrepreneurs mentored</div></div>
-<div class="stat"><div class="n">5.7K<b>+</b></div><div class="l">YouTube subscribers</div></div>
-<div class="stat"><div class="n">120<b>+</b></div><div class="l">Startup pitches judged</div></div>
+<div class="stat"><div class="n" data-count="150" data-suffix="+" aria-label="150 plus"><span class="count-value">150</span><b aria-hidden="true">+</b></div><div class="l">Farmers supported through Afrifama Feeds</div></div>
+<div class="stat"><div class="n" data-count="350" data-suffix="+" aria-label="350 plus"><span class="count-value">350</span><b aria-hidden="true">+</b></div><div class="l">Entrepreneurs mentored</div></div>
+<div class="stat"><div class="n" data-count="5700" data-format="compact" data-suffix="+" aria-label="5.7 thousand plus"><span class="count-value">5.7K</span><b aria-hidden="true">+</b></div><div class="l">YouTube subscribers</div></div>
+<div class="stat"><div class="n" data-count="120" data-suffix="+" aria-label="120 plus"><span class="count-value">120</span><b aria-hidden="true">+</b></div><div class="l">Startup pitches judged</div></div>
 </div>
 </div></section>
 
@@ -244,32 +245,30 @@ footer a{color:rgba(246,241,231,.75)}footer a:hover{color:var(--gold)}
     <div class="next-visual rv" aria-label="Hilary building Afrifama alongside smallholder poultry farmers">
       <figure class="next-main">
         <img src="images/about-hilary-training.jpg" alt="Hilary leading a farmer training session in coastal Kenya" loading="lazy">
+        <div class="visual-system" aria-hidden="true">
+          <span>Farm system view</span>
+          <div><b>Egg output</b><em>weekly records</em></div>
+          <div><b>Feed cost</b><em>margin checks</em></div>
+          <div><b>Market link</b><em>income path</em></div>
+        </div>
         <figcaption>Leading a farmer session &middot; Coastal Kenya</figcaption>
       </figure>
     </div>
   </div>
 
   <blockquote class="next-manifesto rv">I am trying to build the kind of startup where impact is not a campaign. It is the operating system.</blockquote>
-
-  <div class="field-glimpse rv" aria-label="Moments from Hilary's work with Afrifama farmers">
-    <div class="field-glimpse-intro"><span class="eyebrow">From the field</span><p>Conversations that shape what I build next.</p></div>
-    <figure>
-      <img src="images/about-farmer-dialogue.jpg" alt="Hilary speaking with smallholder poultry farmers during an Afrifama field session" loading="lazy">
-    </figure>
-    <figure>
-      <img src="images/about-farmer-outcome.jpg" alt="Smallholder poultry farmer holding a tray of eggs beside her chicken house" loading="lazy">
-    </figure>
-  </div>
 </div>
 </section>
 
 <section style="padding-top:0"><div class="wrap"><div class="row alt">
 <div>
-<span class="tag">Beyond Afrifama</span>
-<h2>One voice can be a catalyst for change.</h2>
-<p>Building Afrifama taught me that you don't need a huge donation to make an impact &mdash; you can use your voice. So I do.</p>
-<p>I've trained and mentored young entrepreneurs across Kenya, judged more than 120 startup pitches, and trained 130 youth through the Go Blue project with Cap Youth Empowerment Institute. I launched <strong>Kukuza</strong>, a program empowering young people in Kilifi through sustainable poultry farming, and I've facilitated sessions on the Business Model Canvas for the Boost Plus program &mdash; sharpening my own thinking along the way through the Sinapis Entrepreneur Academy and the AKEFEMA convention.</p>
-<p>My aim is simple: to inspire the next generation of builders, and to become a changemaker and leading entrepreneur in Sub-Saharan Africa.</p>
+<h2>Using My Voice to Help Others Build</h2>
+<p>Building Afrifama taught me that impact does not always begin with huge steps. Sometimes, it begins by sharing what you know, opening doors, and using your voice to help someone move forward.</p>
+<p>That belief has shaped my work beyond Afrifama.</p>
+<p>I have trained and mentored young entrepreneurs across Kenya, judged more than 120 startup pitches, and supported the training of 130 young people through the Go Blue Project with CAP Youth Empowerment Institute.</p>
+<p>I have also facilitated practical entrepreneurship sessions, including Business Model Canvas training for the Boost Plus programme. Every session has given me an opportunity to share what I have learned while sharpening my own thinking as a founder.</p>
+<p>My goal is to help more young people believe that they can build meaningful businesses from where they are, with what they have.</p>
+<p>As I continue building, learning, and sharing the journey, I hope to become one of the entrepreneurs and changemakers helping shape the future of enterprise in Sub-Saharan Africa.</p>
 </div>
 <div class="ph"><img src="images/about-speak.jpg" alt="Njuguna presenting to entrepreneurs"></div>
 </div></div></section>
