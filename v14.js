@@ -62,4 +62,19 @@
       counters.forEach(function(counter){observer.observe(counter);});
     }
   }
+  document.querySelectorAll('.building-loop').forEach(function(loop){
+    if(reduceMotion||!('IntersectionObserver' in window)){
+      loop.classList.add('is-visible');
+      return;
+    }
+    var loopObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          loop.classList.add('is-visible');
+          loopObserver.unobserve(loop);
+        }
+      });
+    },{threshold:.35});
+    loopObserver.observe(loop);
+  });
 }());
