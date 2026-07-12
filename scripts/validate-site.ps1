@@ -75,6 +75,7 @@ foreach ($page in $pages) {
   if ($page.Name -ne 'article-template.html' -and $content -match '\{\{[A-Z_]+\}\}') { Add-Error "$($page.Name) contains an unresolved publishing token." }
   if ($content -notmatch '<main id="main-content"') { Add-Error "$($page.Name) is missing the main-content landmark." }
   if ($content -notmatch '<a class="skip-link" href="#main-content">') { Add-Error "$($page.Name) is missing the skip link." }
+  if ($content -notmatch 'href="v14\.css"' -and $content -notmatch '\.skip-link\s*\{') { Add-Error "$($page.Name) has a skip link without its styling." }
 
   $inlineIndex = 0
   $inlinePattern = '<script(?![^>]*type="application/ld\+json")(?![^>]*src=)[^>]*>([\s\S]*?)</script>'
