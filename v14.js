@@ -10,6 +10,32 @@
       var open=links.classList.toggle('open');
       button.setAttribute('aria-expanded',String(open));
     });
+    button.addEventListener('keydown',function(event){
+      if(event.key!=='Escape')return;
+      var nav=button.closest('nav');
+      var links=nav&&nav.querySelector('.nl');
+      if(links){links.classList.remove('open');}
+      button.setAttribute('aria-expanded','false');
+      button.focus();
+    });
+    var nav=button.closest('nav');
+    var links=nav&&nav.querySelector('.nl');
+    if(links){
+      links.addEventListener('click',function(event){
+        if(!event.target.closest('a'))return;
+        links.classList.remove('open');
+        button.setAttribute('aria-expanded','false');
+      });
+    }
+  });
+  document.addEventListener('keydown',function(event){
+    if(event.key!=='Escape')return;
+    document.querySelectorAll('.nl.open').forEach(function(links){
+      links.classList.remove('open');
+      var nav=links.closest('nav');
+      var button=nav&&nav.querySelector('.mt');
+      if(button){button.setAttribute('aria-expanded','false');button.focus();}
+    });
   });
   document.querySelectorAll('a[target="_blank"]').forEach(function(link){
     var rel=(link.getAttribute('rel')||'').split(/\s+/);

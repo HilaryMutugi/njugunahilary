@@ -4,15 +4,9 @@
  *  njugunahilary.com
  * ============================================================
  *
- *  THIS IS THE ONLY FILE YOU EDIT WHEN PUBLISHING A NEW ARTICLE.
- *
- *  Steps when you publish:
- *  1. Upload your new article HTML file to GitHub
- *  2. Add one new entry at the TOP of the ARTICLES array below
- *  3. Save articles.js and upload it to GitHub too
- *
- *  Done -- the homepage cards, archive page, and prev/next
- *  navigation all update automatically.
+ *  Publish with scripts/publish-founder-note.ps1. The helper adds the
+ *  newest entry here after validating the article, image, metadata,
+ *  reading time, and sitemap. See HOW-TO-UPDATE.md for the short guide.
  *
  *  Keep newest articles at the TOP.
  * ============================================================
@@ -43,7 +37,8 @@ const ARTICLES = [
     dateISO: "2026-07-06",
     excerpt: "A 2am Founder Note on building two websites in one weekend, identity, belief, and deciding who you are before anyone gives you permission.",
     tag: "Founder Notes",
-    image: "images/founder-notes-did-i-just-become-dangerous-overnight.webp"
+    image: "images/founder-notes-did-i-just-become-dangerous-overnight.webp",
+    readTime: "5 min read"
   },
 
   {
@@ -53,7 +48,8 @@ const ARTICLES = [
     dateISO: "2026-07-03",
     excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
     tag: "Founder Notes",
-    image: "images/light-bulb-moment.webp"
+    image: "images/light-bulb-moment.webp",
+    readTime: "6 min read"
   },
   {
     title: "Belief",
@@ -62,7 +58,8 @@ const ARTICLES = [
     dateISO: "2026-06-21",
     excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch &mdash; one 3am commit at a time.",
     tag: "Founder Notes",
-    image: "images/founder-notes-belief.webp"
+    image: "images/founder-notes-belief.webp",
+    readTime: "3 min read"
   },
 
   {
@@ -72,7 +69,8 @@ const ARTICLES = [
     dateISO: "2026-06-20",
     excerpt: "205 farmer applications, a website built on a phone, and the quiet admiration in mentoring rooms I rarely talk about. An honest proof of life from the road.",
     tag: "Founder Notes",
-    image: "images/founder-notes-proof-of-life.webp"
+    image: "images/founder-notes-proof-of-life.webp",
+    readTime: "3 min read"
   },
 
   {
@@ -82,7 +80,8 @@ const ARTICLES = [
     dateISO: "2026-06-18",
     excerpt: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
     tag: "Founder Notes",
-    image: "images/founder-notes-dream-no-longer-yours-alone.webp"
+    image: "images/founder-notes-dream-no-longer-yours-alone.webp",
+    readTime: "5 min read"
   },
 
   {
@@ -92,7 +91,8 @@ const ARTICLES = [
     dateISO: "2026-06-15",
     excerpt: "Three nights. My phone. Zero developers. Less than six dollars. Here is what happened when I decided to stop waiting and just build.",
     tag: "Founder Notes",
-    image: "images/founder-notes-website-on-phone.webp"
+    image: "images/founder-notes-website-on-phone.webp",
+    readTime: "5 min read"
   },
 
   // ─── EXISTING ARTICLES ─────────────────────────────────
@@ -105,7 +105,8 @@ const ARTICLES = [
     dateISO: "2026-05-01",      // ← replace with real date, e.g. "2026-05-12"
     excerpt: "For a long time, I thought building a business meant waiting until everything looked polished. Entrepreneurship has taught me something different.",
     tag: "Founder Notes",
-    image: "images/founder-notes-building-in-public.webp"
+    image: "images/founder-notes-building-in-public.webp",
+    readTime: "1 min read"
   },
 
   {
@@ -115,7 +116,8 @@ const ARTICLES = [
     dateISO: "2026-04-01",      // ← replace with real date
     excerpt: "A 1:55am reflection on a decade of dreaming, the lows that almost ended Afrifama, and a meeting that could change everything.",
     tag: "Founder Notes",
-    image: "images/founder-notes-meeting-with-destiny.webp"
+    image: "images/founder-notes-meeting-with-destiny.webp",
+    readTime: "3 min read"
   },
 
   {
@@ -125,7 +127,8 @@ const ARTICLES = [
     dateISO: "2026-03-01",      // ← replace with real date
     excerpt: "A founder's annual reflection on slow growth, an angel investor, The Alchemist, and what building quietly in Sub-Saharan Africa really feels like.",
     tag: "Founder Notes",
-    image: "images/founder-notes-silence-never-ends-a-story.webp"
+    image: "images/founder-notes-silence-never-ends-a-story.webp",
+    readTime: "5 min read"
   }
 
 ];
@@ -168,7 +171,7 @@ function renderArticleCards(containerId, limit) {
 
 function estimateReadTime(text) {
   const words = (text || '').trim().split(/\s+/).length;
-  const minutes = Math.max(1, Math.round(words / 45));
+  const minutes = Math.max(1, Math.ceil(words / 220));
   return `${minutes} min read`;
 }
 

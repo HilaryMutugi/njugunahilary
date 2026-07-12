@@ -70,32 +70,42 @@ Leave the symbols (`<p>`, `&mdash;`, `&amp;`) alone — just edit the plain word
 
 Use the publishing helper instead of editing article links by hand.
 
-1. Put your article PDF in `incoming-articles/article.pdf`.
-2. Put the article image in `incoming-articles/image.png` or `incoming-articles/image.jpg`.
-4. Open PowerShell in this website folder and run:
+1. Paste the article into `incoming-articles/article.txt`. Use a blank line between paragraphs.
+2. Put a WebP cover image in `incoming-articles/image.webp`.
+3. Open PowerShell in this website folder and run:
 
 ```powershell
 .\scripts\publish-founder-note.ps1 `
   -Title "Your Article Title" `
-  -Date "2026-07-06" `
-  -Excerpt "One strong sentence that describes the article." `
-  -ArticleFile ".\incoming-articles\article.pdf" `
-  -ImageFile ".\incoming-articles\image.png"
-```
-
-The script creates the article page, copies the image/PDF, updates `articles.js`, and updates `sitemap.xml`.
-
-If the PDF is scanned or image-only, the script may not be able to read the text. In that case, paste the article into `incoming-articles/article.txt` and run:
-
-```powershell
-.\scripts\publish-founder-note.ps1 `
-  -Title "Your Article Title" `
-  -Date "2026-07-06" `
   -Excerpt "One strong sentence that describes the article." `
   -ArticleFile ".\incoming-articles\article.txt" `
-  -ImageFile ".\incoming-articles\image.png" `
+  -ImageFile ".\incoming-articles\image.webp"
+```
+
+The date defaults to the day you publish. Only pass `-Date "YYYY-MM-DD"` when you intentionally need another website publication date.
+
+The script validates everything first, calculates reading time, creates the article page, adds complete sharing/SEO information, updates `articles.js`, and updates `sitemap.xml`. It will not leave half-finished files behind when validation fails.
+
+For a previously published article, optionally add its original link:
+
+```powershell
+-OriginalUrl "https://medium.com/@your-original-article"
+```
+
+JPG and PNG covers are converted to WebP when `cwebp` or ImageMagick is installed. If neither is available, provide a WebP image directly.
+
+To attach an original PDF, keep the article body in `article.txt` and run:
+
+```powershell
+.\scripts\publish-founder-note.ps1 `
+  -Title "Your Article Title" `
+  -Excerpt "One strong sentence that describes the article." `
+  -ArticleFile ".\incoming-articles\article.txt" `
+  -ImageFile ".\incoming-articles\image.webp" `
   -PdfFile ".\incoming-articles\article.pdf"
 ```
+
+Before publishing, you can test the inputs without changing the website by adding `-ValidateOnly`.
 
 Preview the new page first. When it looks right:
 
