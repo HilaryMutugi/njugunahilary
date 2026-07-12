@@ -68,10 +68,43 @@ Leave the symbols (`<p>`, `&mdash;`, `&amp;`) alone — just edit the plain word
 
 ## 3. Add a new article (Founder Note)
 
-1. **Copy** `article-template.html`, rename it like `founder-notes-lessons-from-afrifama.html` (lowercase, hyphens).
-2. Open it, follow the instructions at the top, replace the title/category/headline/paragraphs. Save.
-3. **Link it from the homepage:** open `index.html`, search for "Lessons from Afrifama" (or "What Keeps Me Up at Night"), then on that card change `href="#"` to your new file name and `Coming soon` to `Published here`.
-4. Save and upload.
+Use the publishing helper instead of editing article links by hand.
+
+1. Put your article PDF in `incoming-articles/article.pdf`.
+2. Put the article image in `incoming-articles/image.png` or `incoming-articles/image.jpg`.
+4. Open PowerShell in this website folder and run:
+
+```powershell
+.\scripts\publish-founder-note.ps1 `
+  -Title "Your Article Title" `
+  -Date "2026-07-06" `
+  -Excerpt "One strong sentence that describes the article." `
+  -ArticleFile ".\incoming-articles\article.pdf" `
+  -ImageFile ".\incoming-articles\image.png"
+```
+
+The script creates the article page, copies the image/PDF, updates `articles.js`, and updates `sitemap.xml`.
+
+If the PDF is scanned or image-only, the script may not be able to read the text. In that case, paste the article into `incoming-articles/article.txt` and run:
+
+```powershell
+.\scripts\publish-founder-note.ps1 `
+  -Title "Your Article Title" `
+  -Date "2026-07-06" `
+  -Excerpt "One strong sentence that describes the article." `
+  -ArticleFile ".\incoming-articles\article.txt" `
+  -ImageFile ".\incoming-articles\image.png" `
+  -PdfFile ".\incoming-articles\article.pdf"
+```
+
+Preview the new page first. When it looks right:
+
+```powershell
+git status
+git add .
+git commit -m "Publish founder note: Your Article Title"
+git push origin main
+```
 
 ---
 

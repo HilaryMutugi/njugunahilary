@@ -1,0 +1,17 @@
+# Article title here
+
+Paste your article here.
+
+The first paragraph becomes the highlighted lead paragraph.
+
+Use a blank line between paragraphs.
+
+Use three dashes on their own line to create a divider.
+
+---
+
+Use a line starting with `>` to create a pull quote.
+
+> This is an example pull quote that will stand out in the article.
+
+Continue writing normal paragraphs after that.

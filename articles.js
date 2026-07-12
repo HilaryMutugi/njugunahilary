@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  *  FOUNDER NOTES -- Article Registry
  *  njugunahilary.com
@@ -17,7 +17,7 @@
  *  Keep newest articles at the TOP.
  * ============================================================
  *
- *  âš  UPDATE THE DATES for the older articles below.
+ *  ⚠ UPDATE THE DATES for the older articles below.
  *    They currently have estimated dates. Replace them with
  *    the real dates you actually published each article.
  * ============================================================
@@ -26,13 +26,24 @@
 const ARTICLES = [
   // NEWEST ARTICLE
   {
+    title: "What Keeps Me Up at Night: The Idea Waited for Us to Grow",
+    slug: "founder-notes-the-idea-waited-for-us-to-grow.html",
+    date: "July 12, 2026",
+    dateISO: "2026-07-12",
+    excerpt: "A reflection on an early idea called Kukuza, the lessons that shaped Afrifama, and the 205 farmers now waiting for the dream to grow.",
+    tag: "Founder Notes",
+    image: "images/about-afrifama-partnership.jpg",
+    readTime: "4 min read"
+  },
+
+  {
     title: "Did I Just Become Dangerous Overnight?",
     slug: "founder-notes-did-i-just-become-dangerous-overnight.html",
     date: "July 6, 2026",
     dateISO: "2026-07-06",
     excerpt: "A 2am Founder Note on building two websites in one weekend, identity, belief, and deciding who you are before anyone gives you permission.",
     tag: "Founder Notes",
-    image: "images/founder-notes-did-i-just-become-dangerous-overnight.png"
+    image: "images/founder-notes-did-i-just-become-dangerous-overnight.webp"
   },
 
   {
@@ -42,7 +53,7 @@ const ARTICLES = [
     dateISO: "2026-07-03",
     excerpt: "Nobody tells you when the light bulb moment is coming. It shows up disguised as exhaustion, a rejected phone call, and a business plan you keep going back to at 9pm.",
     tag: "Founder Notes",
-    image: "images/light-bulb-moment.png"
+    image: "images/light-bulb-moment.webp"
   },
   {
     title: "Belief",
@@ -51,7 +62,7 @@ const ARTICLES = [
     dateISO: "2026-06-21",
     excerpt: "On stubborn belief, two underdog football wins, and building a real farmers' platform from scratch &mdash; one 3am commit at a time.",
     tag: "Founder Notes",
-    image: "images/founder-notes-belief.png"
+    image: "images/founder-notes-belief.webp"
   },
 
   {
@@ -61,7 +72,7 @@ const ARTICLES = [
     dateISO: "2026-06-20",
     excerpt: "205 farmer applications, a website built on a phone, and the quiet admiration in mentoring rooms I rarely talk about. An honest proof of life from the road.",
     tag: "Founder Notes",
-    image: "images/founder-notes-proof-of-life.png"
+    image: "images/founder-notes-proof-of-life.webp"
   },
 
   {
@@ -71,7 +82,7 @@ const ARTICLES = [
     dateISO: "2026-06-18",
     excerpt: "For a long time, the dream was almost entirely mine to hold. Something has shifted lately, and I think it is worth writing about honestly.",
     tag: "Founder Notes",
-    image: "images/founder-notes-dream-no-longer-yours-alone.png"
+    image: "images/founder-notes-dream-no-longer-yours-alone.webp"
   },
 
   {
@@ -81,40 +92,40 @@ const ARTICLES = [
     dateISO: "2026-06-15",
     excerpt: "Three nights. My phone. Zero developers. Less than six dollars. Here is what happened when I decided to stop waiting and just build.",
     tag: "Founder Notes",
-    image: "images/founder-notes-website-on-phone.png"
+    image: "images/founder-notes-website-on-phone.webp"
   },
 
-  // â”€â”€â”€ EXISTING ARTICLES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  // âš  Replace the dates below with the real dates you published each one.
+  // ─── EXISTING ARTICLES ─────────────────────────────────
+  // ⚠ Replace the dates below with the real dates you published each one.
 
   {
     title: "Building in Public, But Honestly",
     slug: "founder-notes-building-in-public.html",
-    date: "May 2026",           // â† replace with real date, e.g. "May 12, 2026"
-    dateISO: "2026-05-01",      // â† replace with real date, e.g. "2026-05-12"
+    date: "May 2026",           // ← replace with real date, e.g. "May 12, 2026"
+    dateISO: "2026-05-01",      // ← replace with real date, e.g. "2026-05-12"
     excerpt: "For a long time, I thought building a business meant waiting until everything looked polished. Entrepreneurship has taught me something different.",
     tag: "Founder Notes",
-    image: "images/founder-notes-building-in-public.png"
+    image: "images/founder-notes-building-in-public.webp"
   },
 
   {
     title: "What Keeps Me Awake at Night: Meeting With Destiny",
     slug: "founder-notes-meeting-with-destiny.html",
-    date: "April 2026",         // â† replace with real date
-    dateISO: "2026-04-01",      // â† replace with real date
+    date: "April 2026",         // ← replace with real date
+    dateISO: "2026-04-01",      // ← replace with real date
     excerpt: "A 1:55am reflection on a decade of dreaming, the lows that almost ended Afrifama, and a meeting that could change everything.",
     tag: "Founder Notes",
-    image: "images/founder-notes-meeting-with-destiny.png"
+    image: "images/founder-notes-meeting-with-destiny.webp"
   },
 
   {
     title: "Silence Never Ends a Story",
     slug: "founder-notes-silence-never-ends-a-story.html",
-    date: "March 2026",         // â† replace with real date
-    dateISO: "2026-03-01",      // â† replace with real date
+    date: "March 2026",         // ← replace with real date
+    dateISO: "2026-03-01",      // ← replace with real date
     excerpt: "A founder's annual reflection on slow growth, an angel investor, The Alchemist, and what building quietly in Sub-Saharan Africa really feels like.",
     tag: "Founder Notes",
-    image: "images/founder-notes-silence-never-ends-a-story.png"
+    image: "images/founder-notes-silence-never-ends-a-story.webp"
   }
 
 ];

@@ -577,15 +577,15 @@ section{scroll-margin-top:78px}
 
 <section class="notes" id="notes"><div class="wrap grid rv">
 <div class="notes-visual" aria-label="Featured Founder Notes">
-<a class="notes-feature" href="founder-notes-light-bulb-moment.html">
-<img src="images/light-bulb-moment.png" alt="Late-night founder desk scene for the light bulb moment">
+<a class="notes-feature" id="notes-latest" href="founder-notes-light-bulb-moment.html">
+<img id="notes-latest-image" src="images/light-bulb-moment.webp" alt="Latest Founder Note">
 <span>Notes from the messy middle of building.</span>
 </a>
 <div class="notes-mini" aria-hidden="true">
-<a href="founder-notes-belief.html" tabindex="-1"><img src="images/founder-notes-belief.png" alt=""></a>
-<a href="founder-notes-building-in-public.html" tabindex="-1"><img src="images/founder-notes-building-in-public.png" alt=""></a>
+<a id="notes-secondary-one" href="founder-notes-belief.html" tabindex="-1"><img src="images/founder-notes-belief.webp" alt=""></a>
+<a id="notes-secondary-two" href="founder-notes-building-in-public.html" tabindex="-1"><img src="images/founder-notes-building-in-public.webp" alt=""></a>
 </div>
-<div class="notes-badge"><b>9</b> Founder Notes</div>
+<div class="notes-badge"><b id="notes-count">9</b> Founder Notes</div>
 </div>
 <div><span class="eyebrow">Founder Notes &amp; Articles</span><h2>This is where I write.</h2>
 <p class="lead">This is where I write &mdash; honest Founder Notes on building, failure, and figuring it out, published here first. Medium holds the earlier essays; the new ones live here.</p>
@@ -946,4 +946,24 @@ var io=new IntersectionObserver(function(e){
 io.observe(h);
 })();
 </script>
-<script src="articles.js"></script><script>renderArticleCards('fn-homepage-cards', 3);</script></body></html>
+<script src="articles.js"></script><script>
+renderArticleCards('fn-homepage-cards', 3);
+(function(){
+  var latest=ARTICLES[0],one=ARTICLES[1],two=ARTICLES[2];
+  var feature=document.getElementById('notes-latest');
+  var featureImage=document.getElementById('notes-latest-image');
+  var count=document.getElementById('notes-count');
+  if(latest&&feature){feature.href=latest.slug;}
+  if(latest&&featureImage){featureImage.src=latest.image;featureImage.alt='Cover image for '+latest.title;}
+  function setSecondary(id,article){
+    var link=document.getElementById(id);
+    if(!link||!article)return;
+    link.href=article.slug;
+    var img=link.querySelector('img');
+    if(img){img.src=article.image;}
+  }
+  setSecondary('notes-secondary-one',one);
+  setSecondary('notes-secondary-two',two);
+  if(count){count.textContent=ARTICLES.length;}
+})();
+</script></body></html>
