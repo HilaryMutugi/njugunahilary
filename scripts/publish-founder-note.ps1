@@ -120,7 +120,9 @@ Set-Location -LiteralPath $repo
 $templatePath = Join-Path $repo "article-template.html"
 $articlesPath = Join-Path $repo "articles.js"
 $sitemapPath = Join-Path $repo "sitemap.xml"
-foreach ($required in @($templatePath, $articlesPath, $sitemapPath)) {
+$homePath = Join-Path $repo "index.html"
+$founderNotesPath = Join-Path $repo "founder-notes.html"
+foreach ($required in @($templatePath, $articlesPath, $sitemapPath, $homePath, $founderNotesPath)) {
   if (-not (Test-Path -LiteralPath $required)) { throw "Required publishing file is missing: $required" }
 }
 
@@ -219,15 +221,22 @@ try {
     { param($match) $match.Groups[1].Value + $dateIso }
   )
 
+  $articleScriptPattern = 'src="articles\.js(?:\?v=[^"]*)?"'
+  $versionedArticleScript = "src=`"articles.js?v=$dateIso`""
+  $updatedHome = (Get-Content -Raw -Encoding UTF8 $homePath) -replace $articleScriptPattern, $versionedArticleScript
+  $updatedFounderNotes = (Get-Content -Raw -Encoding UTF8 $founderNotesPath) -replace $articleScriptPattern, $versionedArticleScript
+
   $utf8NoBom = New-Object Text.UTF8Encoding($false)
   [IO.File]::WriteAllText((Join-Path $stage $htmlFileName), $page.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
   [IO.File]::WriteAllText((Join-Path $stage "articles.js"), $updatedArticles.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
   [IO.File]::WriteAllText((Join-Path $stage "sitemap.xml"), $updatedSitemap.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
+  [IO.File]::WriteAllText((Join-Path $stage "index.html"), $updatedHome.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
+  [IO.File]::WriteAllText((Join-Path $stage "founder-notes.html"), $updatedFounderNotes.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
 
   Write-Host "Validated: $Title ($($converted.WordCount) words, $($converted.ReadTime))" -ForegroundColor Green
   if ($ValidateOnly) { Write-Host "No website files were changed."; return }
 
-  $destinations = @($htmlPath, (Join-Path $repo $imageRelative), $articlesPath, $sitemapPath)
+  $destinations = @($htmlPath, (Join-Path $repo $imageRelative), $articlesPath, $sitemapPath, $homePath, $founderNotesPath)
   if ($pdfRelative) { $destinations += (Join-Path $repo $pdfRelative) }
   foreach ($destination in $destinations) {
     $parent = Split-Path -Parent $destination
@@ -237,6 +246,8 @@ try {
   Move-Item -LiteralPath $imageStaged -Destination (Join-Path $repo $imageRelative)
   Move-Item -LiteralPath (Join-Path $stage "articles.js") -Destination $articlesPath -Force
   Move-Item -LiteralPath (Join-Path $stage "sitemap.xml") -Destination $sitemapPath -Force
+  Move-Item -LiteralPath (Join-Path $stage "index.html") -Destination $homePath -Force
+  Move-Item -LiteralPath (Join-Path $stage "founder-notes.html") -Destination $founderNotesPath -Force
   if ($pdfRelative) { Move-Item -LiteralPath $pdfStaged -Destination (Join-Path $repo $pdfRelative) }
 
   Write-Host "Founder Note prepared: $htmlFileName" -ForegroundColor Green
