@@ -6,7 +6,7 @@ param(
   [Parameter(Mandatory=$true)][string]$ImageFile,
   [string]$PdfFile = "",
   [string]$OriginalUrl = "",
-  [string]$Category = "Founder Notes",
+  [string]$Category = "",
   [string]$HeroAlt = "",
   [string]$Slug = "",
   [switch]$OpenPreview,
@@ -133,6 +133,13 @@ if ($OriginalUrl -and -not [Uri]::IsWellFormedUriString($OriginalUrl, [UriKind]:
 $dateValue = [datetime]::ParseExact($Date, "yyyy-MM-dd", [Globalization.CultureInfo]::InvariantCulture)
 $dateDisplay = Convert-ToDisplayDate $dateValue
 $dateIso = Convert-ToIsoDate $dateValue
+if (-not $Category) {
+  $Category = if ($Title -match '^What Keeps Me Up at Night(?:\s*:|$)') {
+    "What Keeps Me Up At Night"
+  } else {
+    "Diary of an African Entrepreneur"
+  }
+}
 if (-not $Slug) { $Slug = Convert-ToSlug $Title }
 if ($Slug -notmatch "^founder-notes-[a-z0-9-]+$") { throw "Slug must start with founder-notes- and contain lowercase letters, numbers, and hyphens only." }
 
@@ -201,12 +208,21 @@ try {
   $sitemap = Get-Content -Raw -Encoding UTF8 $sitemapPath
   $urlBlock = "  <url><loc>$pageUrl</loc><lastmod>$dateIso</lastmod><priority>0.8</priority></url>"
   $updatedSitemap = $sitemap -replace "\r?\n</urlset>", "`r`n$urlBlock`r`n</urlset>"
-  $updatedSitemap = $updatedSitemap -replace '(<loc>https://njugunahilary.com/</loc>\s*<lastmod>)[^<]+', "`$1$dateIso"
-  $updatedSitemap = $updatedSitemap -replace '(<loc>https://njugunahilary.com/founder-notes.html</loc>\s*<lastmod>)[^<]+', "`$1$dateIso"
+  $updatedSitemap = [regex]::Replace(
+    $updatedSitemap,
+    '(<loc>https://njugunahilary.com/</loc>\s*<lastmod>)[^<]+',
+    { param($match) $match.Groups[1].Value + $dateIso }
+  )
+  $updatedSitemap = [regex]::Replace(
+    $updatedSitemap,
+    '(<loc>https://njugunahilary.com/founder-notes.html</loc>\s*<lastmod>)[^<]+',
+    { param($match) $match.Groups[1].Value + $dateIso }
+  )
 
-  Set-Content -LiteralPath (Join-Path $stage $htmlFileName) -Value $page -Encoding UTF8
-  Set-Content -LiteralPath (Join-Path $stage "articles.js") -Value $updatedArticles -Encoding UTF8
-  Set-Content -LiteralPath (Join-Path $stage "sitemap.xml") -Value $updatedSitemap -Encoding UTF8
+  $utf8NoBom = New-Object Text.UTF8Encoding($false)
+  [IO.File]::WriteAllText((Join-Path $stage $htmlFileName), $page.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
+  [IO.File]::WriteAllText((Join-Path $stage "articles.js"), $updatedArticles.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
+  [IO.File]::WriteAllText((Join-Path $stage "sitemap.xml"), $updatedSitemap.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
 
   Write-Host "Validated: $Title ($($converted.WordCount) words, $($converted.ReadTime))" -ForegroundColor Green
   if ($ValidateOnly) { Write-Host "No website files were changed."; return }

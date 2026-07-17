@@ -18,6 +18,17 @@
  */
 
 const ARTICLES = [
+  {
+    title: "What Keeps Me Up at Night: I Built the Thing Nobody Sells You",
+    slug: "founder-notes-built-the-thing-nobody-sells-you.html",
+    date: "July 17, 2026",
+    dateISO: "2026-07-17",
+    excerpt: "Seven nights, twelve modules, and a borrowed machine. A 2am Founder Note on building the inventory system nobody sells and solving the problem inside the business.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-built-the-thing-nobody-sells-you.webp",
+    readTime: "5 min read"
+  },
+
   // NEWEST ARTICLE
   {
     title: "What Keeps Me Up at Night: The Idea Waited for Us to Grow",
