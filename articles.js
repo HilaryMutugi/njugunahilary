@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Keeps Me Up at Night: A Busy Week Ahead",
+    slug: "founder-notes-a-busy-week-ahead.html",
+    date: "July 20, 2026",
+    dateISO: "2026-07-20",
+    excerpt: "A 2am Founder Note on Kimi's Belgian win, Afrifama's first administration and finance hire, the road to Nairobi, and learning to hold the line through a busy week.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-a-busy-week-ahead.webp",
+    readTime: "3 min read"
+  },
+
+  {
     title: "What Keeps Me Up at Night: I Built the Thing Nobody Sells You",
     slug: "founder-notes-built-the-thing-nobody-sells-you.html",
     date: "July 17, 2026",
