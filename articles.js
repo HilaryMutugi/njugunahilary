@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Keeps Me Up at Night: The Builder Returns to Nairobi",
+    slug: "founder-notes-the-builder-returns-to-nairobi.html",
+    date: "July 23, 2026",
+    dateISO: "2026-07-23",
+    excerpt: "A near-missed train, a first-class ride through Tsavo, and a founder returning to Nairobi with three bags, rolled banners, and a dream that survived the Coast.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-the-builder-returns-to-nairobi.webp",
+    readTime: "5 min read"
+  },
+
+  {
     title: "What Keeps Me Up at Night: A Busy Week Ahead",
     slug: "founder-notes-a-busy-week-ahead.html",
     date: "July 20, 2026",
