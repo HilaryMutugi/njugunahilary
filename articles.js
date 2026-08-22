@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Keeps Me Up at Night: The Weight of Responsibility",
+    slug: "founder-notes-the-weight-of-responsibility.html",
+    date: "August 22, 2026",
+    dateISO: "2026-08-22",
+    excerpt: "A 3 a.m. Founder Note on bigger expectations, plans that get punched in the face, and remembering that every smaller step still counts.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-the-weight-of-responsibility.webp",
+    readTime: "5 min read"
+  },
+
+  {
     title: "What Keeps Me Up at Night: The Builder Returns to Nairobi",
     slug: "founder-notes-the-builder-returns-to-nairobi.html",
     date: "July 23, 2026",
