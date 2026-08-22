@@ -104,3 +104,11 @@
     loopObserver.observe(loop);
   });
 }());
+
+/* Shared analytics coverage for About, Founder Notes, and article pages. */
+(function(){
+  var script=document.createElement('script');
+  script.src='site-analytics.js?v=2026-08-22';
+  script.defer=true;
+  document.head.appendChild(script);
+}());

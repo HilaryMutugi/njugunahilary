@@ -422,6 +422,33 @@ section{scroll-margin-top:78px}
 
 /* ---- journey: desktop hover affordance ---- */
 @media(hover:hover) and (min-width:861px){.tlnav button:hover{color:rgba(246,241,231,.85)}}
+
+/* ---- now / proof of work ---- */
+.now{position:relative;overflow:hidden;background:#efe7d6}
+.now::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 86% 18%,rgba(201,162,75,.16),transparent 28%),radial-gradient(circle at 10% 88%,rgba(62,92,58,.1),transparent 30%)}
+.now .wrap{position:relative}.now-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;align-items:end;margin-bottom:38px}
+.now h2{font-size:clamp(2rem,4vw,3rem);max-width:16ch}.now-lead{max-width:58ch;color:#47433b;font-size:1.03rem}
+.now-stamp{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--brown);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.now-stamp::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,162,75,.13)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.proof-card{position:relative;display:flex;min-height:270px;flex-direction:column;padding:24px;border:1px solid rgba(111,78,55,.18);border-radius:8px;background:rgba(246,241,231,.72);box-shadow:0 24px 54px -46px rgba(33,31,28,.7);transition:.3s var(--e)}
+.proof-card:hover{transform:translateY(-5px);border-color:rgba(201,162,75,.55);box-shadow:0 32px 64px -46px rgba(33,31,28,.78)}
+.proof-card .pc-num{color:var(--gold);font-family:var(--serif);font-size:.78rem;font-weight:700;letter-spacing:.1em}
+.proof-card h3{margin:24px 0 12px;font-size:1.35rem}.proof-card p{color:#575044;font-size:.9rem;line-height:1.65}
+.proof-card .pc-result{margin-top:auto;padding-top:22px;color:var(--green);font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.proof-card .pc-result strong{display:block;margin-bottom:3px;font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:0;text-transform:none}
+@media(max-width:860px){.now-head{grid-template-columns:1fr;gap:18px}.proof-grid{grid-template-columns:1fr}.proof-card{min-height:auto}.proof-card .pc-result{margin-top:22px}}
+
+/* ---- structured enquiry ---- */
+.enquiry{max-width:880px;margin:32px auto;padding:26px;border:1px solid rgba(246,241,231,.14);border-radius:10px;background:rgba(246,241,231,.055);text-align:left}
+.enquiry-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:20px}.enquiry h3{color:var(--cream);font-size:1.35rem}.enquiry-head p{max-width:42ch;color:rgba(246,241,231,.58);font-size:.78rem}
+.enquiry-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.enquiry-field{display:grid;gap:7px}.enquiry-field.wide{grid-column:1/-1}
+.enquiry label{color:rgba(246,241,231,.7);font-size:.68rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}
+.enquiry input,.enquiry select,.enquiry textarea{width:100%;border:1px solid rgba(246,241,231,.2);border-radius:4px;background:rgba(20,20,17,.34);padding:12px 13px;color:var(--cream);font:inherit;font-size:.9rem;outline:none}
+.enquiry select option{color:var(--ink);background:var(--cream)}.enquiry textarea{min-height:112px;resize:vertical}
+.enquiry input:focus,.enquiry select:focus,.enquiry textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.1)}
+.enquiry-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:18px}.enquiry-note{color:rgba(246,241,231,.48);font-size:.7rem}.enquiry .btn{font-family:var(--sans)}
+@media(max-width:680px){.enquiry{padding:20px 16px}.enquiry-head{display:block}.enquiry-head p{margin-top:8px}.enquiry-grid{grid-template-columns:1fr}.enquiry-field.wide{grid-column:auto}.enquiry-foot{align-items:flex-start;flex-direction:column}.enquiry .btn{width:100%;justify-content:center}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B82L1B9XPQ"></script>
@@ -452,6 +479,16 @@ section{scroll-margin-top:78px}
         gtag('event', 'medium_click', { event_category: 'outbound', event_label: el.href });
       });
     });
+    document.querySelectorAll('a[href*="afrifama.com"]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'afrifama_click', { event_category: 'outbound', event_label: el.href });
+      });
+    });
+    document.querySelectorAll('.proof-card').forEach(function(el) {
+      el.addEventListener('click', function() {
+        gtag('event', 'proof_of_work_click', { event_category: 'engagement', event_label: el.querySelector('h3').textContent });
+      });
+    });
     var articleRead = false;
     window.addEventListener('scroll', function() {
       if (!articleRead) {
@@ -474,7 +511,7 @@ section{scroll-margin-top:78px}
 <header id="hdr"><nav>
 <a class="brand" href="#top">Njuguna&nbsp;Hilary<small>Founder · Builder · Storyteller</small></a>
 <button class="mt" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span class="hb"><span></span><span></span><span></span></span></button>
-<div class="nl" id="nav"><a href="about.html">My Story</a><a href="#journey">The Journey</a><a href="#watch">Watch</a><a href="founder-notes.html">Founder Notes</a><a href="#speak">Speaking</a><a class="btn bp" href="#contact">Work With Me</a></div>
+<div class="nl" id="nav"><a href="about.html">My Story</a><a href="#journey">The Journey</a><a href="#now">Now</a><a href="#watch">Watch</a><a href="founder-notes.html">Founder Notes</a><a href="#speak">Speaking</a><a class="btn bp" href="#contact">Work With Me</a></div>
 </nav></header>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
@@ -503,8 +540,17 @@ section{scroll-margin-top:78px}
 <div class="tlnav rv" id="tlnav"><button class="on" data-t="0">The Beginning</button><button data-t="1">Building Afrifama</button><button data-t="2">Going Digital</button><button data-t="3">What's Next</button></div>
 <div class="tlp on" data-p="0"><div class="ph"><img src="images/grad.jpg" alt="Graduation — where it started"></div><div><span class="tlyear">2015 – 2019</span><h3>Where it started</h3><p>The foundation stage. I studied Entrepreneurship and Business Management at Moi University, shaped my thinking around venture creation, and began seeing business not just as a way to make money &mdash; but as a tool to solve real problems.</p></div></div>
 <div class="tlp" data-p="1"><div class="ph"><img src="images/afrifama.jpg" alt="Building Afrifama"></div><div><span class="tlyear">2022 – Present</span><h3>Afrifama &mdash; what I'm building now</h3><p>Afrifama became the main battlefield and classroom &mdash; moving from ideas to real operations: poultry production, market testing, feed manufacturing, farmers, customers, capital challenges, partnerships, and the everyday reality of building from the ground up in Coastal Kenya.</p><p>At its core, Afrifama is building a practical value-chain feed system for smallholder poultry farmers: connecting farmer partnerships, production support, input access, and market pathways into a more reliable agribusiness model.</p><p style="margin-top:12px"><a href="https://www.afrifama.com/" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;font-size:.9rem">Visit Afrifama &rarr;</a></p></div></div>
-<div class="tlp" data-p="2"><div class="ph"><img src="images/digital.jpg" alt="Going digital"></div><div><span class="tlyear">2023 – Present</span><h3>Going digital</h3><p>I started documenting the journey on Afrifama's YouTube. What began as simple videos became a real storytelling platform &mdash; showing the work behind entrepreneurship, agribusiness, and business growth in Coastal Kenya. It has since grown to over 5.7K subscribers.</p></div></div>
+<div class="tlp" data-p="2"><div class="ph"><img src="images/digital.jpg" alt="Going digital"></div><div><span class="tlyear">2023 – Present</span><h3>Going digital</h3><p>I started documenting the journey on Afrifama's YouTube. What began as simple videos became a real storytelling platform &mdash; showing the work behind entrepreneurship, agribusiness, and business growth in Coastal Kenya. It has since grown to over 6K subscribers.</p></div></div>
 <div class="tlp" data-p="3"><div class="ph"><img src="images/farmers.jpg" alt="What's next"></div><div><span class="tlyear">Now &amp; next</span><h3>From one farm to a farmer network</h3><p><strong>Empowering farmers. Building livelihoods.</strong></p><p>Afrifama began with a simple question: what if building one successful agribusiness could become the foundation for helping thousands of others?</p><p>Today, we are building a practical system that brings farmer financing, quality inputs, production support, technology, and market access closer to smallholder poultry farmers.</p><p>Afrifama is becoming proof that patient, practical entrepreneurship can create lasting impact when business growth and farmer success move together.</p></div></div>
+</div></section>
+
+<section class="now" id="now"><div class="wrap">
+<div class="now-head rv"><div><span class="eyebrow">Building Now</span><h2>The work, as it stands today.</h2><span class="now-stamp">August 2026 field update</span></div><p class="now-lead">Afrifama is moving from one founder-led agribusiness into a practical farmer network. The work now is to turn field experience, farmer demand, and hard-won operating lessons into systems that can serve more people reliably.</p></div>
+<div class="proof-grid rv" aria-label="Selected proof of work">
+<a class="proof-card" href="about.html#afrifama"><span class="pc-num">01 / Farmer network</span><h3>Demand before scale</h3><p>Farmer interest made the next chapter tangible: build a system around financing, inputs, production support, technology, and market access—not simply a larger farm.</p><span class="pc-result"><strong>205 applications</strong>Farmer demand documented</span></a>
+<a class="proof-card" href="founder-notes-built-the-thing-nobody-sells-you.html"><span class="pc-num">02 / Operations</span><h3>Building the missing system</h3><p>When an off-the-shelf answer did not fit the business, I built an internal inventory system across twelve modules—turning an operational constraint into owned capability.</p><span class="pc-result"><strong>12 modules</strong>Built from a real business need</span></a>
+<a class="proof-card" href="#watch"><span class="pc-num">03 / Public archive</span><h3>Consistency became proof</h3><p>What began as one raw video became a public record of farming, feeds, fundraising, mistakes, and the unfinished founder journey.</p><span class="pc-result"><strong>6,000+ subscribers</strong>821+ videos since May 2023</span></a>
+</div>
 </div></section>
 
 <section class="proofline"><div class="wrap rv">
@@ -526,7 +572,7 @@ section{scroll-margin-top:78px}
 <div class="yt-era" aria-label="May 2023 to today"><span>May 2023</span><i></i><span>Today</span></div>
 <div class="yt-story">
 <p>I posted my first YouTube video on <strong>May 1, 2023</strong>. It was raw and unedited &mdash; I didn&rsquo;t know much about filming, editing, thumbnails, or storytelling. But I felt fulfilled, because I had started documenting the real journey.</p>
-<p>Since then, the channel has grown from 1 video and 0 subscribers to <strong>769+ videos and 5,720+ subscribers</strong> &mdash; not through perfect production, but through consistency.</p>
+<p>Since then, the channel has grown from 1 video and 0 subscribers to <strong>821+ videos and 6,000+ subscribers</strong> &mdash; not through perfect production, but through consistency.</p>
 <p>It has become a public archive of farming, feeds, fundraising, mistakes, small wins, and the founder reality that rarely appears in polished success stories.</p>
 </div>
 </div>
@@ -538,8 +584,8 @@ section{scroll-margin-top:78px}
 </div>
 <p class="ytc-note">The working archive: farm days, feed experiments, fundraising lessons, and the founder reality behind the scenes.</p>
 <div class="ytc-stats">
-<div><b data-count="5720" data-suffix="+">5,720+</b><span>subscribers</span></div>
-<div><b data-count="769">769</b><span>videos</span></div>
+<div><b data-count="6000" data-suffix="+">6,000+</b><span>subscribers</span></div>
+<div><b data-count="821" data-suffix="+">821+</b><span>videos</span></div>
 <div><b>May 2023</b><span>joined</span></div>
 </div>
 <span class="ytc-proof">Still documenting</span>
@@ -555,7 +601,7 @@ section{scroll-margin-top:78px}
 
 <div class="yt-mural" id="ytmural">
 <div class="mural-track">
-<div class="mrow mrow-stats"><div class="mcell ms" data-delay="0"><span class="ms-stat ">1 video</span><span class="ms-sub">0 subscribers</span></div><div class="mcell ms" data-delay="180"><span class="ms-stat ">118 subs</span><span class="ms-sub">first month</span></div><div class="mcell ms" data-delay="360"><span class="ms-stat ">1,000 subs</span><span class="ms-sub">9 months in</span></div><div class="mcell ms" data-delay="540"><span class="ms-stat ">62 videos</span><span class="ms-sub">~1,400 subs</span></div><div class="mcell ms" data-delay="720"><span class="ms-stat ">2,000 subs</span><span class="ms-sub">+179 that month</span></div><div class="mcell ms" data-delay="900"><span class="ms-stat gold">5,000 subs</span><span class="ms-sub">+413 in one month</span></div><div class="mcell ms" data-delay="1080"><span class="ms-stat cream">5,720 subs</span><span class="ms-sub">769 videos</span></div></div>
+<div class="mrow mrow-stats"><div class="mcell ms" data-delay="0"><span class="ms-stat ">1 video</span><span class="ms-sub">0 subscribers</span></div><div class="mcell ms" data-delay="180"><span class="ms-stat ">118 subs</span><span class="ms-sub">first month</span></div><div class="mcell ms" data-delay="360"><span class="ms-stat ">1,000 subs</span><span class="ms-sub">9 months in</span></div><div class="mcell ms" data-delay="540"><span class="ms-stat ">62 videos</span><span class="ms-sub">~1,400 subs</span></div><div class="mcell ms" data-delay="720"><span class="ms-stat ">2,000 subs</span><span class="ms-sub">+179 that month</span></div><div class="mcell ms" data-delay="900"><span class="ms-stat gold">5,000 subs</span><span class="ms-sub">+413 in one month</span></div><div class="mcell ms" data-delay="1080"><span class="ms-stat cream">6,000+ subs</span><span class="ms-sub">821+ videos</span></div></div>
 <div class="mrow mrow-line"><div class="mural-line"><div class="mural-fill" id="muralFill"></div></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot gold"></span></div><div class="mcell"><span class="ms-dot cream"></span></div></div>
 <div class="mrow mrow-labels"><div class="mcell"><span class="ms-date">May 2023</span><span class="ms-label">The Start</span></div><div class="mcell"><span class="ms-date">May 2023</span><span class="ms-label">First 100</span></div><div class="mcell"><span class="ms-date">Feb 2024</span><span class="ms-label">First 1K</span></div><div class="mcell"><span class="ms-date">May 2024</span><span class="ms-label">1st Anniversary</span></div><div class="mcell"><span class="ms-date">Sep 2024</span><span class="ms-label">2K milestone</span></div><div class="mcell"><span class="ms-date">Jan 2026</span><span class="ms-label">Something clicked</span></div><div class="mcell"><span class="ms-date">Today</span><span class="ms-label">Still building</span></div></div>
 </div>
@@ -587,7 +633,7 @@ section{scroll-margin-top:78px}
 <a id="notes-secondary-one" href="founder-notes-belief.html" tabindex="-1"><img src="images/founder-notes-belief.webp" alt=""></a>
 <a id="notes-secondary-two" href="founder-notes-building-in-public.html" tabindex="-1"><img src="images/founder-notes-building-in-public.webp" alt=""></a>
 </div>
-<div class="notes-badge"><b id="notes-count">9</b> Founder Notes</div>
+<div class="notes-badge"><b id="notes-count">13</b> Founder Notes</div>
 </div>
 <div><span class="eyebrow">Founder Notes &amp; Articles</span><h2>This is where I write.</h2>
 <p class="lead">This is where I write &mdash; honest Founder Notes on building, failure, and figuring it out, published here first. Medium holds the earlier essays; the new ones live here.</p>
@@ -636,6 +682,20 @@ section{scroll-margin-top:78px}
 <a class="way" href="mailto:hello@njugunahilary.com?subject=Agribusiness%20systems" data-line="For farmer systems and practical operations."><span class="way-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20c0-6 3-10 10-12"></path><path d="M9 15c-4-2-5-6-4-11 5 1 9 3 10 8"></path><path d="M15 8c2-2 4-3 6-3-1 5-3 8-7 9"></path></svg></span><b>Agribusiness Systems</b><span>Farmer models, feed production, value chains, and field-tested operations.</span></a>
 <a class="way" href="mailto:hello@njugunahilary.com?subject=Storytelling%20collaboration" data-line="For stories worth documenting properly."><span class="way-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg></span><b>Storytelling</b><span>Writing, video, and honest founder stories that make the work visible.</span></a>
 </div>
+
+<form class="enquiry" id="enquiryForm">
+<div class="enquiry-head"><div><span class="eyebrow" style="color:var(--gold)">Start with context</span><h3>Send a useful project brief.</h3></div><p>Answer a few questions and your email app will open with a clear, structured enquiry.</p></div>
+<div class="enquiry-grid">
+<div class="enquiry-field"><label for="enquiryName">Your name</label><input id="enquiryName" name="name" autocomplete="name" required></div>
+<div class="enquiry-field"><label for="enquiryEmail">Email address</label><input id="enquiryEmail" name="email" type="email" autocomplete="email" required></div>
+<div class="enquiry-field"><label for="enquiryOrg">Organisation <span aria-hidden="true">(optional)</span></label><input id="enquiryOrg" name="organisation" autocomplete="organization"></div>
+<div class="enquiry-field"><label for="enquiryType">What do you need?</label><select id="enquiryType" name="type" required><option value="">Choose one</option><option>Speaking</option><option>Consultancy</option><option>Partnership</option><option>Mentorship</option><option>Agribusiness systems</option><option>Storytelling</option><option>Something else</option></select></div>
+<div class="enquiry-field"><label for="enquiryTimeline">Ideal timeline</label><input id="enquiryTimeline" name="timeline" placeholder="e.g. September 2026"></div>
+<div class="enquiry-field"><label for="enquiryBudget">Budget / scope <span aria-hidden="true">(optional)</span></label><input id="enquiryBudget" name="budget" placeholder="A range is helpful"></div>
+<div class="enquiry-field wide"><label for="enquiryDetails">What would a useful outcome look like?</label><textarea id="enquiryDetails" name="details" required placeholder="Share the context, audience or problem, and the outcome you want."></textarea></div>
+</div>
+<div class="enquiry-foot"><span class="enquiry-note">Nothing is stored on this website. You review the message before sending.</span><button class="btn bp" type="submit">Prepare My Enquiry &rarr;</button></div>
+</form>
 
 <div class="email-row">
 <a href="mailto:hello@njugunahilary.com" style="color:var(--cream);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:3px">hello@njugunahilary.com</a>
@@ -883,6 +943,36 @@ if(contactPulse && contactCards.length){
     card.addEventListener('focus',function(){setContactLine(card.dataset.line)});
   });
   document.querySelector('.ways').addEventListener('mouseleave',function(){setContactLine(defaultPulse)});
+}
+
+/* ---- structured enquiry: prepare a reviewable email ---- */
+var enquiryForm=document.getElementById('enquiryForm');
+if(enquiryForm){
+  enquiryForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    if(!enquiryForm.reportValidity())return;
+    var data=new FormData(enquiryForm);
+    var type=data.get('type');
+    var lines=[
+      'Hello Hilary,',
+      '',
+      'I would like to discuss a '+String(type).toLowerCase()+' opportunity.',
+      '',
+      'Name: '+data.get('name'),
+      'Email: '+data.get('email'),
+      'Organisation: '+(data.get('organisation')||'Not specified'),
+      'Timeline: '+(data.get('timeline')||'Flexible / not specified'),
+      'Budget or scope: '+(data.get('budget')||'To be discussed'),
+      '',
+      'Useful outcome:',
+      data.get('details'),
+      '',
+      'Regards,',
+      data.get('name')
+    ];
+    var subject=String(type)+' enquiry from '+data.get('name');
+    window.location.href='mailto:hello@njugunahilary.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(lines.join('\n'));
+  });
 }
 </script>
 <script>
