@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Keeps Me Up at Night: Is the Grid Penalty Worth It?",
+    slug: "founder-notes-is-the-grid-penalty-worth-it.html",
+    date: "August 29, 2026",
+    dateISO: "2026-08-29",
+    excerpt: "A 3:27 a.m. Founder Note on building systems for real problems, validating every layer, and deciding whether faster development is worth the cost.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-is-the-grid-penalty-worth-it.webp",
+    readTime: "6 min read"
+  },
+
+  {
     title: "What Keeps Me Up at Night: The Weight of Responsibility",
     slug: "founder-notes-the-weight-of-responsibility.html",
     date: "August 22, 2026",
