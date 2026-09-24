@@ -304,6 +304,38 @@ section{padding:96px 0}
 .ncard{display:block;border-top:1px solid rgba(111,78,55,.25);padding:18px 0;transition:.25s var(--e)}.ncard:hover{padding-left:8px}.ncard .cat{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:600}.ncard h3{font-size:1.22rem;margin:6px 0 2px}.ncard .m{font-size:.82rem;color:var(--muted)}
 .arch{margin-top:20px;padding-top:22px;border-top:1px solid rgba(111,78,55,.25)}.arch .lbl{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--brown);font-weight:600;margin-bottom:12px}.arch .lbl span{font-family:var(--sans);font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);font-size:.82rem}.arch ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:14px}.arch li a{font-size:.95rem;color:var(--ink);display:inline-flex;gap:8px;align-items:baseline;transition:.2s}.arch li a:hover{color:var(--green)}.arch li a::before{content:"\2197";color:var(--gold);font-size:.82rem}.arch .more{font-size:.86rem;font-weight:600;color:var(--green)}.arch .more:hover{color:var(--green-d)}
 
+/* ---- From My Margins ---- */
+.margins{position:relative;overflow:hidden;background:#f3eee3}
+.margins::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 18%,rgba(201,162,75,.13),transparent 26%),radial-gradient(circle at 92% 82%,rgba(62,92,58,.1),transparent 30%)}
+.margins-grid{position:relative;display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(48px,8vw,94px);align-items:center}
+.margins-copy h2{max-width:9ch;margin:14px 0 18px;font-size:clamp(2.35rem,4.8vw,4.4rem)}
+.margins-copy p{max-width:43ch;color:#514c43;font-size:1.02rem;line-height:1.72}
+.margins-draw{margin-top:28px;font-family:var(--sans)}
+.margins-draw .spark{display:inline-block;color:var(--gold);transition:transform .5s var(--e)}
+.margins-draw:hover .spark{transform:rotate(140deg)}
+.margins-draw:disabled{opacity:.65;cursor:wait;transform:none}
+.margins-stage{position:relative;min-height:450px;display:grid;place-items:center;perspective:1200px}
+.margins-ghost,.margins-card{width:min(100%,520px);min-height:370px;border:1px solid rgba(111,78,55,.2);border-radius:9px}
+.margins-ghost{position:absolute;background:#e7dfcf;transform:rotate(3.5deg) translate(8px,3px)}
+.margins-ghost:nth-child(2){background:#ede5d7;transform:rotate(-2.5deg) translate(-7px,0)}
+.margins-card{position:relative;z-index:1;display:flex;flex-direction:column;overflow:hidden;padding:32px;background:#fffdf7;box-shadow:0 32px 76px -48px rgba(33,31,28,.65);transform-origin:80% 110%}
+.margins-card::after{content:"\201C";position:absolute;right:18px;bottom:-75px;color:rgba(62,92,58,.1);font-family:var(--serif);font-size:270px;line-height:.8;pointer-events:none}
+.margins-card.is-leaving{animation:marginsLeave .36s cubic-bezier(.55,0,1,.45) forwards}
+.margins-card.is-entering{animation:marginsEnter .5s var(--e) both}
+@keyframes marginsLeave{to{opacity:0;transform:translate(90px,-18px) rotate(8deg)}}
+@keyframes marginsEnter{from{opacity:0;transform:translate(-48px,20px) rotate(-4deg)}}
+.margins-meta{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--muted);font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.margins-kind{display:inline-flex;align-items:center;gap:8px}.margins-kind::before{content:"";width:18px;height:1px;background:var(--gold)}
+.margins-topic{padding:6px 9px;border:1px solid rgba(62,92,58,.22);border-radius:999px;background:rgba(62,92,58,.045);color:var(--green)}
+.margins-card blockquote{position:relative;z-index:1;margin:auto 0;padding:36px 0 28px;color:var(--ink);font-family:var(--serif);font-size:clamp(1.55rem,3vw,2.25rem);font-style:normal;line-height:1.28;letter-spacing:-.015em}
+.margins-reflection{position:relative;z-index:1;margin:-10px 0 24px;padding-left:14px;border-left:2px solid var(--gold);color:#5c554a;font-size:.84rem;line-height:1.55}
+.margins-foot{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end;padding-top:18px;border-top:1px solid rgba(111,78,55,.2)}
+.margins-source{display:block;max-width:30ch;font-family:var(--serif);font-size:.92rem;font-weight:600;line-height:1.3}.margins-detail{display:block;margin-top:4px;color:var(--muted);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+.margins-link{color:var(--green);font-size:.75rem;font-weight:700}.margins-link:hover{text-decoration:underline;text-underline-offset:4px}
+.margins-count{margin-top:16px;color:var(--muted);font-size:.72rem;text-align:center}
+@media(max-width:860px){.margins-grid{grid-template-columns:1fr;gap:36px}.margins-copy h2{max-width:12ch}.margins-copy p{max-width:58ch}.margins-stage{min-height:410px}.margins-ghost,.margins-card{min-height:350px}}
+@media(max-width:520px){.margins-card{padding:25px 22px}.margins-stage{min-height:390px}.margins-ghost,.margins-card{min-height:335px}.margins-card blockquote{font-size:1.45rem}.margins-foot{grid-template-columns:1fr}.margins-link{justify-self:start}}
+
 .speak{position:relative;background:linear-gradient(180deg,var(--cream),#f0e6d4);overflow:hidden}
 .speak::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 22%,rgba(201,162,75,.12),transparent 28%),radial-gradient(circle at 88% 78%,rgba(62,92,58,.09),transparent 30%)}
 .speak .grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:center}
@@ -650,6 +682,19 @@ section{scroll-margin-top:78px}
 </div></div>
 </div></section>
 
+<section class="margins" id="margins" data-margins-deck><div class="wrap margins-grid">
+<div class="margins-copy rv"><span class="eyebrow">From My Margins</span><h2>A thought for your day.</h2><p>Ideas that stayed with me&mdash;from the pages I write and the books I read. Draw one at random, then follow it wherever it leads.</p><button class="btn bp margins-draw" type="button" data-margins-draw><span class="spark" aria-hidden="true">&#10022;</span> Surprise me <span aria-hidden="true">&rarr;</span></button></div>
+<div class="rv"><div class="margins-stage">
+<div class="margins-ghost" aria-hidden="true"></div><div class="margins-ghost" aria-hidden="true"></div>
+<article class="margins-card" data-margins-card aria-live="polite">
+<div class="margins-meta"><span class="margins-kind" data-margins-kind>From my notebook</span><span class="margins-topic" data-margins-topic></span></div>
+<blockquote data-margins-quote></blockquote>
+<p class="margins-reflection" data-margins-reflection hidden></p>
+<div class="margins-foot"><div><span class="margins-source" data-margins-source></span><span class="margins-detail" data-margins-detail></span></div><a class="margins-link" data-margins-link href="founder-notes.html">Read the full note &rarr;</a></div>
+</article>
+</div><p class="margins-count" data-margins-count></p></div>
+</div></section>
+
 <section class="speak" id="speak"><div class="wrap grid rv">
 <div><span class="eyebrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v1a7 7 0 0 1-14 0v-1"></path><path d="M12 18v4"></path></svg> Speaking &amp; Mentorship</span><h2>Practical conversations, not motivational noise.</h2>
 <div class="speak-copy">
@@ -718,6 +763,8 @@ section{scroll-margin-top:78px}
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
 </button>
 
+<script src="margins.js?v=2026-09-24"></script>
+<script src="from-my-margins.js?v=2026-09-24"></script>
 <script>
 /* ---- mobile menu: animated toggle + backdrop + escape/outside close ---- */
 var menuBtn=document.getElementById('menuBtn'),navEl=document.getElementById('nav'),backdrop=document.getElementById('navBackdrop');

@@ -118,25 +118,45 @@ git push origin main
 
 ---
 
-## 4. Change a Watch video
+## 4. Add a thought to From My Margins
+
+Open `margins.js`. Add a new card near the bottom of the `MARGINS` list, immediately before the final `];`.
+
+For something from your own writing:
+
+```js
+{ kind: 'notebook', topic: 'Growth', quote: 'A short thought from your writing.', source: 'The article title', readTime: '4 min read', url: 'founder-notes-your-article.html' },
+```
+
+For something from a book:
+
+```js
+{ kind: 'bookshelf', topic: 'Leadership', quote: 'Keep the published quotation brief.', author: 'Author Name', source: 'Book Title', reflection: 'Optional: what this passage made you think about.' },
+```
+
+Always credit the author and book, keep published quotations short, and remember the comma between cards. Save, refresh the homepage, and press **Surprise me** several times to check the new card.
+
+---
+
+## 5. Change a Watch video
 
 The Watch section pulls each video's cover straight from YouTube using its **video ID**. To swap a video, open `index.html`, find the old ID (search the part after `youtu.be/` or `vi/`, e.g. `kSogx_GQKpI`) and replace **every** copy of it with your new video's ID. The featured (top) video's ID also appears once more near the bottom in a line starting with `var yth` — replace it there too.
 
 ---
 
-## 5. Change the podcast
+## 6. Change the podcast
 
 Replace `hilary-story-how-to-raise-capital.m4a` with your new audio file using the same name. (Or to use a different name, open `about.html`, search for the filename, and update it there.)
 
 ---
 
-## 6. Change a link or your email
+## 7. Change a link or your email
 
 Open the file, search for the old link (e.g. `hello@njugunahilary.com` or `youtube.com/@Afrifama`), and type the new one. Find-and-Replace-All updates every copy at once.
 
 ---
 
-## 7. Put it online (and update it later)
+## 8. Put it online (and update it later)
 
 **First time:**
 1. Go to **netlify.com** (or vercel.com / pages.cloudflare.com) and make a free account.

@@ -17,7 +17,7 @@ $articleJson = & $node.Source -e "const fs=require('fs');console.log(eval(fs.rea
 if ($LASTEXITCODE -ne 0) { throw "articles.js could not be parsed." }
 $articles = $articleJson | ConvertFrom-Json
 
-foreach ($javascript in @('articles.js', 'v14.js')) {
+foreach ($javascript in @('articles.js', 'v14.js', 'margins.js', 'from-my-margins.js')) {
   $null = & $node.Source --check $javascript 2>&1
   if ($LASTEXITCODE -ne 0) { Add-Error "$javascript contains invalid JavaScript." }
 }
