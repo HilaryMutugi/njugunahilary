@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Do You Do When You Get Tired?",
+    slug: "founder-notes-what-do-you-do-when-you-get-tired.html",
+    date: "September 24, 2026",
+    dateISO: "2026-09-24",
+    excerpt: "A 1:01 a.m. Founder Note on exhaustion, learning to recognise progress, the roads through Tanzania, and accepting that rest cannot always wait.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-what-do-you-do-when-you-get-tired.webp",
+    readTime: "4 min read"
+  },
+
+  {
     title: "What Keeps Me Up at Night: Is the Grid Penalty Worth It?",
     slug: "founder-notes-is-the-grid-penalty-worth-it.html",
     date: "August 29, 2026",
