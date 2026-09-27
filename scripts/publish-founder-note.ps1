@@ -233,6 +233,11 @@ try {
   [IO.File]::WriteAllText((Join-Path $stage "index.html"), $updatedHome.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
   [IO.File]::WriteAllText((Join-Path $stage "founder-notes.html"), $updatedFounderNotes.TrimEnd() + [Environment]::NewLine, $utf8NoBom)
 
+  $node = Get-Command node -ErrorAction SilentlyContinue
+  if (-not $node) { throw "Node.js is required to update static Founder Notes links." }
+  & $node.Source (Join-Path $repo 'scripts/render-article-links.js') (Join-Path $stage 'articles.js') (Join-Path $stage 'index.html') (Join-Path $stage 'founder-notes.html')
+  if ($LASTEXITCODE -ne 0) { throw "Could not update static Founder Notes links." }
+
   Write-Host "Validated: $Title ($($converted.WordCount) words, $($converted.ReadTime))" -ForegroundColor Green
   if ($ValidateOnly) { Write-Host "No website files were changed."; return }
 

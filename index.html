@@ -1,21 +1,20 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Njuguna Hilary | Founder, Builder, Storyteller</title>
-<meta name="description" content="Njuguna Hilary is a Kenyan entrepreneur. I build businesses, document the lessons, and tell the real story behind entrepreneurship. Afrifama is my main proof of work.">
+<title>Njuguna Hilary | Kenyan Founder of Afrifama</title>
+<meta name="description" content="Njuguna Hilary is a Kenyan founder building Afrifama with smallholder poultry farmers in Coastal Kenya. Explore his founder notes, videos, speaking, and work.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<!-- Social share preview (replace njugunahilary.com with your real domain once hosted) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Njuguna Hilary — Founder, Builder, Storyteller">
-<meta property="og:description" content="A Kenyan founder building from the ground up, in real time. Building, learning, and telling the truth about entrepreneurship in Africa.">
+<meta property="og:title" content="Njuguna Hilary | Kenyan Founder of Afrifama">
+<meta property="og:description" content="Building Afrifama with smallholder poultry farmers in Coastal Kenya, and sharing the honest founder journey through writing and video.">
 <meta property="og:image" content="https://njugunahilary.com/social-preview.jpg">
 <meta property="og:url" content="https://njugunahilary.com/">
 <link rel="canonical" href="https://njugunahilary.com/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Njuguna Hilary — Founder, Builder, Storyteller">
-<meta name="twitter:description" content="A Kenyan founder building from the ground up, in real time.">
+<meta name="twitter:title" content="Njuguna Hilary | Kenyan Founder of Afrifama">
+<meta name="twitter:description" content="Building Afrifama with smallholder poultry farmers in Coastal Kenya, and sharing the honest founder journey.">
 <meta name="twitter:image" content="https://njugunahilary.com/social-preview.jpg">
 <meta name="author" content="Njuguna Hilary">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Njuguna Hilary","url":"https://njugunahilary.com/","image":"https://njugunahilary.com/social-preview.jpg","jobTitle":"Founder and Entrepreneur","founder":{"@type":"Organization","name":"Afrifama"},"sameAs":["https://www.youtube.com/@Afrifama","https://medium.com/@njugunahilary93"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","@id":"https://njugunahilary.com/#person","name":"Njuguna Hilary","url":"https://njugunahilary.com/","image":"https://njugunahilary.com/images/meet.jpg","description":"Kenyan founder of Afrifama, building practical farmer systems for smallholder poultry farmers in Coastal Kenya and documenting the journey.","jobTitle":"Founder of Afrifama","founder":{"@type":"Organization","name":"Afrifama","url":"https://www.afrifama.com/"},"sameAs":["https://ke.linkedin.com/in/njuguna-hilary","https://www.instagram.com/hilary.njuguna/","https://www.youtube.com/@Afrifama","https://medium.com/@njugunahilary93"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,400;9..144,0,600;9..144,0,700;9..144,1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -392,6 +391,10 @@ section{scroll-margin-top:78px}
 
 /* ---- active nav link ---- */
 .nl a.active:not(.btn){color:var(--gold)}
+.now-nav{display:inline-flex;align-items:center;gap:7px}
+.now-nav-dot{position:relative;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.12)}
+.now-nav-dot::after{content:"";position:absolute;inset:-1px;border:1px solid var(--gold);border-radius:50%;animation:nowPulse 1.5s var(--e) .45s 1 both}
+@keyframes nowPulse{0%{opacity:.72;transform:scale(.8)}100%{opacity:0;transform:scale(2.7)}}
 
 /* ---- animated hamburger ---- */
 .mt{position:relative;width:30px;height:30px;padding:0;display:none;align-items:center;justify-content:center}
@@ -456,20 +459,29 @@ section{scroll-margin-top:78px}
 @media(hover:hover) and (min-width:861px){.tlnav button:hover{color:rgba(246,241,231,.85)}}
 
 /* ---- now / proof of work ---- */
-.now{position:relative;overflow:hidden;background:#efe7d6}
+.now{position:relative;overflow:hidden;background:#efe7d6;padding:76px 0 82px}
 .now::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 86% 18%,rgba(201,162,75,.16),transparent 28%),radial-gradient(circle at 10% 88%,rgba(62,92,58,.1),transparent 30%)}
-.now .wrap{position:relative}.now-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:54px;align-items:end;margin-bottom:38px}
-.now h2{font-size:clamp(2rem,4vw,3rem);max-width:16ch}.now-lead{max-width:58ch;color:#47433b;font-size:1.03rem}
+.now .wrap{position:relative}.now-head{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:start;margin-bottom:30px}
+.now h2{font-size:clamp(2rem,4vw,3rem);max-width:16ch}.now-lead{max-width:60ch;color:#47433b;font-size:1.03rem;line-height:1.72}.now-lead p{margin:0}.now-lead p+p{margin-top:15px}.now-lead p:last-child{color:var(--green-d);font-family:var(--serif);font-size:1.08em;font-style:italic;line-height:1.55}
 .now-stamp{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--brown);font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
 .now-stamp::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,162,75,.13)}
 .proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.proof-card{position:relative;display:flex;min-height:270px;flex-direction:column;padding:24px;border:1px solid rgba(111,78,55,.18);border-radius:8px;background:rgba(246,241,231,.72);box-shadow:0 24px 54px -46px rgba(33,31,28,.7);transition:.3s var(--e)}
+.proof-card{position:relative;display:flex;min-height:455px;flex-direction:column;overflow:hidden;border:1px solid rgba(111,78,55,.18);border-radius:8px;background:rgba(246,241,231,.78);box-shadow:0 24px 54px -46px rgba(33,31,28,.7);transition:.3s var(--e)}
 .proof-card:hover{transform:translateY(-5px);border-color:rgba(201,162,75,.55);box-shadow:0 32px 64px -46px rgba(33,31,28,.78)}
+.proof-card:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.proof-card .pc-media{display:block;height:150px;overflow:hidden;background:#d8cfbd}
+.proof-card .pc-media img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(.96);transition:transform .7s var(--e),filter .35s var(--e)}
+.proof-card:first-child .pc-media img{object-position:center 28%}
+.proof-card:hover .pc-media img{transform:scale(1.045);filter:saturate(1) contrast(1)}
+.proof-card .pc-body{display:flex;flex:1;flex-direction:column;padding:20px 24px 22px}
 .proof-card .pc-num{color:var(--gold);font-family:var(--serif);font-size:.78rem;font-weight:700;letter-spacing:.1em}
-.proof-card h3{margin:24px 0 12px;font-size:1.35rem}.proof-card p{color:#575044;font-size:.9rem;line-height:1.65}
-.proof-card .pc-result{margin-top:auto;padding-top:22px;color:var(--green);font-size:.72rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
-.proof-card .pc-result strong{display:block;margin-bottom:3px;font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:0;text-transform:none}
-@media(max-width:860px){.now-head{grid-template-columns:1fr;gap:18px}.proof-grid{grid-template-columns:1fr}.proof-card{min-height:auto}.proof-card .pc-result{margin-top:22px}}
+.proof-card .pc-metric{display:flex;align-items:baseline;gap:8px;margin-top:14px;color:var(--green)}
+.proof-card .pc-metric strong{font-family:var(--serif);font-size:1.75rem;font-weight:600;line-height:1}
+.proof-card .pc-metric small{font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.proof-card h3{margin:17px 0 9px;font-size:1.35rem}.proof-card p{color:#575044;font-size:.88rem;line-height:1.62}
+.proof-card .pc-link{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:18px;border-top:1px solid rgba(111,78,55,.16);color:var(--green-d);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.proof-card .pc-link span{font-size:1rem;transition:transform .25s var(--e)}.proof-card:hover .pc-link span{transform:translateX(4px)}
+@media(max-width:860px){.now{padding:64px 0 70px}.now-head{grid-template-columns:1fr;gap:24px}.now-lead{max-width:66ch}.now-lead p+p{margin-top:13px}.proof-grid{grid-template-columns:1fr}.proof-card{min-height:auto}.proof-card .pc-media{height:190px}}
 
 /* ---- structured enquiry ---- */
 .enquiry{max-width:880px;margin:32px auto;padding:26px;border:1px solid rgba(246,241,231,.14);border-radius:10px;background:rgba(246,241,231,.055);text-align:left}
@@ -481,6 +493,7 @@ section{scroll-margin-top:78px}
 .enquiry input:focus,.enquiry select:focus,.enquiry textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.1)}
 .enquiry-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:18px}.enquiry-note{color:rgba(246,241,231,.48);font-size:.7rem}.enquiry .btn{font-family:var(--sans)}
 @media(max-width:680px){.enquiry{padding:20px 16px}.enquiry-head{display:block}.enquiry-head p{margin-top:8px}.enquiry-grid{grid-template-columns:1fr}.enquiry-field.wide{grid-column:auto}.enquiry-foot{align-items:flex-start;flex-direction:column}.enquiry .btn{width:100%;justify-content:center}}
+@media(prefers-reduced-motion:reduce){.now-nav-dot::after{animation:none;opacity:0}}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B82L1B9XPQ"></script>
@@ -543,7 +556,7 @@ section{scroll-margin-top:78px}
 <header id="hdr"><nav>
 <a class="brand" href="#top">Njuguna&nbsp;Hilary<small>Founder · Builder · Storyteller</small></a>
 <button class="mt" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span class="hb"><span></span><span></span><span></span></span></button>
-<div class="nl" id="nav"><a href="about.html">My Story</a><a href="#journey">The Journey</a><a href="#now">Now</a><a href="#watch">Watch</a><a href="founder-notes.html">Founder Notes</a><a href="#speak">Speaking</a><a class="btn bp" href="#contact">Work With Me</a></div>
+<div class="nl" id="nav"><a href="about.html">My Story</a><a href="#journey">The Journey</a><a class="now-nav" href="#now"><span class="now-nav-dot" aria-hidden="true"></span>Now</a><a href="#watch">Watch</a><a href="founder-notes.html">Founder Notes</a><a href="#speak">Speaking</a><a class="btn bp" href="#contact">Work With Me</a></div>
 </nav></header>
 <div class="nav-backdrop" id="navBackdrop"></div>
 
@@ -577,11 +590,16 @@ section{scroll-margin-top:78px}
 </div></section>
 
 <section class="now" id="now"><div class="wrap">
-<div class="now-head rv"><div><span class="eyebrow">Building Now</span><h2>The work, as it stands today.</h2><span class="now-stamp">August 2026 field update</span></div><p class="now-lead">Afrifama is moving from one founder-led agribusiness into a practical farmer network. The work now is to turn field experience, farmer demand, and hard-won operating lessons into systems that can serve more people reliably.</p></div>
+<div class="now-head rv"><div><span class="eyebrow">Building Now</span><h2>The work, as it stands today.</h2><time class="now-stamp" datetime="2026-08-22" data-site-updated>August 2026 field update</time></div><div class="now-lead">
+<p>Right now, most of my work revolves around three things: entrepreneurship, agriculture, and storytelling.</p>
+<p>I am building Afrifama, an impact-driven agricultural company working to make poultry farming more productive, reliable, and commercially sustainable for smallholder farmers.</p>
+<p>I also document what it actually takes to build&mdash;the decisions, mistakes, difficult seasons, small wins, and everything still unfinished. Along the way, I mentor other entrepreneurs and share lessons learned through building businesses of my own.</p>
+<p>At the centre of it all is something simple: build useful things, create opportunities, and share the journey honestly.</p>
+</div></div>
 <div class="proof-grid rv" aria-label="Selected proof of work">
-<a class="proof-card" href="about.html#afrifama"><span class="pc-num">01 / Farmer network</span><h3>Demand before scale</h3><p>Farmer interest made the next chapter tangible: build a system around financing, inputs, production support, technology, and market access—not simply a larger farm.</p><span class="pc-result"><strong>205 applications</strong>Farmer demand documented</span></a>
-<a class="proof-card" href="founder-notes-built-the-thing-nobody-sells-you.html"><span class="pc-num">02 / Operations</span><h3>Building the missing system</h3><p>When an off-the-shelf answer did not fit the business, I built an internal inventory system across twelve modules—turning an operational constraint into owned capability.</p><span class="pc-result"><strong>12 modules</strong>Built from a real business need</span></a>
-<a class="proof-card" href="#watch"><span class="pc-num">03 / Public archive</span><h3>Consistency became proof</h3><p>What began as one raw video became a public record of farming, feeds, fundraising, mistakes, and the unfinished founder journey.</p><span class="pc-result"><strong>6,000+ subscribers</strong>821+ videos since May 2023</span></a>
+<a class="proof-card" href="about.html#afrifama"><span class="pc-media"><img src="images/about-hilary-training.jpg" alt="Hilary working with farmers through Afrifama" loading="lazy"></span><span class="pc-body"><span class="pc-num">01 / Impact-driven agriculture</span><span class="pc-metric"><strong><span data-site-stat="farmersSupported">150</span>+</strong><small>farmers supported</small></span><h3>Building Afrifama</h3><p>An integrated poultry startup bringing quality inputs, production, farmer support, technology, and market access into one practical system for stronger farmer livelihoods.</p><span class="pc-link">Explore Afrifama <span aria-hidden="true">&rarr;</span></span></span></a>
+<a class="proof-card" href="#watch"><span class="pc-media"><img src="images/notes.jpg" alt="Hilary reflecting and taking notes during a day at Afrifama" loading="lazy"></span><span class="pc-body"><span class="pc-num">02 / Creative work</span><span class="pc-metric"><strong><span data-site-stat="youtubeSubscribers">6,000</span>+</strong><small>YouTube subscribers</small></span><h3>Documenting the real journey</h3><p>Turning the unfinished work—farm days, business decisions, setbacks, systems, and small wins—into an honest public archive for people building from the ground up.</p><span class="pc-link">Watch the journey <span aria-hidden="true">&rarr;</span></span></span></a>
+<a class="proof-card" href="#speak"><span class="pc-media"><img src="images/about-speak.jpg" alt="Hilary speaking to and mentoring entrepreneurs" loading="lazy"></span><span class="pc-body"><span class="pc-num">03 / Mentorship</span><span class="pc-metric"><strong><span data-site-stat="entrepreneursMentored">350</span>+</strong><small>entrepreneurs mentored</small></span><h3>Helping other builders move</h3><p>Using practical founder experience to mentor entrepreneurs, train young people, judge startup ideas, and help others turn ambition into useful action.</p><span class="pc-link">See speaking work <span aria-hidden="true">&rarr;</span></span></span></a>
 </div>
 </div></section>
 
@@ -604,7 +622,7 @@ section{scroll-margin-top:78px}
 <div class="yt-era" aria-label="May 2023 to today"><span>May 2023</span><i></i><span>Today</span></div>
 <div class="yt-story">
 <p>I posted my first YouTube video on <strong>May 1, 2023</strong>. It was raw and unedited &mdash; I didn&rsquo;t know much about filming, editing, thumbnails, or storytelling. But I felt fulfilled, because I had started documenting the real journey.</p>
-<p>Since then, the channel has grown from 1 video and 0 subscribers to <strong>821+ videos and 6,000+ subscribers</strong> &mdash; not through perfect production, but through consistency.</p>
+<p>Since then, the channel has grown from 1 video and 0 subscribers to <strong><span data-site-stat="youtubeVideos">821</span>+ videos and <span data-site-stat="youtubeSubscribers">6,000</span>+ subscribers</strong> &mdash; not through perfect production, but through consistency.</p>
 <p>It has become a public archive of farming, feeds, fundraising, mistakes, small wins, and the founder reality that rarely appears in polished success stories.</p>
 </div>
 </div>
@@ -616,8 +634,8 @@ section{scroll-margin-top:78px}
 </div>
 <p class="ytc-note">The working archive: farm days, feed experiments, fundraising lessons, and the founder reality behind the scenes.</p>
 <div class="ytc-stats">
-<div><b data-count="6000" data-suffix="+">6,000+</b><span>subscribers</span></div>
-<div><b data-count="821" data-suffix="+">821+</b><span>videos</span></div>
+<div><b data-count="6000" data-suffix="+" data-site-stat="youtubeSubscribers">6,000+</b><span>subscribers</span></div>
+<div><b data-count="821" data-suffix="+" data-site-stat="youtubeVideos">821+</b><span>videos</span></div>
 <div><b>May 2023</b><span>joined</span></div>
 </div>
 <span class="ytc-proof">Still documenting</span>
@@ -633,7 +651,7 @@ section{scroll-margin-top:78px}
 
 <div class="yt-mural" id="ytmural">
 <div class="mural-track">
-<div class="mrow mrow-stats"><div class="mcell ms" data-delay="0"><span class="ms-stat ">1 video</span><span class="ms-sub">0 subscribers</span></div><div class="mcell ms" data-delay="180"><span class="ms-stat ">118 subs</span><span class="ms-sub">first month</span></div><div class="mcell ms" data-delay="360"><span class="ms-stat ">1,000 subs</span><span class="ms-sub">9 months in</span></div><div class="mcell ms" data-delay="540"><span class="ms-stat ">62 videos</span><span class="ms-sub">~1,400 subs</span></div><div class="mcell ms" data-delay="720"><span class="ms-stat ">2,000 subs</span><span class="ms-sub">+179 that month</span></div><div class="mcell ms" data-delay="900"><span class="ms-stat gold">5,000 subs</span><span class="ms-sub">+413 in one month</span></div><div class="mcell ms" data-delay="1080"><span class="ms-stat cream">6,000+ subs</span><span class="ms-sub">821+ videos</span></div></div>
+<div class="mrow mrow-stats"><div class="mcell ms" data-delay="0"><span class="ms-stat ">1 video</span><span class="ms-sub">0 subscribers</span></div><div class="mcell ms" data-delay="180"><span class="ms-stat ">118 subs</span><span class="ms-sub">first month</span></div><div class="mcell ms" data-delay="360"><span class="ms-stat ">1,000 subs</span><span class="ms-sub">9 months in</span></div><div class="mcell ms" data-delay="540"><span class="ms-stat ">62 videos</span><span class="ms-sub">~1,400 subs</span></div><div class="mcell ms" data-delay="720"><span class="ms-stat ">2,000 subs</span><span class="ms-sub">+179 that month</span></div><div class="mcell ms" data-delay="900"><span class="ms-stat gold">5,000 subs</span><span class="ms-sub">+413 in one month</span></div><div class="mcell ms" data-delay="1080"><span class="ms-stat cream"><span data-site-stat="youtubeSubscribers">6,000</span>+ subs</span><span class="ms-sub"><span data-site-stat="youtubeVideos">821</span>+ videos</span></div></div>
 <div class="mrow mrow-line"><div class="mural-line"><div class="mural-fill" id="muralFill"></div></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot "></span></div><div class="mcell"><span class="ms-dot gold"></span></div><div class="mcell"><span class="ms-dot cream"></span></div></div>
 <div class="mrow mrow-labels"><div class="mcell"><span class="ms-date">May 2023</span><span class="ms-label">The Start</span></div><div class="mcell"><span class="ms-date">May 2023</span><span class="ms-label">First 100</span></div><div class="mcell"><span class="ms-date">Feb 2024</span><span class="ms-label">First 1K</span></div><div class="mcell"><span class="ms-date">May 2024</span><span class="ms-label">1st Anniversary</span></div><div class="mcell"><span class="ms-date">Sep 2024</span><span class="ms-label">2K milestone</span></div><div class="mcell"><span class="ms-date">Jan 2026</span><span class="ms-label">Something clicked</span></div><div class="mcell"><span class="ms-date">Today</span><span class="ms-label">Still building</span></div></div>
 </div>
@@ -657,19 +675,43 @@ section{scroll-margin-top:78px}
 
 <section class="notes" id="notes"><div class="wrap grid rv">
 <div class="notes-visual" aria-label="Featured Founder Notes">
-<a class="notes-feature" id="notes-latest" href="founder-notes-light-bulb-moment.html">
-<img id="notes-latest-image" src="images/light-bulb-moment.webp" alt="Latest Founder Note">
+<a class="notes-feature" id="notes-latest" href="founder-notes-what-do-you-do-when-you-get-tired.html">
+<img id="notes-latest-image" src="images/founder-notes-what-do-you-do-when-you-get-tired.webp" alt="Cover image for What Do You Do When You Get Tired?">
 <span>Notes from the messy middle of building.</span>
 </a>
 <div class="notes-mini" aria-hidden="true">
-<a id="notes-secondary-one" href="founder-notes-belief.html" tabindex="-1"><img src="images/founder-notes-belief.webp" alt=""></a>
-<a id="notes-secondary-two" href="founder-notes-building-in-public.html" tabindex="-1"><img src="images/founder-notes-building-in-public.webp" alt=""></a>
+<a id="notes-secondary-one" href="founder-notes-is-the-grid-penalty-worth-it.html" tabindex="-1"><img src="images/founder-notes-is-the-grid-penalty-worth-it.webp" alt=""></a>
+<a id="notes-secondary-two" href="founder-notes-the-weight-of-responsibility.html" tabindex="-1"><img src="images/founder-notes-the-weight-of-responsibility.webp" alt=""></a>
 </div>
-<div class="notes-badge"><b id="notes-count">13</b> Founder Notes</div>
+<div class="notes-badge"><b id="notes-count">16</b> Founder Notes</div>
 </div>
 <div><span class="eyebrow">Founder Notes &amp; Articles</span><h2>This is where I write.</h2>
 <p class="lead">This is where I write &mdash; honest Founder Notes on building, failure, and figuring it out, published here first. Medium holds the earlier essays; the new ones live here.</p>
-<div id="fn-homepage-cards"></div>
+<div id="fn-homepage-cards"><!-- ARTICLE_HOME_START -->
+<a class="ncard" href="founder-notes-what-do-you-do-when-you-get-tired.html" style="animation-delay:0s">
+  <span class="ncard-img"><img src="images/founder-notes-what-do-you-do-when-you-get-tired.webp" alt="" loading="lazy"></span>
+  <span class="ncard-body">
+    <span class="cat">Founder Notes &middot; <time datetime="2026-09-24">September 24, 2026</time><span class="rt">4 min read</span></span>
+    <h3>What Do You Do When You Get Tired?</h3>
+    <span class="m">A 1:01 a.m. Founder Note on exhaustion, learning to recognise progress, the roads through Tanzania, and accepting that rest cannot always wait. &rarr;</span>
+  </span>
+</a>
+<a class="ncard" href="founder-notes-is-the-grid-penalty-worth-it.html" style="animation-delay:0.07s">
+  <span class="ncard-img"><img src="images/founder-notes-is-the-grid-penalty-worth-it.webp" alt="" loading="lazy"></span>
+  <span class="ncard-body">
+    <span class="cat">Founder Notes &middot; <time datetime="2026-08-29">August 29, 2026</time><span class="rt">6 min read</span></span>
+    <h3>What Keeps Me Up at Night: Is the Grid Penalty Worth It?</h3>
+    <span class="m">A 3:27 a.m. Founder Note on building systems for real problems, validating every layer, and deciding whether faster development is worth the cost. &rarr;</span>
+  </span>
+</a>
+<a class="ncard" href="founder-notes-the-weight-of-responsibility.html" style="animation-delay:0.14s">
+  <span class="ncard-img"><img src="images/founder-notes-the-weight-of-responsibility.webp" alt="" loading="lazy"></span>
+  <span class="ncard-body">
+    <span class="cat">Founder Notes &middot; <time datetime="2026-08-22">August 22, 2026</time><span class="rt">5 min read</span></span>
+    <h3>What Keeps Me Up at Night: The Weight of Responsibility</h3>
+    <span class="m">A 3 a.m. Founder Note on bigger expectations, plans that get punched in the face, and remembering that every smaller step still counts. &rarr;</span>
+  </span>
+</a><!-- ARTICLE_HOME_END --></div>
 <div style="margin-top:22px"><a class="btn bg" href="founder-notes.html">Read all Founder Notes</a></div>
 <div class="arch">
 <div class="lbl">From the Archives <span>&mdash; earlier essays, on Medium</span></div>
@@ -684,15 +726,17 @@ section{scroll-margin-top:78px}
 
 <section class="margins" id="margins" data-margins-deck><div class="wrap margins-grid">
 <div class="margins-copy rv"><span class="eyebrow">From My Margins</span><h2>A thought for your day.</h2><p>Ideas that stayed with me&mdash;from the pages I write and the books I read. Draw one at random, then follow it wherever it leads.</p><button class="btn bp margins-draw" type="button" data-margins-draw><span class="spark" aria-hidden="true">&#10022;</span> Surprise me <span aria-hidden="true">&rarr;</span></button></div>
-<div class="rv"><div class="margins-stage">
+<div class="rv">
+<div class="margins-stage">
 <div class="margins-ghost" aria-hidden="true"></div><div class="margins-ghost" aria-hidden="true"></div>
 <article class="margins-card" data-margins-card aria-live="polite">
-<div class="margins-meta"><span class="margins-kind" data-margins-kind>From my notebook</span><span class="margins-topic" data-margins-topic></span></div>
-<blockquote data-margins-quote></blockquote>
+<div class="margins-meta"><span class="margins-kind" data-margins-kind>From my notebook</span><span class="margins-topic" data-margins-topic>Rest</span></div>
+<blockquote data-margins-quote>Rest cannot always wait until everything is finished. There will always be another budget, another call, another thing to build.</blockquote>
 <p class="margins-reflection" data-margins-reflection hidden></p>
-<div class="margins-foot"><div><span class="margins-source" data-margins-source></span><span class="margins-detail" data-margins-detail></span></div><a class="margins-link" data-margins-link href="founder-notes.html">Read the full note &rarr;</a></div>
+<div class="margins-foot"><div><span class="margins-source" data-margins-source>What Do You Do When You Get Tired?</span><span class="margins-detail" data-margins-detail>4 min read</span></div><a class="margins-link" data-margins-link href="founder-notes-what-do-you-do-when-you-get-tired.html">Read the full note &rarr;</a></div>
 </article>
-</div><p class="margins-count" data-margins-count></p></div>
+</div><p class="margins-count" data-margins-count></p>
+</div>
 </div></section>
 
 <section class="speak" id="speak"><div class="wrap grid rv">
@@ -763,6 +807,7 @@ section{scroll-margin-top:78px}
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
 </button>
 
+<script src="site-data.js?v=2026-08-22"></script>
 <script src="margins.js?v=2026-09-24"></script>
 <script src="from-my-margins.js?v=2026-09-24"></script>
 <script>
@@ -799,7 +844,7 @@ document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
 var fld=document.getElementById('field');var proof=fld?fld.closest('.proofline'):null;var fio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){fld.classList.add('go');if(proof)proof.classList.add('manifesto-on')},180);fio.unobserve(fld)}})},{threshold:.4});if(fld)fio.observe(fld);
 
 /* ---- active nav highlighting ---- */
-var sectionIds=['journey','watch','speak','contact'];
+var sectionIds=['journey','now','watch','speak','contact'];
 var navLinks={};
 sectionIds.forEach(function(id){var l=document.querySelector('#nav a[href="#'+id+'"]');if(l)navLinks[id]=l;});
 var navIO=new IntersectionObserver(function(es){
@@ -1086,7 +1131,6 @@ io.observe(h);
 })();
 </script>
 <script src="articles.js?v=2026-09-24"></script><script>
-renderArticleCards('fn-homepage-cards', 3);
 (function(){
   var latest=ARTICLES[0],one=ARTICLES[1],two=ARTICLES[2];
   var feature=document.getElementById('notes-latest');

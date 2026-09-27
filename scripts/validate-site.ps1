@@ -16,8 +16,20 @@ if (-not $node) { throw "Node.js is required to validate articles.js." }
 $articleJson = & $node.Source -e "const fs=require('fs');console.log(eval(fs.readFileSync('articles.js','utf8')+';JSON.stringify(ARTICLES)'))"
 if ($LASTEXITCODE -ne 0) { throw "articles.js could not be parsed." }
 $articles = $articleJson | ConvertFrom-Json
+$homeHtml = Get-Content -Raw -Encoding UTF8 index.html
+$notesHtml = Get-Content -Raw -Encoding UTF8 founder-notes.html
+$notesList = [regex]::Match($notesHtml, '<!-- ARTICLE_LIST_START -->([\s\S]*?)<!-- ARTICLE_LIST_END -->').Groups[1].Value
+$homeCards = [regex]::Match($homeHtml, '<!-- ARTICLE_HOME_START -->([\s\S]*?)<!-- ARTICLE_HOME_END -->').Groups[1].Value
+if (-not $notesList) { Add-Error 'Founder Notes is missing its static article list.' }
+if (-not $homeCards) { Add-Error 'Homepage is missing its static article cards.' }
+foreach ($article in $articles) {
+  if ($notesList -notmatch [regex]::Escape("href=`"$($article.slug)`"")) { Add-Error "Founder Notes has no static link to $($article.slug)." }
+}
+foreach ($article in ($articles | Select-Object -First 3)) {
+  if ($homeCards -notmatch [regex]::Escape("href=`"$($article.slug)`"")) { Add-Error "Homepage has no static card for $($article.slug)." }
+}
 
-foreach ($javascript in @('articles.js', 'v14.js', 'margins.js', 'from-my-margins.js')) {
+foreach ($javascript in @('articles.js', 'v14.js', 'site-data.js', 'site-analytics.js', 'margins.js', 'from-my-margins.js', 'scripts/render-article-links.js')) {
   $null = & $node.Source --check $javascript 2>&1
   if ($LASTEXITCODE -ne 0) { Add-Error "$javascript contains invalid JavaScript." }
 }
