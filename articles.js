@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "What Building Is Teaching Me: The Cost of Growth",
+    slug: "founder-notes-does-building-ever-stop.html",
+    date: "September 27, 2026",
+    dateISO: "2026-09-27",
+    excerpt: "A 2:35 a.m. Founder Note on rain, rest, relentless building, the momentum from Tanzania, and working forward after setbacks.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-does-building-ever-stop.webp",
+    readTime: "5 min read"
+  },
+
+  {
     title: "What Do You Do When You Get Tired?",
     slug: "founder-notes-what-do-you-do-when-you-get-tired.html",
     date: "September 24, 2026",
