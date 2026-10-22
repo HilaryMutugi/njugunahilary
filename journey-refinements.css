@@ -1,6 +1,5 @@
 /* Founder journey: a chapter rail beside documentary images and first-person copy. */
-.journey-head{display:flex;justify-content:space-between;align-items:end;gap:48px}
-.journey-intro{max-width:34ch;color:rgba(246,241,231,.68);font-size:.96rem;line-height:1.65;padding-bottom:22px}
+.journey-head{display:block}
 
 @media(min-width:861px){
   #journey{scroll-margin-top:0;padding-top:114px;padding-bottom:88px}
@@ -39,8 +38,6 @@
 
 @media(max-width:860px){
   #journey{scroll-margin-top:0;padding-top:110px}
-  .journey-head{display:block}
-  .journey-intro{max-width:48ch;margin:-12px 0 25px;padding:0;font-size:.88rem}
   .journey-stage{display:block}
   #journey .tlnav{gap:0;margin-bottom:24px;border-top:1px solid rgba(246,241,231,.16)}
   #journey .tlnav button{min-height:48px;border:0;border-bottom:1px solid rgba(246,241,231,.16);border-radius:0;background:transparent;color:rgba(246,241,231,.72)}
