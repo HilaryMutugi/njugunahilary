@@ -1,0 +1,153 @@
+/* Homepage hero treatment based on the supplied founder mockup. */
+@media (min-width: 1250px) {
+  body > header:not(.hdr-solid) {
+    background: transparent;
+    border-bottom: 0;
+    backdrop-filter: none;
+  }
+
+  body > header nav {
+    max-width: 1560px;
+    min-height: 128px;
+    padding: 18px 48px;
+  }
+
+  body > header .brand {
+    font-size: clamp(1.6rem, 2vw, 2.15rem);
+    line-height: 1.08;
+  }
+
+  body > header .brand small {
+    margin-top: 10px;
+    font-size: .84rem;
+    letter-spacing: .25em;
+    color: #e5aa38;
+  }
+
+  body > header .nl {
+    gap: clamp(20px, 2.25vw, 40px);
+  }
+
+  body > header .nl a:not(.btn) {
+    font-size: clamp(.88rem, 1.08vw, 1.1rem);
+    white-space: nowrap;
+  }
+
+  body > header .nl .btn {
+    min-height: 60px;
+    padding: 14px 32px;
+    font-size: 1.16rem;
+    white-space: nowrap;
+    border-radius: 5px;
+  }
+
+  .hero .wrap {
+    max-width: 100%;
+    padding: 0 clamp(56px, 5.7vw, 112px);
+  }
+
+  .hero .herotxt {
+    width: min(42vw, 660px);
+    max-width: none;
+    margin-left: auto;
+    transform: translateY(18px);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.65rem, 3.65vw, 3.8rem);
+    line-height: 1.09;
+    margin: 0 0 27px;
+    letter-spacing: -.025em;
+  }
+
+  .hero p {
+    max-width: 44ch;
+    font-size: clamp(1.16rem, 1.52vw, 1.58rem);
+    line-height: 1.7;
+    margin-bottom: 34px;
+  }
+
+  .hero .hbtns {
+    gap: 20px;
+  }
+
+  .hero .hbtns .btn {
+    min-height: 62px;
+    min-width: 229px;
+    justify-content: center;
+    padding: 14px 30px;
+    font-size: 1.18rem;
+    border-radius: 5px;
+  }
+
+  .hero .kick {
+    bottom: 64px;
+    left: clamp(36px, 2.8vw, 54px);
+    max-width: 460px;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--cream);
+  }
+
+  .hero .cue {
+    bottom: 36px;
+    font-size: .92rem;
+    letter-spacing: .21em;
+    color: var(--cream);
+  }
+}
+
+.hero-bg {
+  background-position: center center;
+}
+
+.hero::after {
+  background:
+    linear-gradient(90deg, transparent 0%, transparent 43%, rgba(24, 19, 16, .48) 63%, rgba(22, 18, 16, .75) 100%),
+    linear-gradient(180deg, rgba(22, 20, 18, .72) 0%, rgba(22, 20, 18, .05) 26%, transparent 62%, rgba(22, 18, 16, .55) 100%);
+}
+
+@media (min-width: 761px) and (max-width: 1249px) {
+  body > header nav {
+    max-width: 100%;
+    padding: 12px 25px;
+  }
+
+  body > header .brand {
+    font-size: 1.14rem;
+  }
+
+  body > header .brand small {
+    font-size: .52rem;
+  }
+
+  body > header .nl {
+    gap: 12px;
+  }
+
+  body > header .nl a:not(.btn) {
+    font-size: .73rem;
+    white-space: nowrap;
+  }
+
+  body > header .nl .btn {
+    padding: 9px 12px;
+    font-size: .74rem;
+    white-space: nowrap;
+  }
+
+  .hero .herotxt {
+    max-width: min(49vw, 480px);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-bg {
+    background-position: 42% center;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(22, 19, 17, .65) 0%, rgba(22, 19, 17, .18) 32%, rgba(22, 19, 17, .72) 72%, rgba(22, 19, 17, .88) 100%);
+  }
+}

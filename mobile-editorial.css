@@ -1,0 +1,35 @@
+/* Editorial mobile hero: a portrait panel followed by the story and actions. */
+.mobile-hero-eyebrow{display:none}
+
+@media(max-width:600px){
+  #hdr{--nav-height:90px}
+  #hdr nav{height:90px;align-items:flex-start;padding:27px 23px 0}
+  #hdr .brand{font-size:1.44rem;line-height:1}
+  #hdr .brand small{display:block;margin-top:8px;font-size:.5rem;letter-spacing:.23em}
+  #hdr .mt{margin-top:-6px}
+  #hdr .hb{width:27px}
+
+  section.hero{display:block;min-height:0;padding:333px 0 0;background:#f6f1e7;color:#292720}
+  .hero .hero-bg{position:absolute;inset:0 0 auto;height:333px;background:none;overflow:hidden}
+  .hero .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,20,17,.57),transparent 42%);pointer-events:none}
+  .hero .hero-photo{width:100%;height:100%;object-fit:cover;object-position:50% 23%;transform:none}
+  .hero::before,.hero::after{display:none}
+  .hero .wrap{position:relative;inset:auto;display:block;width:100%;max-width:none;padding:29px 26px 0;background:#f6f1e7}
+  .hero .herotxt{width:100%;max-width:none;margin:0;text-align:left;transform:none}
+  .mobile-hero-eyebrow{display:block;margin-bottom:15px;color:#8b652e;font-size:.625rem;font-weight:700;line-height:1.2;letter-spacing:.17em;text-transform:uppercase}
+  .hero h1{margin:0 0 15px;color:#292720;font-size:clamp(1.75rem,8vw,2.1rem);line-height:1.12;letter-spacing:-.025em;text-shadow:none}
+  .hero h1 .l,.hero h1 .l i{display:inline;overflow:visible;transform:none;animation:none}
+  .hero p{max-width:none;margin:0 0 20px;color:#544e44;font-size:.94rem;line-height:1.55;text-shadow:none;opacity:1;animation:none}
+  .hero .hbtns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:0;opacity:1;animation:none}
+  .hero .hbtns .btn{width:100%;min-width:0;min-height:49px;padding:11px 7px;justify-content:center;text-align:center;font-size:.875rem;line-height:1.2;box-shadow:none}
+  .hero .hbtns .bl{background:transparent;border-color:#476246;color:#345437;backdrop-filter:none}
+  .hero .kick{position:relative;display:block;left:auto;bottom:auto;max-width:none;margin:18px 26px 0;padding:0 0 28px;color:#7a6955;font-size:.875rem;line-height:1.4;text-shadow:none;opacity:1;animation:none}
+  .hero .cue{display:none}
+}
+
+@media(max-width:350px){
+  section.hero{padding-top:255px}
+  .hero .hero-bg{height:255px}
+  .hero .wrap{padding-left:21px;padding-right:21px}
+  .hero .kick{margin-left:21px;margin-right:21px}
+}
