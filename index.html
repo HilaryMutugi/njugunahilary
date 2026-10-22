@@ -498,6 +498,7 @@ section{scroll-margin-top:78px}
 </style>
 <link rel="stylesheet" href="hero-mockup.css">
 <link rel="stylesheet" href="hero-refinements.css">
+<link rel="stylesheet" href="journey-refinements.css">
 <link rel="stylesheet" href="mobile-editorial.css">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B82L1B9XPQ"></script>
@@ -606,12 +607,12 @@ section{scroll-margin-top:78px}
 </div></section>
 
 <section class="tl" id="journey"><div class="wrap">
-<span class="eyebrow rv">The Journey</span><h2 class="rv">The journey so far &mdash; in chapters.</h2>
-<div class="tlnav rv" id="tlnav"><button class="on" data-t="0">The Beginning</button><button data-t="1">Building Afrifama</button><button data-t="2">Going Digital</button><button data-t="3">What's Next</button></div>
+<div class="journey-head"><div><span class="eyebrow rv">The Journey</span><h2 class="rv">The journey so far &mdash; in chapters.</h2></div><p class="journey-intro rv">From learning the business to building Afrifama and documenting the work as it happens.</p></div>
+<div class="journey-stage"><div class="tlnav rv" id="tlnav"><button class="on" data-t="0">The Beginning</button><button data-t="1">Building Afrifama</button><button data-t="2">Going Digital</button><button data-t="3">What's Next</button></div>
 <div class="tlp on" data-p="0"><div class="ph"><img src="images/grad.jpg" alt="Graduation — where it started"></div><div><span class="tlyear">2015 – 2019</span><h3>Where it started</h3><p>The foundation stage. I studied Entrepreneurship and Business Management at Moi University, shaped my thinking around venture creation, and began seeing business not just as a way to make money &mdash; but as a tool to solve real problems.</p></div></div>
 <div class="tlp" data-p="1"><div class="ph"><img src="images/afrifama.jpg" alt="Building Afrifama"></div><div><span class="tlyear">2022 – Present</span><h3>Afrifama &mdash; what I'm building now</h3><p>Afrifama became the main battlefield and classroom &mdash; moving from ideas to real operations: poultry production, market testing, feed manufacturing, farmers, customers, capital challenges, partnerships, and the everyday reality of building from the ground up in Coastal Kenya.</p><p>At its core, Afrifama is building a practical value-chain feed system for smallholder poultry farmers: connecting farmer partnerships, production support, input access, and market pathways into a more reliable agribusiness model.</p><p style="margin-top:12px"><a href="https://www.afrifama.com/" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;font-size:.9rem">Visit Afrifama &rarr;</a></p></div></div>
 <div class="tlp" data-p="2"><div class="ph"><img src="images/digital.jpg" alt="Going digital"></div><div><span class="tlyear">2023 – Present</span><h3>Going digital</h3><p>I started documenting the journey on Afrifama's YouTube. What began as simple videos became a real storytelling platform &mdash; showing the work behind entrepreneurship, agribusiness, and business growth in Coastal Kenya. It has since grown to over 6K subscribers.</p></div></div>
-<div class="tlp" data-p="3"><div class="ph"><img src="images/farmers.jpg" alt="What's next"></div><div><span class="tlyear">Now &amp; next</span><h3>From one farm to a farmer network</h3><p><strong>Empowering farmers. Building livelihoods.</strong></p><p>Afrifama began with a simple question: what if building one successful agribusiness could become the foundation for helping thousands of others?</p><p>Today, we are building a practical system that brings farmer financing, quality inputs, production support, technology, and market access closer to smallholder poultry farmers.</p><p>Afrifama is becoming proof that patient, practical entrepreneurship can create lasting impact when business growth and farmer success move together.</p></div></div>
+<div class="tlp" data-p="3"><div class="ph"><img src="images/farmers.jpg" alt="What's next"></div><div><span class="tlyear">Now &amp; next</span><h3>From one farm to a farmer network</h3><p><strong>Empowering farmers. Building livelihoods.</strong></p><p>Afrifama began with a simple question: what if building one successful agribusiness could become the foundation for helping thousands of others?</p><p>Today, we are building a practical system that brings farmer financing, quality inputs, production support, technology, and market access closer to smallholder poultry farmers.</p><p>Afrifama is becoming proof that patient, practical entrepreneurship can create lasting impact when business growth and farmer success move together.</p></div></div></div>
 </div></section>
 
 <section class="now" id="now"><div class="wrap">
@@ -859,9 +860,6 @@ var tb=document.querySelectorAll('#tlnav button'),tp=document.querySelectorAll('
 function showChapter(b){tb.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-selected','false')});b.classList.add('on');b.setAttribute('aria-selected','true');tp.forEach(function(p){p.classList.toggle('on',p.dataset.p===b.dataset.t)})}
 tb.forEach(function(b){b.setAttribute('aria-selected',b.classList.contains('on')?'true':'false')});
 tb.forEach(function(b){b.onclick=function(){showChapter(b)}});
-if(matchMedia('(hover:hover) and (min-width:861px)').matches){
-  tb.forEach(function(b){b.addEventListener('mouseenter',function(){showChapter(b)})});
-}
 
 /* ---- scroll reveal ---- */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');if(e.target.id!=='field')io.unobserve(e.target)}})},{threshold:.12});

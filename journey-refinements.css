@@ -1,0 +1,49 @@
+/* Founder journey: a chapter rail beside documentary images and first-person copy. */
+.journey-head{display:flex;justify-content:space-between;align-items:end;gap:48px}
+.journey-intro{max-width:34ch;color:rgba(246,241,231,.68);font-size:.96rem;line-height:1.65;padding-bottom:22px}
+
+@media(min-width:861px){
+  #journey{scroll-margin-top:0;padding-top:114px;padding-bottom:88px}
+  #journey .wrap{max-width:1500px}
+  #journey .eyebrow{margin-bottom:12px}
+  #journey h2{max-width:22ch;margin:0 0 28px;font-size:clamp(2rem,3.25vw,3.05rem);line-height:1.08}
+  #journey .journey-stage{display:grid;grid-template-columns:clamp(210px,20vw,260px) minmax(0,1fr);gap:clamp(24px,3vw,52px);align-items:start}
+  #journey .tlnav{grid-column:1;grid-row:1;display:flex;flex-direction:column;gap:0;margin:0;border-left:1px solid rgba(201,162,75,.34)}
+  #journey .tlnav button{min-height:68px;padding:14px 12px 14px 48px;border:0;border-left:3px solid transparent;border-bottom:1px solid rgba(246,241,231,.12);border-radius:0;background:transparent;color:rgba(246,241,231,.68);font-size:.9rem;box-shadow:none;transform:none}
+  #journey .tlnav button::before{top:17px;left:14px;color:var(--gold);font-size:1rem}
+  #journey .tlnav button::after{display:none}
+  #journey .tlnav button:hover{background:rgba(246,241,231,.045);color:var(--cream)}
+  #journey .tlnav button.on{border-left-color:var(--gold);background:linear-gradient(90deg,rgba(62,92,58,.4),rgba(62,92,58,.04));color:var(--cream)}
+  #journey .tlp.on{grid-column:2;grid-row:1;grid-template-columns:minmax(0,.9fr) minmax(0,1fr);gap:clamp(24px,2.6vw,42px);align-items:start}
+  #journey .tlp .ph{aspect-ratio:4/3;box-shadow:0 22px 48px -34px rgba(0,0,0,.85)}
+  #journey .tlp>div:last-child{padding:10px 0 0;border-left:0}
+  #journey .tlyear{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+  #journey .tlp h3{font-size:clamp(1.7rem,2.4vw,2.45rem);margin:12px 0 16px}
+  #journey .tlp p{font-size:clamp(.94rem,1.05vw,1.06rem);line-height:1.65}
+}
+
+@media(min-width:1081px){
+  body > #hdr.hdr-solid nav{height:76px;min-height:76px;padding-top:0;padding-bottom:0}
+  body > #hdr.hdr-solid .brand{font-size:1.36rem}
+  body > #hdr.hdr-solid .brand small{margin-top:4px;font-size:.58rem;letter-spacing:.18em}
+  body > #hdr.hdr-solid .nl .btn{min-height:44px;padding:10px 20px;font-size:.9rem}
+}
+
+@media(min-width:1081px) and (max-height:700px){
+  #journey{padding-top:98px}
+  #journey h2{margin-bottom:23px;font-size:clamp(2rem,3vw,2.45rem)}
+  #journey .tlnav button{min-height:58px;padding-top:11px;padding-bottom:10px}
+  #journey .tlnav button::before{top:13px}
+  body > #hdr.hdr-solid nav{height:66px;min-height:66px}
+}
+
+@media(max-width:860px){
+  #journey{scroll-margin-top:0;padding-top:110px}
+  .journey-head{display:block}
+  .journey-intro{max-width:48ch;margin:-12px 0 25px;padding:0;font-size:.88rem}
+  .journey-stage{display:block}
+  #journey .tlnav{gap:0;margin-bottom:24px;border-top:1px solid rgba(246,241,231,.16)}
+  #journey .tlnav button{min-height:48px;border:0;border-bottom:1px solid rgba(246,241,231,.16);border-radius:0;background:transparent;color:rgba(246,241,231,.72)}
+  #journey .tlnav button.on{border-bottom:2px solid var(--gold);background:linear-gradient(90deg,rgba(62,92,58,.32),transparent);color:var(--cream)}
+  #journey .tlnav button::after{display:none}
+}
