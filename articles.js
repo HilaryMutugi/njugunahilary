@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "In Pursuit of a Better Future",
+    slug: "founder-notes-eight-days-in-kigali.html",
+    date: "October 23, 2026",
+    dateISO: "2026-10-23",
+    excerpt: "Reflections on entrepreneurship and innovation from Kigali, Rwanda.",
+    tag: "Founder Notes",
+    image: "images/founder-notes-eight-days-in-kigali-v2.webp",
+    readTime: "5 min read"
+  },
+
+  {
     title: "What Building Is Teaching Me: The Cost of Growth",
     slug: "founder-notes-does-building-ever-stop.html",
     date: "September 27, 2026",
