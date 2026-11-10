@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hilary, Always Building</title>
+<meta name="description" content="A little animation of a founder who never stops building. Tap around, turn the sound on.">
+<meta property="og:title" content="Hilary, Always Building">
+<meta property="og:description" content="Ideas, coffee, shipping, and a birthday surprise. Turn the sound on.">
+<meta property="og:image" content="https://njugunahilary.com/social-preview.jpg">
+<meta property="og:url" content="https://njugunahilary.com/building/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#0d1020;color:#fff;font-family:"Trebuchet MS",system-ui,sans-serif;overflow:hidden}
+  .wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px}
+  svg{width:min(100%,980px);height:auto;max-height:72vh;display:block;user-select:none}
+  .cap{margin-top:4px;min-height:28px;font-size:clamp(15px,3.4vw,21px);color:#f7c873;text-align:center;transition:opacity .4s}
+  .stats{display:flex;gap:16px;font-size:13px;opacity:.75;margin-top:4px;flex-wrap:wrap;justify-content:center}
+  .btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;justify-content:center;max-width:820px}
+  button{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.25);padding:8px 14px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+  button:hover{background:rgba(255,255,255,.14)}
+  button.on{background:rgba(247,200,115,.18);border-color:#f7c873}
+  button.special{border-color:#c792ea;background:rgba(199,146,234,.15)}
+  .home{position:fixed;top:12px;left:14px;font-size:13px;color:#f7c873;text-decoration:none;opacity:.7;z-index:5}.home:hover{opacity:1}
+  .tip{font-size:12px;opacity:.5;margin-top:8px;text-align:center}
+  .click{cursor:pointer}
+  /* character */
+  .breathe{animation:breathe 3s ease-in-out infinite;transform-origin:480px 330px}
+  @keyframes breathe{50%{transform:translateY(-3px)}}
+  .head{animation:nod 1.6s ease-in-out infinite;transform-origin:480px 215px}
+  @keyframes nod{0%,100%{transform:rotate(0)}30%{transform:rotate(-2deg)}60%{transform:rotate(1.5deg) translateY(1px)}}
+  .eye{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+  .handL{animation:typeL var(--spd,.32s) ease-in-out infinite alternate}
+  .handR{animation:typeR var(--spd,.32s) ease-in-out infinite alternate}
+  @keyframes typeL{to{transform:translateY(-7px)}}
+  @keyframes typeR{from{transform:translateY(-7px)}to{transform:none}}
+  .paused .handL,.paused .handR,.paused .head{animation-play-state:paused}
+  .steam path{animation:steam 2.4s ease-in-out infinite;opacity:0}
+  .steam path:nth-child(2){animation-delay:.8s}.steam path:nth-child(3){animation-delay:1.6s}
+  @keyframes steam{0%{opacity:0;transform:translateY(6px)}40%{opacity:.6}100%{opacity:0;transform:translateY(-18px)}}
+  .glow{animation:glow 2s ease-in-out infinite}
+  @keyframes glow{50%{opacity:.55}}
+  .hat{animation:hat 2.2s ease-in-out infinite;transform-origin:480px 150px}
+  @keyframes hat{50%{transform:rotate(6deg)}}
+  .sun{animation:orbit 24s linear infinite;transform-origin:150px 260px}
+  @keyframes orbit{to{transform:rotate(360deg)}}
+  .hand-m{animation:spin 6s linear infinite;transform-origin:720px 110px}
+  .hand-h{animation:spin 72s linear infinite;transform-origin:720px 110px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .idea{transition:transform 2.6s cubic-bezier(.2,.7,.3,1),opacity 2.6s}
+  .built{animation:land .6s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes land{from{transform:translateY(-30px) scale(.3);opacity:0}}
+  .bulb{animation:bulb 1.2s ease-out}
+  @keyframes bulb{0%{transform:scale(0);opacity:0}40%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:0}}
+  .rocket{animation:launch 3s ease-in forwards}
+  @keyframes launch{0%{transform:translate(0,0)}100%{transform:translate(120px,-520px) rotate(10deg)}}
+  /* Anita */
+  #anita{transition:transform 1.4s cubic-bezier(.4,0,.2,1)}
+  .sway{animation:sway 3.6s ease-in-out infinite;transform-origin:0px 290px}
+  @keyframes sway{50%{transform:rotate(1.6deg)}}
+  .puff{animation:puff 3.6s ease-in-out infinite;transform-origin:0 -40px}
+  @keyframes puff{50%{transform:rotate(-3deg)}}
+  .flame{animation:flick .25s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center bottom}
+  @keyframes flick{to{transform:scaleY(1.25) scaleX(.85)}}
+  .bubble{animation:pop .3s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes pop{from{transform:scale(.2);opacity:0}}
+</style>
+</head>
+<body>
+<a class="home" href="/">← njugunahilary.com</a>
+<div class="wrap">
+<svg viewBox="0 0 960 560" id="scene" aria-label="Animated cartoon of Hilary building on his laptop, with Anita nearby">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2040"/><stop offset="1" stop-color="#151935"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3a7a"/><stop offset="1" stop-color="#f29e6b"/></linearGradient>
+    <radialGradient id="screenGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8fd3ff" stop-opacity=".5"/><stop offset="1" stop-color="#8fd3ff" stop-opacity="0"/></radialGradient>
+    <clipPath id="win"><rect x="70" y="70" width="160" height="190" rx="6"/></clipPath>
+  </defs>
+
+  <rect width="960" height="560" fill="url(#wall)"/>
+
+  <!-- window with day/night (click: rooster) -->
+  <g id="window" class="click">
+    <g clip-path="url(#win)">
+      <rect x="70" y="70" width="160" height="190" fill="url(#sky)"/>
+      <g class="sun"><circle cx="150" cy="150" r="16" fill="#ffd36b"/><circle cx="150" cy="370" r="12" fill="#e9ecff"/></g>
+      <path d="M70 230 Q110 205 150 225 T230 215 V260 H70Z" fill="#1d5a3a"/>
+      <path d="M165 232 l14 -12 l14 12 v14 h-28z" fill="#8a4b2a"/><rect x="175" y="236" width="8" height="10" fill="#2a1a10"/>
+      <g id="chickRun"></g>
+    </g>
+    <rect x="70" y="70" width="160" height="190" rx="6" fill="none" stroke="#2c3360" stroke-width="10"/>
+    <line x1="150" y1="70" x2="150" y2="260" stroke="#2c3360" stroke-width="5"/>
+    <line x1="70" y1="165" x2="230" y2="165" stroke="#2c3360" stroke-width="5"/>
+  </g>
+
+  <!-- wall clock -->
+  <circle cx="720" cy="110" r="38" fill="#f4efe6" stroke="#2c3360" stroke-width="6"/>
+  <line class="hand-h" x1="720" y1="110" x2="720" y2="88" stroke="#222" stroke-width="4" stroke-linecap="round"/>
+  <line class="hand-m" x1="720" y1="110" x2="720" y2="80" stroke="#e05a4f" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="720" cy="110" r="3" fill="#222"/>
+
+  <!-- sticky notes -->
+  <g font-size="11" font-family="Trebuchet MS" fill="#3a2a00">
+    <rect x="300" y="80" width="82" height="58" fill="#ffb3c7" transform="rotate(-3 341 109)"/>
+    <text x="308" y="104" transform="rotate(-3 341 109)">Purpose &gt;</text><text x="308" y="121" transform="rotate(-3 341 109)">alarm clock</text>
+    <rect x="262" y="168" width="80" height="58" fill="#ffe27a" transform="rotate(4 302 197)"/>
+    <text x="270" y="192" transform="rotate(4 302 197)">Fama 1.0</text><text x="270" y="209" transform="rotate(4 302 197)">onboard 20!</text>
+    <rect x="256" y="250" width="78" height="56" fill="#9be7c4" transform="rotate(-5 295 278)"/>
+    <text x="264" y="274" transform="rotate(-5 295 278)">Mill: 2 tons</text><text x="264" y="291" transform="rotate(-5 295 278)">by Friday</text>
+  </g>
+
+  <!-- empire shelf -->
+  <rect x="572" y="232" width="175" height="8" rx="3" fill="#3b2c22"/>
+  <g id="shelf"></g>
+
+  <ellipse class="glow" cx="480" cy="250" rx="190" ry="120" fill="url(#screenGlow)"/>
+
+  <!-- Hilary -->
+  <g id="hilary">
+  <g class="breathe">
+    <rect x="395" y="250" width="170" height="160" rx="30" fill="#2a2f55"/>
+    <path d="M405 400 Q400 290 480 278 Q560 290 555 400Z" fill="#2f8f63"/>
+    <path d="M455 282 Q480 310 505 282" fill="none" stroke="#24704d" stroke-width="5"/>
+    <rect x="468" y="255" width="24" height="28" rx="8" fill="#7a4a2e"/>
+    <g class="head click" id="hHead">
+      <ellipse cx="428" cy="218" rx="9" ry="13" fill="#7a4a2e"/><ellipse cx="532" cy="218" rx="9" ry="13" fill="#7a4a2e"/>
+      <ellipse cx="480" cy="212" rx="52" ry="58" fill="#8a5535"/>
+      <path d="M428 200 Q425 150 480 148 Q535 150 532 200 Q520 172 480 170 Q440 172 428 200Z" fill="#1a1210"/>
+      <path d="M432 220 Q440 272 480 272 Q520 272 528 220 Q520 250 480 252 Q440 250 432 220Z" fill="#1a1210" opacity=".85"/>
+      <path id="browL" d="M448 192 q12 -6 24 0" stroke="#1a1210" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path id="browR" d="M488 192 q12 -6 24 0" stroke="#1a1210" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <ellipse class="eye" cx="460" cy="210" rx="5" ry="6" fill="#1a1210"/>
+      <ellipse class="eye" cx="500" cy="210" rx="5" ry="6" fill="#1a1210"/>
+      <circle cx="462" cy="208" r="1.6" fill="#fff"/><circle cx="502" cy="208" r="1.6" fill="#fff"/>
+      <path d="M478 216 q-5 14 2 16" stroke="#5e3721" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path id="mouth" d="M466 240 q14 10 28 0" stroke="#f4efe6" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <ellipse cx="480" cy="215" rx="52" ry="58" fill="#8fd3ff" opacity=".08"/>
+      <g class="hat">
+        <path d="M455 158 L480 92 L505 158Z" fill="#e05a4f"/>
+        <path d="M462 140 L498 140 M468 122 L492 122 M474 106 L486 106" stroke="#f7c873" stroke-width="4"/>
+        <circle cx="480" cy="90" r="7" fill="#f7c873"/>
+      </g>
+    </g>
+  </g>
+  </g>
+
+  <!-- desk -->
+  <rect x="150" y="395" width="660" height="22" rx="6" fill="#6b4a33"/>
+  <rect x="180" y="417" width="18" height="143" fill="#4f3625"/><rect x="762" y="417" width="18" height="143" fill="#4f3625"/>
+
+  <!-- hands -->
+  <g id="hands">
+    <g class="handL"><path d="M352 382 Q380 330 420 315" stroke="#2f8f63" stroke-width="22" fill="none" stroke-linecap="round"/><ellipse cx="350" cy="386" rx="20" ry="12" fill="#8a5535"/></g>
+    <g class="handR"><path d="M608 382 Q580 330 540 315" stroke="#2f8f63" stroke-width="22" fill="none" stroke-linecap="round"/><ellipse cx="610" cy="386" rx="20" ry="12" fill="#8a5535"/></g>
+  </g>
+
+  <!-- laptop -->
+  <path d="M360 395 L600 395 L612 402 L348 402Z" fill="#9aa3b5"/>
+  <rect x="372" y="268" width="216" height="128" rx="10" fill="#c7cede" stroke="#9aa3b5" stroke-width="3"/>
+  <ellipse class="glow" cx="480" cy="335" rx="16" ry="20" fill="#f7c873"/>
+  <path d="M480 318 q-2 -14 -12 -18 M480 318 q4 -12 14 -14" stroke="#2f8f63" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- coffee (click: refill) -->
+  <g transform="translate(672 350)" id="mug" class="click">
+    <g class="steam" stroke="#cfd6ea" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M8 -6 q-6 -8 0 -16 q6 -8 0 -16"/><path d="M20 -6 q-6 -8 0 -16 q6 -8 0 -16"/><path d="M32 -6 q-6 -8 0 -16 q6 -8 0 -16"/>
+    </g>
+    <rect x="0" y="0" width="42" height="45" rx="6" fill="#f4efe6"/>
+    <path d="M42 10 q16 0 16 13 q0 13 -16 13" stroke="#f4efe6" stroke-width="6" fill="none"/>
+    <text x="21" y="29" text-anchor="middle" font-size="11" fill="#2f8f63" font-weight="bold">CEO</text>
+  </g>
+
+  <!-- notebook + eggs -->
+  <rect x="230" y="372" width="90" height="24" rx="3" fill="#e05a4f" transform="rotate(-6 275 384)"/>
+  <rect x="236" y="368" width="78" height="6" fill="#f4efe6" transform="rotate(-6 275 384)"/>
+  <g transform="translate(700 380)"><rect x="0" y="0" width="80" height="16" rx="3" fill="#c8a27a"/>
+    <ellipse cx="14" cy="-2" rx="8" ry="10" fill="#fff6e6"/><ellipse cx="32" cy="-2" rx="8" ry="10" fill="#f3d9b5"/><ellipse cx="50" cy="-2" rx="8" ry="10" fill="#fff6e6"/><ellipse cx="68" cy="-2" rx="8" ry="10" fill="#f3d9b5"/></g>
+
+  <!-- Anita -->
+  <g id="anita" class="click" style="transform:translate(880px,245px)">
+    <g class="sway">
+      <rect x="-20" y="182" width="14" height="108" rx="6" fill="#7a4a2e"/><rect x="6" y="182" width="14" height="108" rx="6" fill="#7a4a2e"/>
+      <ellipse cx="-14" cy="292" rx="13" ry="6" fill="#f7c873"/><ellipse cx="14" cy="292" rx="13" ry="6" fill="#f7c873"/>
+      <path d="M-36 58 Q0 48 36 58 L54 192 Q0 204 -54 192Z" fill="#8b5cf6"/>
+      <path d="M-44 120 Q0 128 44 120" stroke="#f7c873" stroke-width="5" fill="none"/>
+      <rect x="-9" y="32" width="18" height="28" rx="7" fill="#7a4a2e"/>
+      <g class="puff"><circle cx="0" cy="-58" r="30" fill="#1a1210"/><circle cx="-8" cy="-66" r="4" fill="#3a2a22"/></g>
+      <ellipse cx="0" cy="-6" rx="45" ry="49" fill="#1a1210"/>
+      <ellipse cx="0" cy="2" rx="37" ry="43" fill="#8f5a3a"/>
+      <path d="M-38 -6 Q-32 -42 0 -42 Q32 -42 38 -6 Q22 -28 0 -28 Q-22 -28 -38 -6Z" fill="#1a1210"/>
+      <circle cx="-40" cy="16" r="5" fill="#f7c873"/><circle cx="40" cy="16" r="5" fill="#f7c873"/>
+      <ellipse class="eye" cx="-14" cy="0" rx="4.5" ry="5.5" fill="#1a1210"/><ellipse class="eye" cx="14" cy="0" rx="4.5" ry="5.5" fill="#1a1210"/>
+      <path d="M-20 -6 l-4 -4 M20 -6 l4 -4" stroke="#1a1210" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-20 -14 q6 -4 12 0 M8 -14 q6 -4 12 0" stroke="#1a1210" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <circle cx="-22" cy="13" r="6" fill="#e07a7a" opacity=".45"/><circle cx="22" cy="13" r="6" fill="#e07a7a" opacity=".45"/>
+      <path d="M0 6 q-3 7 2 8" stroke="#5e3721" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path id="aMouth" d="M-11 22 Q0 32 11 22 Q0 27 -11 22Z" fill="#b5523e" stroke="#b5523e" stroke-width="2" stroke-linejoin="round"/>
+      <!-- arms -->
+      <path d="M-33 64 Q-54 108 -38 140" stroke="#8b5cf6" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <path d="M33 64 Q54 108 38 140" stroke="#8b5cf6" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <!-- sketchbook (House of Gemini mode) -->
+      <g id="aBook">
+        <rect x="-40" y="112" width="80" height="58" rx="4" fill="#f4efe6"/>
+        <circle cx="-22" cy="130" r="7" fill="#e05a4f"/><circle cx="-4" cy="130" r="7" fill="#f7c873"/><circle cx="14" cy="130" r="7" fill="#2f8f63"/>
+        <text x="0" y="158" text-anchor="middle" font-size="10" fill="#8b5cf6" font-family="Trebuchet MS" font-weight="bold">♊ GEMINI</text>
+      </g>
+      <!-- birthday cake (surprise mode) -->
+      <g id="aCake" style="display:none">
+        <ellipse cx="0" cy="146" rx="52" ry="8" fill="#e9ecff"/>
+        <rect x="-38" y="108" width="76" height="38" rx="5" fill="#f4c18c"/>
+        <path d="M-38 116 q8 10 15 0 q8 10 15 0 q8 10 15 0 q8 10 15 0 q8 10 16 0 V108 h-76z" fill="#ff9ec4"/>
+        <rect x="-38" y="128" width="76" height="5" fill="#fff6e6"/>
+        <g id="candles">
+          <rect x="-22" y="88" width="6" height="20" fill="#8fd3ff"/><rect x="-3" y="86" width="6" height="22" fill="#f7c873"/><rect x="16" y="88" width="6" height="20" fill="#9be7c4"/>
+          <g id="flames"><ellipse class="flame" cx="-19" cy="82" rx="4" ry="7" fill="#ffb347"/><ellipse class="flame" cx="0" cy="80" rx="4" ry="7" fill="#ffb347"/><ellipse class="flame" cx="19" cy="82" rx="4" ry="7" fill="#ffb347"/></g>
+        </g>
+      </g>
+      <circle cx="-38" cy="142" r="8" fill="#8f5a3a"/><circle cx="38" cy="142" r="8" fill="#8f5a3a"/>
+    </g>
+  </g>
+
+  <g id="fx"></g>
+</svg>
+<div class="cap" id="cap">11:04 pm. One more idea.</div>
+<div class="stats"><span>💡 Ideas: <b id="ideas">0</b></span><span>☕ Coffees: <b id="cof">1</b></span><span>🏗️ Shipped: <b id="ship">0</b></span><span>💛 Hearts from Anita: <b id="hearts">0</b></span></div>
+<div class="btns">
+  <button id="bSound">🔇 Sound off</button>
+  <button id="bMusic">🎵 Lo-fi beat</button>
+  <button id="bIdea">💡 Idea</button>
+  <button id="bCof">☕ Coffee</button>
+  <button id="bShip">🚀 Ship it</button>
+  <button id="bCake" class="special">🎂 Anita's surprise</button>
+</div>
+<div class="tip">Tap Hilary, Anita, the mug or the window. Turn sound on for the full effect.</div>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg', fx=document.getElementById('fx'), shelf=document.getElementById('shelf'), scene=document.getElementById('scene');
+const $=id=>document.getElementById(id);
+const IDEAS=[['🐔','Layer flock'],['🌽','Feed formula'],['🏭','Feed mill'],['🤝','Outgrower deal'],['📈','Egg data'],['🥚','Egg tray'],['🚚','Dispatch route'],['📱','Farmer app'],['💡','Big idea'],['🎥','YouTube ep.'],['📝','Founder Note'],['🌱','Kukuza youth'],['💰','Pitch deck'],['🧪','Nutrition test']];
+const CAPS=['11:04 pm. One more idea.','Prototype by 2 am.','Feed mill math, done.','Fama 1.0, onboarding farmers.','The roosters say it is morning.','Ship it. Learn. Build again.','Not an alarm clock. A purpose.','Birthday? Still building. 🎂'];
+const H_LINES=['One more feature, then sleep.','Purpose, not alarm clocks!','What if... feed on subscription? 🤔','Fama 2.0? 👀','Okay okay, after this commit.','Eggs counted. Ideas not.'];
+const A_LINES=['Did you eat today? 🍲','That logo needs more breathing room.','The chickens will wait till morning, love.','Proud of you, builder. 💛','You said "five minutes" an hour ago. 😄','Happy birthday, my CEO! 🎉'];
+let ideas=0,cof=1,ship=0,hearts=0,shelfItems=[],ci=0,busy=false;
+
+/* ---------- sound (all synthesized, no files) ---------- */
+let AC=null,master=null,soundOn=false,musicOn=false,musicTimer=null,typingTimer=null;
+function ac(){if(!AC){AC=new(window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=.55;master.connect(AC.destination)}if(AC.state==='suspended')AC.resume();return AC}
+function tone(f,dur=.15,type='sine',vol=.2,when=0,slide){if(!soundOn)return;const a=ac(),t=a.currentTime+when,o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(slide)o.frequency.exponentialRampToValueAtTime(slide,t+dur);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(master);o.start(t);o.stop(t+dur+.05)}
+function noise(dur=.03,vol=.06,f=2500,when=0,sweep,q=1.2){if(!soundOn)return;const a=ac(),t=a.currentTime+when,len=Math.max(1,a.sampleRate*dur|0),buf=a.createBuffer(1,len,a.sampleRate),d=buf.getChannelData(0);for(let i=0;i<len;i++)d[i]=Math.random()*2-1;const s=a.createBufferSource();s.buffer=buf;const bp=a.createBiquadFilter();bp.type='bandpass';bp.Q.value=q;bp.frequency.setValueAtTime(f,t);if(sweep)bp.frequency.exponentialRampToValueAtTime(sweep,t+dur);const g=a.createGain();g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);s.connect(bp);bp.connect(g);g.connect(master);s.start(t)}
+const sfx={
+  idea(){tone(520,.2,'sine',.18,0,1040);tone(1560,.14,'triangle',.06,.07)},
+  land(){tone(330,.09,'square',.04);tone(660,.16,'triangle',.09,.05)},
+  coffee(){for(let i=0;i<6;i++)tone(260+Math.random()*260,.07,'sine',.12,i*.06,520+Math.random()*300)},
+  ship(){noise(.9,.12,300,0,5000,.8);[523,659,784,1047].forEach((f,i)=>tone(f,.25,'triangle',.12,.5+i*.09))},
+  hmm(){tone(180,.18,'triangle',.12,0,150);tone(220,.22,'triangle',.12,.2,260)},
+  sparkle(){[1318,1568,2093,2637].forEach((f,i)=>tone(f,.18,'sine',.07,i*.06))},
+  heart(){tone(880,.12,'sine',.08);tone(1175,.16,'sine',.07,.08)},
+  puff(){noise(.5,.18,900,0,250,.6)},
+  rooster(){tone(520,.14,'sawtooth',.06,0,820);tone(820,.12,'sawtooth',.06,.16,700);tone(760,.55,'sawtooth',.07,.3,460);tone(1040,.14,'square',.02,0,1640)}
+};
+function typingLoop(){clearTimeout(typingTimer);if(soundOn&&!busy){noise(.025,.045,2200+Math.random()*1800);if(Math.random()<.08)noise(.04,.06,900)}const spd=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spd'))||.32;typingTimer=setTimeout(typingLoop,spd*1000*(.6+Math.random()*.8))}
+/* lo-fi loop */
+const CHORDS=[[261.6,329.6,392,493.9],[220,261.6,329.6,392],[174.6,220,261.6,329.6],[196,246.9,293.7,349.2]];let bar=0;
+function musicBar(){if(!musicOn||!soundOn)return;const a=ac(),t0=a.currentTime+.05,ch=CHORDS[bar++%4],L=2.4;
+  ch.forEach(f=>{const o=a.createOscillator(),g=a.createGain(),lp=a.createBiquadFilter();o.type='triangle';o.frequency.value=f;lp.type='lowpass';lp.frequency.value=900;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(.035,t0+.3);g.gain.linearRampToValueAtTime(.0001,t0+L);o.connect(lp);lp.connect(g);g.connect(master);o.start(t0);o.stop(t0+L+.1)});
+  const bass=a.createOscillator(),bg=a.createGain();bass.type='sine';bass.frequency.value=ch[0]/2;bg.gain.setValueAtTime(.12,t0);bg.gain.exponentialRampToValueAtTime(.001,t0+L);bass.connect(bg);bg.connect(master);bass.start(t0);bass.stop(t0+L);
+  for(let b=0;b<4;b++){const t=b*L/4;if(b%2===0){const k=a.createOscillator(),kg=a.createGain();k.frequency.setValueAtTime(130,t0+t);k.frequency.exponentialRampToValueAtTime(45,t0+t+.18);kg.gain.setValueAtTime(.22,t0+t);kg.gain.exponentialRampToValueAtTime(.001,t0+t+.2);k.connect(kg);kg.connect(master);k.start(t0+t);k.stop(t0+t+.22)}else noise(.12,.05,1800,t+.0,null,.7);noise(.03,.025,7000,t+L/8)}
+}
+function setSound(v){soundOn=v;const b=$('bSound');b.textContent=v?'🔊 Sound on':'🔇 Sound off';b.classList.toggle('on',v);if(v){ac();typingLoop()}else{musicOn=false;$('bMusic').classList.remove('on');clearInterval(musicTimer)}}
+function setMusic(v){if(v&&!soundOn)setSound(true);musicOn=v;$('bMusic').classList.toggle('on',v);clearInterval(musicTimer);if(v){musicBar();musicTimer=setInterval(musicBar,2400)}}
+/* Happy Birthday (traditional melody) */
+const N={G4:392,A4:440,B4:493.9,C5:523.3,D5:587.3,E5:659.3,F5:698.5,G5:784};
+const HB=[['G4',.75],['G4',.25],['A4',1],['G4',1],['C5',1],['B4',2],['G4',.75],['G4',.25],['A4',1],['G4',1],['D5',1],['C5',2],['G4',.75],['G4',.25],['G5',1],['E5',1],['C5',1],['B4',1],['A4',2],['F5',.75],['F5',.25],['E5',1],['C5',1],['D5',1],['C5',3]];
+function playHB(){let t=0;const beat=.36;HB.forEach(([n,d])=>{tone(N[n],d*beat*.95,'triangle',.16,t);tone(N[n]*2,d*beat*.6,'sine',.04,t);t+=d*beat});return t}
+
+/* ---------- visuals ---------- */
+function el(tag,attrs,txt){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt)e.textContent=txt;return e}
+function say(x,y,text,color='#ffffff',ink='#1b2040',ms=2600){
+  const g=el('g',{class:'bubble'});g.style.transformOrigin=`${x}px ${y}px`;
+  const t=el('text',{x:0,y:0,'font-size':14,fill:ink,'font-family':'Trebuchet MS'},text);fx.appendChild(g);g.appendChild(t);
+  const w=t.getComputedTextLength()+24;let bx=Math.min(Math.max(x-w/2,8),952-w);
+  const r=el('rect',{x:bx,y:y-34,width:w,height:30,rx:15,fill:color});const tail=el('path',{d:`M${x-6} ${y-5} L${x} ${y+6} L${x+6} ${y-5}Z`,fill:color});
+  g.insertBefore(tail,t);g.insertBefore(r,tail);t.setAttribute('x',bx+12);t.setAttribute('y',y-14);
+  setTimeout(()=>g.animate([{opacity:1},{opacity:0}],{duration:400}).onfinish=()=>g.remove(),ms);
+}
+function smile(big){if(big){$('browL').setAttribute('d','M448 186 q12 -9 24 0');$('browR').setAttribute('d','M488 186 q12 -9 24 0');$('mouth').setAttribute('d','M462 236 q18 20 36 0')}else{$('browL').setAttribute('d','M448 192 q12 -6 24 0');$('browR').setAttribute('d','M488 192 q12 -6 24 0');$('mouth').setAttribute('d','M466 240 q14 10 28 0')}}
+function idea(auto){
+  if(busy){if(auto)return;endSurprise()}
+  const [emo,label]=IDEAS[Math.random()*IDEAS.length|0];
+  ideas++;$('ideas').textContent=ideas;sfx.idea();
+  const b=el('text',{x:530,y:110,'font-size':34,class:'bulb'},'💡');b.style.transformOrigin='545px 100px';fx.appendChild(b);setTimeout(()=>b.remove(),1200);
+  smile(true);setTimeout(()=>{if(!busy)smile(false)},900);
+  const g=el('g',{class:'idea'});
+  g.appendChild(el('rect',{x:-50,y:-22,width:100,height:44,rx:22,fill:'#ffffff',opacity:.95}));
+  g.appendChild(el('text',{x:-36,y:8,'font-size':20},emo));
+  g.appendChild(el('text',{x:-10,y:5,'font-size':11,fill:'#1b2040','font-family':'Trebuchet MS'},label));
+  g.style.transform='translate(480px,275px) scale(.3)';g.style.opacity=0;fx.appendChild(g);
+  const tx=380+Math.random()*340,ty=50+Math.random()*120;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{g.style.transform=`translate(${tx}px,${ty}px) scale(1)`;g.style.opacity=1}));
+  setTimeout(()=>{g.style.opacity=0},2800);setTimeout(()=>g.remove(),5400);
+  if(ideas%3===0)setTimeout(()=>build(emo),700);
+}
+function build(emo){
+  ship++;$('ship').textContent=ship;sfx.land();
+  if(shelfItems.length>=5)shelfItems.shift().remove();
+  shelfItems.forEach((t,i)=>t.setAttribute('x',580+i*33));
+  const t=el('text',{x:580+shelfItems.length*33,y:229,'font-size':26,class:'built'},emo);shelf.appendChild(t);shelfItems.push(t);
+}
+function coffee(){
+  if(busy)endSurprise();
+  cof++;$('cof').textContent=cof;sfx.coffee();
+  document.documentElement.style.setProperty('--spd',Math.max(.08,.32-cof*.035)+'s');
+  for(let i=0;i<3;i++)setTimeout(()=>idea(true),i*260);
+  setCap(cof>6?'Okay, that is a lot of coffee. ⚡':'Typing speed: upgraded.');
+  if(cof===8)setTimeout(()=>{anitaSays('That is enough coffee, mister. ☕🚫')},900);
+}
+function burst(x,y,n=24){for(let i=0;i<n;i++){const c=el('circle',{cx:x,cy:y,r:3+Math.random()*3,fill:['#f7c873','#e05a4f','#9be7c4','#8fd3ff','#c792ea'][i%5]});fx.appendChild(c);const a=Math.random()*Math.PI*2,d=80+Math.random()*160;c.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+40}px)`,opacity:0}],{duration:1400,easing:'ease-out'}).onfinish=()=>c.remove()}}
+function launch(){
+  if(busy)endSurprise();
+  const r=el('text',{x:450,y:300,'font-size':44,class:'rocket'},'🚀');fx.appendChild(r);setTimeout(()=>r.remove(),3100);
+  sfx.ship();burst(480,300);build(['🏭','🐔','📱','🚚'][Math.random()*4|0]);setCap('Shipped! Next one. 🚀');
+}
+function setCap(t){const c=$('cap');c.style.opacity=0;setTimeout(()=>{c.textContent=t;c.style.opacity=1},350)}
+function anitaPos(){const m=/translate\(([-\d.]+)px/.exec($('anita').style.transform);return m?+m[1]:880}
+function anitaSays(t){say(anitaPos(),190,t,'#f3e8ff','#4c1d95');sfx.sparkle()}
+function heart(){
+  hearts++;$('hearts').textContent=hearts;sfx.heart();
+  const x0=anitaPos()-10,h=el('text',{x:x0,y:250,'font-size':24},['💛','❤️','💜'][Math.random()*3|0]);fx.appendChild(h);
+  h.animate([{transform:'translate(0,0) scale(.6)',opacity:0},{transform:`translate(${(480-x0)*.5}px,-90px) scale(1.2)`,opacity:1,offset:.5},{transform:`translate(${480-x0}px,-40px) scale(.8)`,opacity:0}],{duration:2200,easing:'ease-in-out'}).onfinish=()=>{h.remove();if(!busy){smile(true);setTimeout(()=>{if(!busy)smile(false)},700)}};
+}
+function rooster(){
+  sfx.rooster();setCap('The roosters disagree with your bedtime. 🐓');
+  const c=el('text',{x:60,y:255,'font-size':22},'🐓');$('chickRun').appendChild(c);
+  c.animate([{transform:'translateX(0)'},{transform:'translateX(190px)'}],{duration:2200,easing:'linear'}).onfinish=()=>c.remove();
+}
+
+/* ---------- Anita's surprise ---------- */
+let cakeLit=false,resetTimer=null,safety=null;
+function endSurprise(){clearTimeout(resetTimer);clearTimeout(safety);cakeLit=false;$('aCake').style.display='none';$('aBook').style.display='';$('anita').style.transform='translate(880px,245px)';scene.classList.remove('paused');smile(false);busy=false;$('bCake').textContent="🎂 Anita's surprise"}
+function surprise(){
+  if(cakeLit){blow();return}
+  if(busy)return;busy=true;if(!soundOn)setSound(true);
+  safety=setTimeout(()=>{if(busy){endSurprise();setCap('Okay... back to building. 😄')}},40000);
+  scene.classList.add('paused');smile(true);
+  $('anita').style.transform='translate(760px,245px)';
+  setCap('Wait... who is that coming in? 👀');
+  setTimeout(()=>{
+    if(!busy)return;
+    $('aBook').style.display='none';$('aCake').style.display='';$('flames').style.display='';cakeLit=true;$('bCake').textContent='🕯️ Blow the candles';
+    anitaSays('Close the laptop. It is your birthday! 🎂');
+    const dur=playHB();
+    for(let i=0;i<6;i++)setTimeout(heart,i*900);
+    setCap('🎶 Happy birthday to you... 🎶');
+    setTimeout(()=>{if(cakeLit)setCap('Tap the cake (or the button) to blow out the candles 🕯️')},dur*1000+300);
+  },1500);
+}
+function blow(){
+  if(!cakeLit)return;cakeLit=false;sfx.puff();
+  $('flames').style.display='none';
+  for(let i=0;i<3;i++){const s=el('circle',{cx:anitaPos()-19+i*19,cy:325,r:6,fill:'#cfd6ea',opacity:.7});fx.appendChild(s);s.animate([{transform:'translate(0,0) scale(1)',opacity:.7},{transform:'translate(0,-50px) scale(2.5)',opacity:0}],{duration:1200}).onfinish=()=>s.remove()}
+  setTimeout(()=>{burst(anitaPos(),330,40);[523,659,784,1047,1319].forEach((f,i)=>tone(f,.3,'triangle',.1,i*.08));say(480,135,'Best gift: you. Thank you, Anita! 💛');setCap('Wish made. 🌟')},400);
+  $('bCake').textContent="🎂 Anita's surprise";
+  resetTimer=setTimeout(()=>{endSurprise();setCap('Okay... just one more idea. 😄')},4200);
+}
+
+/* ---------- wiring ---------- */
+$('bSound').onclick=()=>setSound(!soundOn);
+$('bMusic').onclick=()=>setMusic(!musicOn);
+$('bIdea').onclick=()=>idea();$('bCof').onclick=coffee;$('bShip').onclick=launch;$('bCake').onclick=surprise;
+$('mug').addEventListener('click',e=>{e.stopPropagation();coffee()});
+$('window').addEventListener('click',e=>{e.stopPropagation();rooster()});
+$('hHead').addEventListener('click',e=>{e.stopPropagation();if(busy)return;sfx.hmm();say(480,135,H_LINES[Math.random()*H_LINES.length|0])});
+$('anita').addEventListener('click',e=>{e.stopPropagation();if(cakeLit){blow();return}if(busy)return;anitaSays(A_LINES[Math.random()*A_LINES.length|0]);heart()});
+scene.addEventListener('click',()=>idea());
+
+setInterval(()=>idea(true),2800);
+setInterval(()=>{if(busy)return;ci=(ci+1)%CAPS.length;setCap(CAPS[ci])},4400);
+setInterval(()=>{if(!busy)heart()},11000);
+setInterval(()=>{if(!busy&&Math.random()<.5)anitaSays(A_LINES[Math.random()*A_LINES.length|0])},17000);
+setTimeout(()=>idea(true),600);
+</script>
+</body>
+</html>
