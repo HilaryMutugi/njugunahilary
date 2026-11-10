@@ -1,0 +1,50 @@
+/* ---- "Always Building" hero badge + footer link ---- */
+@property --ab-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+
+.ab-badge{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:22px;padding:8px 10px 8px 8px;border-radius:999px;color:var(--cream,#F6F1E7);text-decoration:none;text-align:left;background:rgba(25,23,15,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgba(201,162,75,.28),0 10px 30px rgba(0,0,0,.25);isolation:isolate;opacity:0;animation:abIn .9s cubic-bezier(.16,1,.3,1) 1.6s forwards,abFloat 4.5s ease-in-out 2.6s infinite;transition:box-shadow .3s,background .3s}
+.ab-badge::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ab-a),transparent 0 55%,#C9A24B 74%,#fff3c4 82%,transparent 92%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:abSpin 3.2s linear infinite;z-index:-1;pointer-events:none}
+.ab-badge:hover,.ab-badge:focus-visible{background:rgba(25,23,15,.72);box-shadow:inset 0 0 0 1px rgba(201,162,75,.6),0 0 0 6px rgba(201,162,75,.12),0 14px 36px rgba(0,0,0,.3)}
+
+.ab-ic{position:relative;flex:none;width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 50% 60%,#3E5C3A,#26391f);display:grid;place-items:center;overflow:visible}
+.ab-ic svg{width:28px;height:28px;overflow:visible}
+.ab-ic .scr{animation:abScreen 1.6s ease-in-out infinite}
+.ab-ic .bulb{transform-origin:16px 7px;animation:abBulb 2.6s cubic-bezier(.2,1.6,.4,1) infinite}
+.ab-ic .key{animation:abKey .5s ease-in-out infinite alternate}
+.ab-ic .key:nth-of-type(2){animation-delay:.25s}
+
+.ab-tx{display:flex;flex-direction:column;line-height:1.15}
+.ab-tx b{font-family:var(--serif,Georgia,serif);font-size:1rem;font-weight:700;letter-spacing:.01em;background:linear-gradient(90deg,#F6F1E7 0 38%,#fff3c4 46%,#C9A24B 50%,#fff3c4 54%,#F6F1E7 62% 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:abShine 4s linear infinite}
+.ab-tx small{font-size:.68rem;letter-spacing:.06em;opacity:.7;margin-top:3px}
+
+.ab-go{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(246,241,231,.12);margin-left:4px;transition:transform .3s cubic-bezier(.2,1.6,.4,1),background .3s}
+.ab-go svg{width:11px;height:11px;margin-left:2px;fill:currentColor}
+.ab-badge:hover .ab-go,.ab-badge:focus-visible .ab-go{transform:scale(1.15) rotate(-8deg);background:#C9A24B;color:#19170f}
+.ab-badge:hover .bulb{animation-duration:.9s}
+
+/* sparkles on hover */
+.ab-spark{position:absolute;font-size:12px;color:#fff3c4;opacity:0;pointer-events:none}
+.ab-spark.s1{top:-10px;left:26px}.ab-spark.s2{top:-8px;right:30px}.ab-spark.s3{bottom:-10px;right:60px}
+.ab-badge:hover .ab-spark{animation:abSpark .9s ease-out infinite}
+.ab-badge:hover .ab-spark.s2{animation-delay:.3s}.ab-badge:hover .ab-spark.s3{animation-delay:.6s}
+
+@keyframes abIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes abFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@keyframes abSpin{to{--ab-a:360deg}}
+@keyframes abShine{from{background-position:130% 0}to{background-position:-130% 0}}
+@keyframes abScreen{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes abBulb{0%,55%{transform:scale(0);opacity:0}65%{transform:scale(1.25);opacity:1}80%{transform:scale(1);opacity:1}100%{transform:scale(1) translateY(-3px);opacity:0}}
+@keyframes abKey{to{transform:translateY(-1.2px)}}
+@keyframes abSpark{0%{opacity:0;transform:translateY(4px) scale(.5)}40%{opacity:1}100%{opacity:0;transform:translateY(-12px) scale(1.1)}}
+
+/* footer link */
+.flinks a.ab-link{display:inline-flex;align-items:center;gap:6px;position:relative}
+.ab-link .ab-cake{display:inline-block;transform-origin:50% 90%;animation:abWiggle 3.6s ease-in-out infinite}
+.ab-link .ab-shine{font-weight:600;background:linear-gradient(90deg,#C9A24B 0 38%,#fff3c4 50%,#C9A24B 62% 100%);background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:abShine 3.4s linear infinite}
+.ab-link::after{content:"";position:absolute;left:24px;right:0;bottom:-4px;height:1.5px;background:linear-gradient(90deg,transparent,#C9A24B,transparent);transform:scaleX(0);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.ab-link:hover::after{transform:scaleX(1)}
+.ab-link:hover .ab-cake{animation:abHop .5s cubic-bezier(.2,1.6,.4,1) infinite alternate}
+@keyframes abWiggle{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-14deg)}88%{transform:rotate(12deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(4deg)}}
+@keyframes abHop{to{transform:translateY(-4px) rotate(-8deg)}}
+
+@media(max-width:860px){.ab-badge{margin-top:18px;background:#211F1C;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 0 0 1px rgba(201,162,75,.4),0 10px 24px rgba(33,31,28,.22)}.ab-badge:hover,.ab-badge:focus-visible{background:#2B2A26}}
+@media(prefers-reduced-motion:reduce){.ab-badge{opacity:1;animation:none}.ab-badge::before,.ab-ic *,.ab-tx b,.ab-link .ab-cake,.ab-link .ab-shine{animation:none!important}}
