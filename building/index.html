@@ -241,7 +241,7 @@ const $=id=>document.getElementById(id);
 const IDEAS=[['🐔','Layer flock'],['🌽','Feed formula'],['🏭','Feed mill'],['🤝','Outgrower deal'],['📈','Egg data'],['🥚','Egg tray'],['🚚','Dispatch route'],['📱','Farmer app'],['💡','Big idea'],['🎥','YouTube ep.'],['📝','Founder Note'],['🌱','Kukuza youth'],['💰','Pitch deck'],['🧪','Nutrition test']];
 const CAPS=['11:04 pm. One more idea.','Prototype by 2 am.','Feed mill math, done.','Fama 1.0, onboarding farmers.','The roosters say it is morning.','Ship it. Learn. Build again.','Not an alarm clock. A purpose.','Birthday? Still building. 🎂'];
 const H_LINES=['One more feature, then sleep.','Purpose, not alarm clocks!','What if... feed on subscription? 🤔','Fama 2.0? 👀','Okay okay, after this commit.','Eggs counted. Ideas not.'];
-const A_LINES=['Did you eat today? 🍲','That logo needs more breathing room.','The chickens will wait till morning, love.','Proud of you, builder. 💛','You said "five minutes" an hour ago. 😄','Happy birthday, my CEO! 🎉'];
+const A_LINES=['Did you eat today? 🍲','That logo needs more breathing room.','The chickens will wait till morning, Love.','Proud of you, Love. 💛','You said "five minutes" an hour ago. 😄','Happy birthday, Love! ❤️'];
 let ideas=0,cof=1,ship=0,hearts=0,shelfItems=[],ci=0,busy=false;
 
 /* ---------- sound (all synthesized, no files) ---------- */
@@ -349,7 +349,7 @@ function surprise(){
   setTimeout(()=>{
     if(!busy)return;
     $('aBook').style.display='none';$('aCake').style.display='';$('flames').style.display='';cakeLit=true;$('bCake').textContent='🕯️ Blow the candles';
-    anitaSays('Close the laptop. It is your birthday! 🎂');
+    anitaSays('Close the laptop, Love. It is your birthday! 🎂');
     const dur=playHB();
     for(let i=0;i<6;i++)setTimeout(heart,i*900);
     setCap('🎶 Happy birthday to you... 🎶');
@@ -360,7 +360,7 @@ function blow(){
   if(!cakeLit)return;cakeLit=false;sfx.puff();
   $('flames').style.display='none';
   for(let i=0;i<3;i++){const s=el('circle',{cx:anitaPos()-19+i*19,cy:325,r:6,fill:'#cfd6ea',opacity:.7});fx.appendChild(s);s.animate([{transform:'translate(0,0) scale(1)',opacity:.7},{transform:'translate(0,-50px) scale(2.5)',opacity:0}],{duration:1200}).onfinish=()=>s.remove()}
-  setTimeout(()=>{burst(anitaPos(),330,40);[523,659,784,1047,1319].forEach((f,i)=>tone(f,.3,'triangle',.1,i*.08));say(480,135,'Best gift: you. Thank you, Anita! 💛');setCap('Wish made. 🌟')},400);
+  setTimeout(()=>{burst(anitaPos(),330,40);[523,659,784,1047,1319].forEach((f,i)=>tone(f,.3,'triangle',.1,i*.08));say(480,135,'Best gift: you. Thanks, Love! ❤️');setCap('Wish made. 🌟')},400);
   $('bCake').textContent="🎂 Anita's surprise";
   resetTimer=setTimeout(()=>{endSurprise();setCap('Okay... just one more idea. 😄')},4200);
 }
