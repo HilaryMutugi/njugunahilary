@@ -513,10 +513,26 @@ const SPOTS=[
   {x:480,y:94,cap:'New hat, who dis? 🐔',line:'Ehh! My party hat! 😂'},
   {x:715,y:232,cap:'Shelf inspection by the Chief Hen Officer.',line:'She is auditing the shelf now. 😅'},
   {x:642,y:395,cap:'The hen found the snacks.',line:'Not near the pilau! 😂'},
-  {x:868,y:200,cap:'The hen chose Anita. Smart hen.',line:'Traitor. 😂'}];
+  {anita:true}];
 async function goHome(my){sfx.cluck();await flyTo(205,262);if(my!==run)return;await hopTo(275,262);if(my!==run)return;chick.style.opacity=0;chickHere=false}
+function chickHearts(n=5){for(let i=0;i<n;i++)setTimeout(()=>{const h=el('text',{x:cx-6+Math.random()*12,y:cy-34,'font-size':14},['💕','❤️','💛'][i%3]);fx.appendChild(h);h.animate([{transform:'translate(0,0) scale(.5)',opacity:0},{transform:`translate(${(Math.random()-.5)*30}px,-25px) scale(1)`,opacity:1,offset:.4},{transform:`translate(${(Math.random()-.5)*40}px,-60px) scale(1.1)`,opacity:0}],{duration:1600}).onfinish=()=>h.remove()},i*260)}
+async function anitaMoment(my){
+  const ax=anitaPos();sfx.cluck();setCap('Bwak! She is heading for Anita... 👀');
+  await flyTo(ax+34,302);if(my!==run)return;
+  face(-1);setCap('The hen chose Anita. Smart hen. 💛');
+  const h=$('chHead');h.style.transformOrigin='6px -20px';h.animate([{transform:'rotate(0)'},{transform:'rotate(-22deg)'},{transform:'rotate(0)'}],{duration:500,iterations:4});
+  chickHearts(6);sfx.sparkle();await wait(900);if(my!==run)return;
+  anitaSays(['Aww, my favourite hen! 💛','Finally, someone who appreciates me. 😌','You are coming home with me. 🐔💜'][Math.random()*3|0]);heart();
+  await wait(2000);if(my!==run)return;
+  sfx.hmm();say(480,135,['Eh! Traitor! I feed you every day! 😤','Wow. After all the layers mash I gave you? 😤','So that is how it is? No more pilau for you! 😂'][Math.random()*3|0]);
+  await wait(2200);if(my!==run)return;
+  face(1);sfx.cluck();setCap('The hen does not care. 🐔💅');chickHearts(3);
+  await wait(1600);if(my!==run)return;
+  await goHome(my);
+}
 async function adventure(my){
-  const s=SPOTS[Math.random()*SPOTS.length|0];sfx.cluck();setCap('Bwak! She is airborne! 🐔✈️');
+  const s=Math.random()<.35?SPOTS[SPOTS.length-1]:SPOTS[Math.random()*(SPOTS.length-1)|0];
+  if(s.anita){if(!busy&&!away)return anitaMoment(my);return adventure(my)}sfx.cluck();setCap('Bwak! She is airborne! 🐔✈️');
   await flyTo(s.x,s.y);if(my!==run)return;
   setCap(s.cap);peck(3);await wait(1000);if(my!==run)return;
   if(s.x>800)anitaSays('Hello, chicken friend! 🐔');else{sfx.hmm();say(480,135,s.line)}
