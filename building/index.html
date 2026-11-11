@@ -528,7 +528,23 @@ async function anitaMoment(my){
   await wait(2200);if(my!==run)return;
   face(1);sfx.cluck();setCap('The hen does not care. 🐔💅');chickHearts(3);
   await wait(1600);if(my!==run)return;
-  await goHome(my);
+  /* peace treaty on the laptop */
+  sfx.cluck();await flyTo(560,268);if(my!==run)return;
+  face(-1);setCap('Wait... she is making peace. 🐔🕊️');peck(2);chickHearts(8);sfx.sparkle();
+  await wait(1200);if(my!==run)return;
+  smile(true);sfx.hmm();say(480,135,['Okay okay, you are forgiven. 😂','Fine. You can stay. Family. 😂','Look at her, buttering me up. 😂'][Math.random()*3|0]);
+  await wait(1700);if(my!==run)return;
+  anitaSays(['She loves us both. 💛','Our first child, the hen. 😂','See? One happy family. 🐔❤️'][Math.random()*3|0]);
+  for(let i=0;i<3;i++)setTimeout(heart,i*350);
+  for(let i=0;i<3;i++)setTimeout(()=>{const h=el('text',{x:470,y:150,'font-size':20},'❤️');fx.appendChild(h);const ax=anitaPos()-470;h.animate([{transform:'translate(0,0) scale(.6)',opacity:0},{transform:`translate(${ax*.5}px,-50px) scale(1.2)`,opacity:1,offset:.5},{transform:`translate(${ax}px,40px) scale(.8)`,opacity:0}],{duration:2000,easing:'ease-in-out'}).onfinish=()=>h.remove()},300+i*400);
+  [523,659,784,1047].forEach((f,i)=>tone(f,.3,'triangle',.07,.2+i*.12));
+  setCap('One happy family. ❤️🐔💜');
+  await wait(2600);if(!busy)smile(false);if(my!==run)return;
+  /* out the window */
+  sfx.cluck();await flyTo(150,200,1600);if(my!==run)return;
+  setCap('And she is off to the farm. Bye, hen! 👋');
+  const a=chick.animate([{transform:`translate(150px,200px) scale(1)`,opacity:1},{transform:`translate(120px,150px) scale(.35)`,opacity:0}],{duration:900,easing:'ease-in'});
+  a.onfinish=()=>{if(my!==run)return;chick.style.opacity=0;cset(275,262);chickHere=false};
 }
 async function adventure(my){
   const s=Math.random()<.35?SPOTS[SPOTS.length-1]:SPOTS[Math.random()*(SPOTS.length-1)|0];
