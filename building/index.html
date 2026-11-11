@@ -76,7 +76,6 @@
   .truck{animation:drive 11s linear infinite}
   @keyframes drive{from{transform:translateX(-40px)}to{transform:translateX(200px)}}
   .lampGlow{animation:glow 3s ease-in-out infinite}
-  #winChick{transition:transform .9s cubic-bezier(.3,1.4,.5,1),opacity .4s}
   #anita.walking .sway{animation:walk .32s ease-in-out infinite alternate}
   @keyframes walk{from{transform:translateY(0) rotate(-2.5deg)}to{transform:translateY(-7px) rotate(2.5deg)}}
   #anita.dance .sway{animation:dance .42s ease-in-out 6 alternate}
@@ -469,21 +468,47 @@ try{const d=JSON.parse(localStorage.getItem('ab-stats')||'{}');ideas=d.ideas|0;c
 $('ideas').textContent=ideas;$('cof').textContent=cof;$('ship').textContent=ship;$('hearts').textContent=hearts;applyLevels(false);
 setInterval(()=>{try{localStorage.setItem('ab-stats',JSON.stringify({ideas,cof,ship,hearts}))}catch(e){}},4000);
 
-/* --- window chicken --- */
-const chick=$('winChick');let chickHere=false,chickT=[];
-function chickPos(x,y,o){chick.style.transform=`translate(${x}px,${y}px)`;chick.style.opacity=o}
+/* --- window chicken: hops, faces the right way, and flies --- */
+const chick=$('winChick'),cBody=$('chickBody');scene.insertBefore(chick,fx);chick.style.transition='opacity .4s';
+let cx=275,cy=262,chickHere=false,run=0,flapTimer=null,chickT=[];
+const wait=ms=>new Promise(r=>chickT.push(setTimeout(r,ms)));
+function face(d){cBody.style.transform=d<0?'scaleX(-1)':'scaleX(1)'}
+function cset(x,y){cx=x;cy=y;chick.style.transform=`translate(${x}px,${y}px)`}
+function stopChick(){chick.getAnimations().forEach(a=>{try{a.commitStyles()}catch(e){}a.cancel()});const m=/translate\(([-\d.]+)px,\s*([-\d.]+)px/.exec(chick.style.transform);if(m){cx=+m[1];cy=+m[2]}$('chWing').getAnimations().forEach(a=>a.cancel());clearInterval(flapTimer);chickT.forEach(clearTimeout);chickT=[]}
+function hopTo(x,y,ms=1100){return new Promise(res=>{face(x<cx?-1:1);const n=Math.max(2,Math.round(Math.abs(x-cx)/16)),fr=[];for(let i=0;i<=n;i++){const t=i/n;fr.push({transform:`translate(${cx+(x-cx)*t}px,${cy+(y-cy)*t-(i%2?8:0)}px)`})}
+  for(let i=0;i<n/2;i++)setTimeout(sfx.step,i*ms/(n/2));const a=chick.animate(fr,{duration:ms});a.onfinish=()=>{cset(x,y);res()}})}
+function flyTo(x,y,ms=1700){return new Promise(res=>{face(x<cx?-1:1);const w=$('chWing');w.style.transformOrigin='-3px -13px';w.animate([{transform:'scaleY(1)'},{transform:'scaleY(-1.6)'}],{duration:90,iterations:Infinity,direction:'alternate'});
+  sfx.flap();clearInterval(flapTimer);flapTimer=setInterval(sfx.flap,420);
+  const fr=[],n=30,top=Math.min(cy,y)-60-Math.random()*50;
+  for(let i=0;i<=n;i++){const t=i/n;fr.push({transform:`translate(${cx+(x-cx)*t}px,${cy+(y-cy)*t+(top-Math.min(cy,y))*4*t*(1-t)+Math.sin(t*Math.PI*7)*6}px) rotate(${Math.sin(t*Math.PI*5)*8}deg)`})}
+  const a=chick.animate(fr,{duration:ms,easing:'ease-in-out'});a.onfinish=()=>{clearInterval(flapTimer);w.getAnimations().forEach(b=>b.cancel());cset(x,y);res()}})}
 function peck(times=3){const h=$('chHead');h.style.transformOrigin='6px -20px';h.animate([{transform:'rotate(0)'},{transform:'rotate(30deg)'},{transform:'rotate(0)'}],{duration:280,iterations:times});for(let i=0;i<times;i++)setTimeout(sfx.tok,140+i*280)}
-function chickVisit(){
-  if(chickHere)return;chickHere=true;chickT.forEach(clearTimeout);chickT=[];
-  chickPos(205,262,1);
-  chickT.push(setTimeout(()=>{peck(3);if(Math.random()<.5)setCap(['Tok tok tok. The flock wants a meeting. 🐔','A chicken is checking on your KPIs.','Even the hens think you should sleep.'][Math.random()*3|0])},1000));
-  chickT.push(setTimeout(()=>peck(4),3600));
-  chickT.push(setTimeout(()=>{chickPos(275,262,0);chickHere=false},6500));
+const SPOTS=[
+  {x:566,y:268,cap:'A hen is reviewing your code. 🐔',line:'Hey! That is my laptop. 😂'},
+  {x:480,y:94,cap:'New hat, who dis? 🐔',line:'Ehh! My party hat! 😂'},
+  {x:715,y:232,cap:'Shelf inspection by the Chief Hen Officer.',line:'She is auditing the shelf now. 😅'},
+  {x:642,y:395,cap:'The hen found the snacks.',line:'Not near the pilau! 😂'},
+  {x:868,y:200,cap:'The hen chose Anita. Smart hen.',line:'Traitor. 😂'}];
+async function goHome(my){sfx.cluck();await flyTo(205,262);if(my!==run)return;await hopTo(275,262);if(my!==run)return;chick.style.opacity=0;chickHere=false}
+async function adventure(my){
+  const s=SPOTS[Math.random()*SPOTS.length|0];sfx.cluck();setCap('Bwak! She is airborne! 🐔✈️');
+  await flyTo(s.x,s.y);if(my!==run)return;
+  setCap(s.cap);peck(3);await wait(1000);if(my!==run)return;
+  if(s.x>800)anitaSays('Hello, chicken friend! 🐔');else{sfx.hmm();say(480,135,s.line)}
+  await wait(2600);if(my!==run)return;peck(2);await wait(800);if(my!==run)return;
+  await goHome(my);
 }
-chick.addEventListener('click',e=>{e.stopPropagation();if(!chickHere)return;chickT.forEach(clearTimeout);sfx.cluck();sfx.flap();
-  $('chWing').animate([{transform:'scaleY(1)'},{transform:'scaleY(-1.4)'}],{duration:90,iterations:12,direction:'alternate'});
-  setCap('Bwak! 🐔');chickPos(300,120,0);setTimeout(()=>{chick.style.transition='none';chickPos(275,262,0);void chick.getBBox();chick.style.transition='';chickHere=false},1000)});
-setTimeout(chickVisit,5000);setInterval(()=>{if(Math.random()<.6)chickVisit()},22000);
+async function chickVisit(){
+  if(chickHere)return;chickHere=true;const my=++run;
+  face(-1);cset(275,262);chick.style.opacity=1;
+  await hopTo(205,262);if(my!==run)return;
+  peck(3);if(Math.random()<.5)setCap(['Tok tok tok. The flock wants a meeting. 🐔','A chicken is checking on your KPIs.','Even the hens think you should sleep.'][Math.random()*3|0]);
+  await wait(2400);if(my!==run)return;peck(4);await wait(1800);if(my!==run)return;
+  if(Math.random()<.35){await adventure(my);return}
+  await hopTo(275,262);if(my!==run)return;chick.style.opacity=0;chickHere=false;
+}
+chick.addEventListener('click',e=>{e.stopPropagation();if(!chickHere)return;stopChick();const my=++run;adventure(my)});
+setTimeout(chickVisit,5000);setInterval(()=>{if(Math.random()<.6)chickVisit()},24000);
 
 /* --- Anita errands --- */
 let errT=[];
