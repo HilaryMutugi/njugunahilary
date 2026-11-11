@@ -44,10 +44,10 @@
   @keyframes glow{50%{opacity:.55}}
   .hat{animation:hat 2.2s ease-in-out infinite;transform-origin:480px 150px}
   @keyframes hat{50%{transform:rotate(6deg)}}
-  .sun{animation:orbit 24s linear infinite;transform-origin:150px 260px}
+  .sun{transform-origin:150px 260px;transition:transform 2s ease}
   @keyframes orbit{to{transform:rotate(360deg)}}
-  .hand-m{animation:spin 6s linear infinite;transform-origin:720px 110px}
-  .hand-h{animation:spin 72s linear infinite;transform-origin:720px 110px}
+  .hand-m{transform-origin:720px 110px;transition:transform .6s}
+  .hand-h{transform-origin:720px 110px;transition:transform .6s}
   @keyframes spin{to{transform:rotate(360deg)}}
   .idea{transition:transform 2.6s cubic-bezier(.2,.7,.3,1),opacity 2.6s}
   .built{animation:land .6s cubic-bezier(.2,1.6,.4,1)}
@@ -66,6 +66,23 @@
   @keyframes flick{to{transform:scaleY(1.25) scaleX(.85)}}
   .bubble{animation:pop .3s cubic-bezier(.2,1.6,.4,1)}
   @keyframes pop{from{transform:scale(.2);opacity:0}}
+  /* v5 */
+  .lvl{opacity:0;transition:opacity 1s ease}
+  .lvl.show{opacity:1}
+  .lvl.pop{animation:lvlPop .9s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes lvlPop{from{transform:scale(.3);opacity:0}}
+  .bulbL{animation:tw 1.6s ease-in-out infinite alternate}
+  @keyframes tw{from{opacity:.35}to{opacity:1}}
+  .truck{animation:drive 11s linear infinite}
+  @keyframes drive{from{transform:translateX(-40px)}to{transform:translateX(200px)}}
+  .lampGlow{animation:glow 3s ease-in-out infinite}
+  #winChick{transition:transform .9s cubic-bezier(.3,1.4,.5,1),opacity .4s}
+  #anita.walking .sway{animation:walk .32s ease-in-out infinite alternate}
+  @keyframes walk{from{transform:translateY(0) rotate(-2.5deg)}to{transform:translateY(-7px) rotate(2.5deg)}}
+  #anita.dance .sway{animation:dance .42s ease-in-out 6 alternate}
+  @keyframes dance{from{transform:rotate(-11deg) translateY(0)}to{transform:rotate(11deg) translateY(-16px)}}
+  .toast{position:fixed;top:14px;left:50%;transform:translate(-50%,-80px);background:#f7c873;color:#1b2040;font-weight:bold;padding:9px 18px;border-radius:999px;font-size:14px;transition:transform .5s cubic-bezier(.2,1.4,.4,1);z-index:9;white-space:nowrap}
+  .toast.on{transform:translate(-50%,0)}
 </style>
 </head>
 <body>
@@ -74,7 +91,9 @@
 <svg viewBox="0 0 960 560" id="scene" aria-label="Animated cartoon of Hilary building on his laptop, with Anita nearby">
   <defs>
     <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2040"/><stop offset="1" stop-color="#151935"/></linearGradient>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b3a7a"/><stop offset="1" stop-color="#f29e6b"/></linearGradient>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop id="skyTop" offset="0" stop-color="#2b3a7a"/><stop id="skyBot" offset="1" stop-color="#f29e6b"/></linearGradient>
+    <radialGradient id="lampG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd36b" stop-opacity=".45"/><stop offset="1" stop-color="#ffd36b" stop-opacity="0"/></radialGradient>
+    <linearGradient id="photoG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f29e6b"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
     <radialGradient id="screenGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#8fd3ff" stop-opacity=".5"/><stop offset="1" stop-color="#8fd3ff" stop-opacity="0"/></radialGradient>
     <clipPath id="win"><rect x="70" y="70" width="160" height="190" rx="6"/></clipPath>
   </defs>
@@ -85,14 +104,29 @@
   <g id="window" class="click">
     <g clip-path="url(#win)">
       <rect x="70" y="70" width="160" height="190" fill="url(#sky)"/>
-      <g class="sun"><circle cx="150" cy="150" r="16" fill="#ffd36b"/><circle cx="150" cy="370" r="12" fill="#e9ecff"/></g>
+      <g id="stars" style="opacity:0;transition:opacity 2s"><circle cx="90" cy="90" r="1.3" fill="#fff"/><circle cx="120" cy="120" r="1" fill="#fff"/><circle cx="185" cy="95" r="1.4" fill="#fff"/><circle cx="210" cy="135" r="1" fill="#fff"/><circle cx="160" cy="110" r="1" fill="#fff"/><circle cx="100" cy="150" r="1.2" fill="#fff"/><circle cx="215" cy="180" r="1" fill="#fff"/></g>
+      <g class="sun" id="sunG"><circle cx="150" cy="150" r="16" fill="#ffd36b"/><circle cx="150" cy="370" r="12" fill="#e9ecff"/></g>
       <path d="M70 230 Q110 205 150 225 T230 215 V260 H70Z" fill="#1d5a3a"/>
       <path d="M165 232 l14 -12 l14 12 v14 h-28z" fill="#8a4b2a"/><rect x="175" y="236" width="8" height="10" fill="#2a1a10"/>
+      <g id="farm5" class="lvl"><path d="M200 212 l6 -6 l6 6 v6 h-12z" fill="#f4efe6"/><path d="M216 209 l5 -5 l5 5 v5 h-10z" fill="#f7c873"/><path d="M84 222 l5 -5 l5 5 v5 h-10z" fill="#f4efe6"/><path d="M196 222 h30 M196 226 h30" stroke="#2f8f63" stroke-width="2"/></g>
+      <g id="farm2" class="lvl"><path d="M132 238 l12 -10 l12 10 v10 h-24z" fill="#a0582f"/><rect x="141" y="240" width="6" height="8" fill="#2a1a10"/></g>
+      <g id="farm3" class="lvl"><rect x="80" y="210" width="14" height="38" fill="#cfd6ea"/><ellipse cx="87" cy="210" rx="7" ry="5" fill="#e9ecff"/><rect x="94" y="226" width="24" height="22" fill="#e9ecff"/><rect x="102" y="236" width="8" height="12" fill="#2f8f63"/><text x="100" y="233" font-size="5" fill="#2f8f63" font-weight="bold">FEEDS</text></g>
+      <g id="farm4" class="lvl"><g class="truck"><text x="70" y="258" font-size="15">🚚</text></g></g>
       <g id="chickRun"></g>
     </g>
     <rect x="70" y="70" width="160" height="190" rx="6" fill="none" stroke="#2c3360" stroke-width="10"/>
     <line x1="150" y1="70" x2="150" y2="260" stroke="#2c3360" stroke-width="5"/>
     <line x1="70" y1="165" x2="230" y2="165" stroke="#2c3360" stroke-width="5"/>
+  </g>
+  <rect x="58" y="262" width="186" height="8" rx="3" fill="#3b2c22"/>
+  <g id="winChick" class="click" style="transform:translate(275px,262px);opacity:0">
+    <g id="chickBody">
+      <line x1="-3" y1="-4" x2="-5" y2="0" stroke="#f2a33a" stroke-width="2.2"/><line x1="4" y1="-4" x2="5" y2="0" stroke="#f2a33a" stroke-width="2.2"/>
+      <path d="M-13 -17 q-9 -9 -4 -17 q5 5 9 9z" fill="#7a3e1d"/>
+      <ellipse cx="0" cy="-14" rx="14" ry="11" fill="#c96a2b"/>
+      <ellipse id="chWing" cx="-3" cy="-13" rx="8" ry="6" fill="#a85520"/>
+      <g id="chHead"><circle cx="9" cy="-26" r="7" fill="#c96a2b"/><path d="M4 -31 q2 -6 4 -1 q2 -6 4 0 q3 -4 3 1z" fill="#e0453a"/><path d="M15 -27 l6 2 l-6 2z" fill="#f2a33a"/><circle cx="11" cy="-28" r="1.6" fill="#1a1210"/><ellipse cx="15" cy="-21.5" rx="2" ry="3" fill="#e0453a"/></g>
+    </g>
   </g>
 
   <!-- wall clock -->
@@ -110,6 +144,14 @@
     <rect x="256" y="250" width="78" height="56" fill="#9be7c4" transform="rotate(-5 295 278)"/>
     <text x="264" y="274" transform="rotate(-5 295 278)">Mill: 2 tons</text><text x="264" y="291" transform="rotate(-5 295 278)">by Friday</text>
   </g>
+
+  <!-- room upgrades -->
+  <g id="rLights" class="lvl"><path d="M0 16 Q120 38 240 16 T480 16 T720 16 T960 16" stroke="#3a3f66" stroke-width="2" fill="none"/><g id="bulbs"></g></g>
+  <g id="rBunting" class="lvl"><path d="M392 50 Q480 66 568 50" stroke="#c7cede" stroke-width="1.5" fill="none"/><g id="flags"></g></g>
+  <g id="rFrame" class="lvl"><rect x="592" y="138" width="66" height="56" rx="3" fill="#6b4a33"/><rect x="597" y="143" width="56" height="46" fill="url(#photoG)"/><circle cx="625" cy="178" r="14" fill="#ffd36b" opacity=".8"/><path d="M597 189 h56 v-8 q-28 -6 -56 0z" fill="#1d5a3a"/><circle cx="617" cy="168" r="4" fill="#1a1210"/><path d="M612 182 q5 -12 10 0z" fill="#1a1210"/><circle cx="633" cy="168" r="4" fill="#1a1210"/><circle cx="633" cy="163" r="3" fill="#1a1210"/><path d="M628 182 q5 -12 10 0z" fill="#1a1210"/><text x="625" y="160" font-size="7" text-anchor="middle">❤️</text></g>
+  <g id="rLamp" class="lvl"><ellipse class="lampGlow" cx="34" cy="330" rx="70" ry="80" fill="url(#lampG)"/><line x1="34" y1="300" x2="34" y2="550" stroke="#c7cede" stroke-width="4"/><ellipse cx="34" cy="552" rx="16" ry="4" fill="#9aa3b5"/><path d="M12 302 L56 302 L46 272 L22 272Z" fill="#f7c873"/></g>
+  <g id="rRug" class="lvl"><ellipse cx="480" cy="547" rx="300" ry="15" fill="#8b3a3a"/><ellipse cx="480" cy="547" rx="262" ry="10" fill="none" stroke="#f7c873" stroke-width="2" stroke-dasharray="10 6"/></g>
+  <g id="rPlant" class="lvl"><text x="62" y="556" font-size="62">🪴</text></g>
 
   <!-- empire shelf -->
   <rect x="572" y="232" width="175" height="8" rx="3" fill="#3b2c22"/>
@@ -206,6 +248,7 @@
         <circle cx="-22" cy="130" r="7" fill="#e05a4f"/><circle cx="-4" cy="130" r="7" fill="#f7c873"/><circle cx="14" cy="130" r="7" fill="#2f8f63"/>
         <text x="0" y="158" text-anchor="middle" font-size="10" fill="#8b5cf6" font-family="Trebuchet MS" font-weight="bold">♊ GEMINI</text>
       </g>
+      <text id="aItem" x="0" y="155" font-size="36" text-anchor="middle" style="display:none">☕</text>
       <!-- birthday cake (surprise mode) -->
       <g id="aCake" style="display:none">
         <ellipse cx="0" cy="146" rx="52" ry="8" fill="#e9ecff"/>
@@ -233,7 +276,8 @@
   <button id="bShip">🚀 Ship it</button>
   <button id="bCake" class="special">🎂 Anita's surprise</button>
 </div>
-<div class="tip">Tap Hilary, Anita, the mug or the window. Turn sound on for the full effect.</div>
+<div class="toast" id="toast"></div>
+<div class="tip">Tap Hilary, Anita, the mug, the window or the chicken. Ship things to upgrade the room. Sound on for the full effect.</div>
 </div>
 <script>
 const NS='http://www.w3.org/2000/svg', fx=document.getElementById('fx'), shelf=document.getElementById('shelf'), scene=document.getElementById('scene');
@@ -242,7 +286,7 @@ const IDEAS=[['🐔','Layer flock'],['🌽','Feed formula'],['🏭','Feed mill']
 const CAPS=['11:04 pm. One more idea.','Prototype by 2 am.','Feed mill math, done.','Fama 1.0, onboarding farmers.','The roosters say it is morning.','Ship it. Learn. Build again.','Not an alarm clock. A purpose.','Birthday? Still building. 🎂'];
 const H_LINES=['One more feature, then sleep.','Purpose, not alarm clocks!','What if... feed on subscription? 🤔','Fama 2.0? 👀','Okay okay, after this commit.','Eggs counted. Ideas not.'];
 const A_LINES=['Did you eat today? 🍲','That logo needs more breathing room.','The chickens will wait till morning, Love.','Proud of you, Love. 💛','You said "five minutes" an hour ago. 😄','Happy birthday, Love! ❤️'];
-let ideas=0,cof=1,ship=0,hearts=0,shelfItems=[],ci=0,busy=false;
+let ideas=0,cof=1,ship=0,hearts=0,shelfItems=[],ci=0,busy=false,away=false;
 
 /* ---------- sound (all synthesized, no files) ---------- */
 let AC=null,master=null,soundOn=false,musicOn=false,musicTimer=null,typingTimer=null;
@@ -258,6 +302,12 @@ const sfx={
   sparkle(){[1318,1568,2093,2637].forEach((f,i)=>tone(f,.18,'sine',.07,i*.06))},
   heart(){tone(880,.12,'sine',.08);tone(1175,.16,'sine',.07,.08)},
   puff(){noise(.5,.18,900,0,250,.6)},
+  tok(){noise(.03,.14,3400);tone(1500,.035,'square',.03)},
+  cluck(){for(let i=0;i<4;i++)tone(430+Math.random()*90,.08,'sawtooth',.05,i*.12,300)},
+  flap(){for(let i=0;i<7;i++)noise(.05,.09,1100+Math.random()*500,i*.055)},
+  level(){[523,659,784,1047].forEach((f,i)=>tone(f,.2,'sine',.11,i*.08));tone(1568,.5,'triangle',.05,.34)},
+  step(){noise(.04,.05,600)},
+  dance(){[659,784,880,784,659,784,988,880].forEach((f,i)=>tone(f,.16,'square',.04,i*.17))},
   rooster(){tone(520,.14,'sawtooth',.06,0,820);tone(820,.12,'sawtooth',.06,.16,700);tone(760,.55,'sawtooth',.07,.3,460);tone(1040,.14,'square',.02,0,1640)}
 };
 function typingLoop(){clearTimeout(typingTimer);if(soundOn&&!busy){noise(.025,.045,2200+Math.random()*1800);if(Math.random()<.08)noise(.04,.06,900)}const spd=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--spd'))||.32;typingTimer=setTimeout(typingLoop,spd*1000*(.6+Math.random()*.8))}
@@ -278,7 +328,8 @@ function playHB(){let t=0;const beat=.36;HB.forEach(([n,d])=>{tone(N[n],d*beat*.
 /* ---------- visuals ---------- */
 function el(tag,attrs,txt){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt)e.textContent=txt;return e}
 function say(x,y,text,color='#ffffff',ink='#1b2040',ms=2600){
-  const g=el('g',{class:'bubble'});g.style.transformOrigin=`${x}px ${y}px`;
+  say.last=say.last||{};if(say.last[color])say.last[color].remove();
+  const g=el('g',{class:'bubble'});g.style.transformOrigin=`${x}px ${y}px`;say.last[color]=g;
   const t=el('text',{x:0,y:0,'font-size':14,fill:ink,'font-family':'Trebuchet MS'},text);fx.appendChild(g);g.appendChild(t);
   const w=t.getComputedTextLength()+24;let bx=Math.min(Math.max(x-w/2,8),952-w);
   const r=el('rect',{x:bx,y:y-34,width:w,height:30,rx:15,fill:color});const tail=el('path',{d:`M${x-6} ${y-5} L${x} ${y+6} L${x+6} ${y-5}Z`,fill:color});
@@ -290,6 +341,9 @@ function idea(auto){
   if(busy){if(auto)return;endSurprise()}
   const [emo,label]=IDEAS[Math.random()*IDEAS.length|0];
   ideas++;$('ideas').textContent=ideas;sfx.idea();
+  if(ideas===100){toast('🏅 100 ideas: Founder Level Unstoppable');sfx.level();burst(480,200,40)}
+  if(ideas===250){toast('🚀 250 ideas. Investors are refreshing your page.');sfx.level()}
+  if(ideas===500){toast('😴 500 ideas. Okay. Sleep.');setTimeout(()=>anitaSays('500 ideas?! Bed. Now, Love. 😴'),800)}
   const b=el('text',{x:530,y:110,'font-size':34,class:'bulb'},'💡');b.style.transformOrigin='545px 100px';fx.appendChild(b);setTimeout(()=>b.remove(),1200);
   smile(true);setTimeout(()=>{if(!busy)smile(false)},900);
   const g=el('g',{class:'idea'});
@@ -303,7 +357,7 @@ function idea(auto){
   if(ideas%3===0)setTimeout(()=>build(emo),700);
 }
 function build(emo){
-  ship++;$('ship').textContent=ship;sfx.land();
+  ship++;$('ship').textContent=ship;sfx.land();applyLevels(true);
   if(shelfItems.length>=5)shelfItems.shift().remove();
   shelfItems.forEach((t,i)=>t.setAttribute('x',580+i*33));
   const t=el('text',{x:580+shelfItems.length*33,y:229,'font-size':26,class:'built'},emo);shelf.appendChild(t);shelfItems.push(t);
@@ -338,9 +392,10 @@ function rooster(){
 
 /* ---------- Anita's surprise ---------- */
 let cakeLit=false,resetTimer=null,safety=null;
-function endSurprise(){clearTimeout(resetTimer);clearTimeout(safety);cakeLit=false;$('aCake').style.display='none';$('aBook').style.display='';$('anita').style.transform='translate(880px,245px)';scene.classList.remove('paused');smile(false);busy=false;$('bCake').textContent="🎂 Anita's surprise"}
+function endSurprise(){cancelErrand();clearTimeout(resetTimer);clearTimeout(safety);cakeLit=false;$('aCake').style.display='none';$('aBook').style.display='';$('anita').style.transform='translate(880px,245px)';scene.classList.remove('paused');smile(false);busy=false;$('bCake').textContent="🎂 Anita's surprise"}
 function surprise(){
   if(cakeLit){blow();return}
+  if(away&&!busy)cancelErrand();
   if(busy)return;busy=true;if(!soundOn)setSound(true);
   safety=setTimeout(()=>{if(busy){endSurprise();setCap('Okay... back to building. 😄')}},40000);
   scene.classList.add('paused');smile(true);
@@ -372,14 +427,102 @@ $('bIdea').onclick=()=>idea();$('bCof').onclick=coffee;$('bShip').onclick=launch
 $('mug').addEventListener('click',e=>{e.stopPropagation();coffee()});
 $('window').addEventListener('click',e=>{e.stopPropagation();rooster()});
 $('hHead').addEventListener('click',e=>{e.stopPropagation();if(busy)return;sfx.hmm();say(480,135,H_LINES[Math.random()*H_LINES.length|0])});
-$('anita').addEventListener('click',e=>{e.stopPropagation();if(cakeLit){blow();return}if(busy)return;anitaSays(A_LINES[Math.random()*A_LINES.length|0]);heart()});
+$('anita').addEventListener('click',e=>{e.stopPropagation();if(cakeLit){blow();return}if(busy||away)return;if(danceTap())return;anitaSays(A_LINES[Math.random()*A_LINES.length|0]);heart()});
 scene.addEventListener('click',()=>idea());
 
 setInterval(()=>idea(true),2800);
 setInterval(()=>{if(busy)return;ci=(ci+1)%CAPS.length;setCap(CAPS[ci])},4400);
-setInterval(()=>{if(!busy)heart()},11000);
-setInterval(()=>{if(!busy&&Math.random()<.5)anitaSays(A_LINES[Math.random()*A_LINES.length|0])},17000);
+setInterval(()=>{if(!busy&&!away)heart()},11000);
+setInterval(()=>{if(!busy&&!away&&Math.random()<.5)anitaSays(A_LINES[Math.random()*A_LINES.length|0])},17000);
 setTimeout(()=>idea(true),600);
+
+/* ================= v5: living room ================= */
+function toast(t){const el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('on'),3200)}
+
+/* --- real Nairobi time: sky + clock --- */
+function eat(){const d=new Date(Date.now()+3*3600e3);return d.getUTCHours()+d.getUTCMinutes()/60}
+function skyUpdate(){
+  const h=eat();$('sunG').style.transform=`rotate(${(h-12)/24*360}deg)`;
+  let top,bot,st=0;
+  if(h<5||h>=19.5){top='#0b1030';bot='#1d2350';st=1}
+  else if(h<7){top='#3a4a8a';bot='#f29e6b';st=.3}
+  else if(h<17){top='#5aa8f0';bot='#cfe9ff'}
+  else {top='#2b3a7a';bot='#f29e6b';st=.2}
+  $('skyTop').setAttribute('stop-color',top);$('skyBot').setAttribute('stop-color',bot);$('stars').style.opacity=st;
+  const mins=(h%1)*60;document.querySelector('.hand-h').style.transform=`rotate(${(h%12)*30}deg)`;document.querySelector('.hand-m').style.transform=`rotate(${mins*6}deg)`;
+}
+skyUpdate();setInterval(skyUpdate,20000);
+const lateNight=()=>{const h=eat();return h<4};
+
+/* --- decor setup --- */
+(function(){const g=$('bulbs'),cols=['#f7c873','#e05a4f','#9be7c4','#8fd3ff','#c792ea'];for(let i=0;i<24;i++){const x=20+i*40,y=16+20*Math.abs(Math.sin(Math.PI*x/240))*.9+2;const c=el('circle',{cx:x,cy:y+4,r:4.5,fill:cols[i%5],class:'bulbL'});c.style.animationDelay=(i%5)*.3+'s';g.appendChild(c)}
+ const f=$('flags'),L='AFRIFAMA',col=['#e05a4f','#f7c873','#2f8f63','#8fd3ff'];for(let i=0;i<8;i++){const x=402+i*21,y=50+16*(1-Math.pow((x-480)/88,2))*.5;f.appendChild(el('path',{d:`M${x} ${y} l18 0 l-9 18z`,fill:col[i%4]}));f.appendChild(el('text',{x:x+9,y:y+9,'font-size':8,'text-anchor':'middle',fill:'#1b2040','font-weight':'bold','font-family':'Trebuchet MS'},L[i]))}})();
+
+/* --- levels by Shipped --- */
+const LEVELS=[[3,'rPlant','a plant 🪴'],[5,'farm2','a second coop 🐔'],[6,'rFrame','a photo of you two 🖼️'],[10,'rLights','fairy lights ✨'],[12,'farm3','a feed mill 🏭'],[15,'rRug','a new rug'],[20,'rLamp','a reading lamp 💡'],[25,'farm4','a delivery truck 🚚'],[30,'rBunting','Afrifama bunting 🎏'],[40,'farm5','Fama 1.0 farms on the hills 🌱']];
+function applyLevels(announce){
+  let n=0;for(const [need,id,name] of LEVELS){const e=$(id);if(ship>=need&&!e.classList.contains('show')){e.classList.add('show');if(announce){n++;setTimeout(()=>{sfx.level();toast('🏠 Upgrade unlocked: '+name);e.classList.add('pop');burst(480,120,18)},400+n*900)}}}
+}
+
+/* --- save progress on this device --- */
+try{const d=JSON.parse(localStorage.getItem('ab-stats')||'{}');ideas=d.ideas|0;cof=Math.max(1,d.cof|0);ship=d.ship|0;hearts=d.hearts|0}catch(e){}
+$('ideas').textContent=ideas;$('cof').textContent=cof;$('ship').textContent=ship;$('hearts').textContent=hearts;applyLevels(false);
+setInterval(()=>{try{localStorage.setItem('ab-stats',JSON.stringify({ideas,cof,ship,hearts}))}catch(e){}},4000);
+
+/* --- window chicken --- */
+const chick=$('winChick');let chickHere=false,chickT=[];
+function chickPos(x,y,o){chick.style.transform=`translate(${x}px,${y}px)`;chick.style.opacity=o}
+function peck(times=3){const h=$('chHead');h.style.transformOrigin='6px -20px';h.animate([{transform:'rotate(0)'},{transform:'rotate(30deg)'},{transform:'rotate(0)'}],{duration:280,iterations:times});for(let i=0;i<times;i++)setTimeout(sfx.tok,140+i*280)}
+function chickVisit(){
+  if(chickHere)return;chickHere=true;chickT.forEach(clearTimeout);chickT=[];
+  chickPos(205,262,1);
+  chickT.push(setTimeout(()=>{peck(3);if(Math.random()<.5)setCap(['Tok tok tok. The flock wants a meeting. 🐔','A chicken is checking on your KPIs.','Even the hens think you should sleep.'][Math.random()*3|0])},1000));
+  chickT.push(setTimeout(()=>peck(4),3600));
+  chickT.push(setTimeout(()=>{chickPos(275,262,0);chickHere=false},6500));
+}
+chick.addEventListener('click',e=>{e.stopPropagation();if(!chickHere)return;chickT.forEach(clearTimeout);sfx.cluck();sfx.flap();
+  $('chWing').animate([{transform:'scaleY(1)'},{transform:'scaleY(-1.4)'}],{duration:90,iterations:12,direction:'alternate'});
+  setCap('Bwak! 🐔');chickPos(300,120,0);setTimeout(()=>{chick.style.transition='none';chickPos(275,262,0);void chick.getBBox();chick.style.transition='';chickHere=false},1000)});
+setTimeout(chickVisit,5000);setInterval(()=>{if(Math.random()<.6)chickVisit()},22000);
+
+/* --- Anita errands --- */
+let errT=[];
+function T(fn,ms){errT.push(setTimeout(fn,ms))}
+function setAnita(x){$('anita').style.transform=`translate(${x}px,245px)`}
+function walk(on){$('anita').classList.toggle('walking',on);if(on)for(let i=0;i<4;i++)setTimeout(sfx.step,i*330)}
+function cancelErrand(){errT.forEach(clearTimeout);errT=[];if(away){$('aItem').style.display='none';$('aBook').style.display='';walk(false);setAnita(880);if(nightHold){nightHold=false;busy=false;scene.classList.remove('paused')}}away=false}
+const FOOD=[['☕','Tea break, Love. ☕'],['🍛','Pilau, Love. Eat. 🍛'],['🍉','Fruit. Brain food. 🍉'],['🍲','You said you ate. Eat again. 🍲'],['🥤','Juice. Hydrate, CEO. 🥤']];
+let nightHold=false;
+function errand(kind){
+  if(busy||away)return;away=true;
+  if(!kind)kind=lateNight()?'night':(Math.random()<.25?'peek':'food');
+  if(kind==='peek'){
+    walk(true);setAnita(760);
+    T(()=>{walk(false);anitaSays(['Hmm. That logo needs more spacing.','Is that... another spreadsheet? 👀','Looks good, Love. Now save it. 💾'][Math.random()*3|0])},1500);
+    T(()=>{sfx.hmm();say(480,135,['Yes, boss. 😅','Saving, saving!','Okay okay, spacing. 😂'][Math.random()*3|0])},3600);
+    T(()=>{walk(true);setAnita(880)},5600);T(()=>{walk(false);away=false},7100);return;
+  }
+  if(kind==='night'){
+    walk(true);setAnita(760);
+    T(()=>{walk(false);busy=true;nightHold=true;scene.classList.add('paused');anitaSays('Past midnight, Love. Laptop closed. 😴')},1500);
+    T(()=>{sfx.hmm();say(480,135,'Okay okay... five more minutes. 😅')},4200);
+    T(()=>{busy=false;nightHold=false;scene.classList.remove('paused');walk(true);setAnita(880)},6800);T(()=>{walk(false);away=false},8300);return;
+  }
+  const [emo,line]=FOOD[Math.random()*FOOD.length|0];
+  walk(true);setAnita(1070);
+  T(()=>{$('aBook').style.display='none';$('aItem').textContent=emo;$('aItem').style.display='';setAnita(760)},2600);
+  T(()=>{walk(false);anitaSays(line)},4100);
+  T(()=>{$('aItem').style.display='none';$('aBook').style.display='';const t=el('text',{x:620,y:394,'font-size':24,class:'built'},emo);t.style.transformOrigin='632px 385px';fx.appendChild(t);sfx.land();
+    setTimeout(()=>t.animate([{opacity:1,transform:'scale(1)'},{opacity:0,transform:'scale(.2)'}],{duration:900,fill:'forwards'}).onfinish=()=>t.remove(),9000)},5000);
+  T(()=>{sfx.hmm();say(480,135,'Asante, Love! ❤️');heart()},6200);
+  T(()=>{walk(true);setAnita(880)},8200);T(()=>{walk(false);away=false},9700);
+}
+setTimeout(()=>errand(),14000);setInterval(()=>{if(Math.random()<.75)errand()},32000);
+
+/* --- secret: tap Anita 5 times --- */
+let taps=[];
+function danceTap(){const now=Date.now();taps=taps.filter(t=>now-t<2500);taps.push(now);if(taps.length>=5){taps=[];const a=$('anita');a.classList.remove('dance');void a.getBBox();a.classList.add('dance');sfx.dance();anitaSays('💃 Birthday dance!');for(let i=0;i<5;i++)setTimeout(heart,i*400);setTimeout(()=>a.classList.remove('dance'),2600);return true}return false}
+
 </script>
 </body>
 </html>
