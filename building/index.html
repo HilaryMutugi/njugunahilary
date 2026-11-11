@@ -66,6 +66,13 @@
   @keyframes flick{to{transform:scaleY(1.25) scaleX(.85)}}
   .bubble{animation:pop .3s cubic-bezier(.2,1.6,.4,1)}
   @keyframes pop{from{transform:scale(.2);opacity:0}}
+  /* v6 */
+  .logoFill,.logoHalo{animation:logoHue 9s linear infinite}
+  .logoHalo{opacity:.28;animation:logoHue 9s linear infinite,haloP 2.2s ease-in-out infinite}
+  @keyframes logoHue{0%,100%{fill:#f7c873}25%{fill:#7ee8a2}50%{fill:#ff9e6b}75%{fill:#c792ea}}
+  @keyframes haloP{50%{opacity:.1}}
+  #logo.flash .logoFill{filter:brightness(1.7) drop-shadow(0 0 6px #fff)}
+  #logoComb{transform-origin:479px 327px}
   /* v5 */
   .lvl{opacity:0;transition:opacity 1s ease}
   .lvl.show{opacity:1}
@@ -149,7 +156,16 @@
   <g id="rBunting" class="lvl"><path d="M392 50 Q480 66 568 50" stroke="#c7cede" stroke-width="1.5" fill="none"/><g id="flags"></g></g>
   <g id="rFrame" class="lvl"><rect x="592" y="138" width="66" height="56" rx="3" fill="#6b4a33"/><rect x="597" y="143" width="56" height="46" fill="url(#photoG)"/><circle cx="625" cy="178" r="14" fill="#ffd36b" opacity=".8"/><path d="M597 189 h56 v-8 q-28 -6 -56 0z" fill="#1d5a3a"/><circle cx="617" cy="168" r="4" fill="#1a1210"/><path d="M612 182 q5 -12 10 0z" fill="#1a1210"/><circle cx="633" cy="168" r="4" fill="#1a1210"/><circle cx="633" cy="163" r="3" fill="#1a1210"/><path d="M628 182 q5 -12 10 0z" fill="#1a1210"/><text x="625" y="160" font-size="7" text-anchor="middle">❤️</text></g>
   <g id="rLamp" class="lvl"><ellipse class="lampGlow" cx="34" cy="330" rx="70" ry="80" fill="url(#lampG)"/><line x1="34" y1="300" x2="34" y2="550" stroke="#c7cede" stroke-width="4"/><ellipse cx="34" cy="552" rx="16" ry="4" fill="#9aa3b5"/><path d="M12 302 L56 302 L46 272 L22 272Z" fill="#f7c873"/></g>
-  <g id="rRug" class="lvl"><ellipse cx="480" cy="547" rx="300" ry="15" fill="#8b3a3a"/><ellipse cx="480" cy="547" rx="262" ry="10" fill="none" stroke="#f7c873" stroke-width="2" stroke-dasharray="10 6"/></g>
+  <g id="rRug" class="lvl">
+    <clipPath id="rugClip"><path d="M262 532 L698 532 L736 558 L224 558Z"/></clipPath>
+    <g clip-path="url(#rugClip)">
+      <rect x="220" y="530" width="520" height="30" fill="#c0392b"/>
+      <rect x="220" y="535" width="520" height="3" fill="#f7c873"/><rect x="220" y="540" width="520" height="2" fill="#1f6f8b"/>
+      <rect x="220" y="545" width="520" height="4" fill="#2f8f63"/><rect x="220" y="551" width="520" height="2" fill="#f7c873"/>
+      <rect x="220" y="555" width="520" height="2" fill="#1f6f8b"/>
+    </g>
+    <path d="M262 532 L224 558 M698 532 L736 558" stroke="#f4efe6" stroke-width="5" stroke-dasharray="1.5 3"/>
+  </g>
   <g id="rPlant" class="lvl"><text x="62" y="556" font-size="62">🪴</text></g>
 
   <!-- empire shelf -->
@@ -200,8 +216,16 @@
   <!-- laptop -->
   <path d="M360 395 L600 395 L612 402 L348 402Z" fill="#9aa3b5"/>
   <rect x="372" y="268" width="216" height="128" rx="10" fill="#c7cede" stroke="#9aa3b5" stroke-width="3"/>
-  <ellipse class="glow" cx="480" cy="335" rx="16" ry="20" fill="#f7c873"/>
-  <path d="M480 318 q-2 -14 -12 -18 M480 318 q4 -12 14 -14" stroke="#2f8f63" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <g id="logo" class="click">
+    <circle class="logoHalo" cx="480" cy="336" r="32"/>
+    <g class="logoFill">
+      <path id="logoComb" d="M466 327 q0 -13 8 -7 q2 -12 9 -4 q6 -9 9 4 q-12 -2 -26 7z"/>
+      <circle cx="478" cy="339" r="15"/>
+      <path d="M491 334 l12 5 l-12 5z"/>
+      <ellipse cx="490" cy="351" rx="3.2" ry="5.5"/>
+    </g>
+    <circle cx="482" cy="335" r="2.6" fill="#c7cede"/>
+  </g>
 
   <!-- coffee (click: refill) -->
   <g transform="translate(672 350)" id="mug" class="click">
@@ -339,7 +363,7 @@ function smile(big){if(big){$('browL').setAttribute('d','M448 186 q12 -9 24 0');
 function idea(auto){
   if(busy){if(auto)return;endSurprise()}
   const [emo,label]=IDEAS[Math.random()*IDEAS.length|0];
-  ideas++;$('ideas').textContent=ideas;sfx.idea();
+  ideas++;$('ideas').textContent=ideas;sfx.idea();$('logo').classList.add('flash');setTimeout(()=>$('logo').classList.remove('flash'),350);
   if(ideas===100){toast('🏅 100 ideas: Founder Level Unstoppable');sfx.level();burst(480,200,40)}
   if(ideas===250){toast('🚀 250 ideas. Investors are refreshing your page.');sfx.level()}
   if(ideas===500){toast('😴 500 ideas. Okay. Sleep.');setTimeout(()=>anitaSays('500 ideas?! Bed. Now, Love. 😴'),800)}
@@ -458,7 +482,7 @@ const lateNight=()=>{const h=eat();return h<4};
  const f=$('flags'),L='AFRIFAMA',col=['#e05a4f','#f7c873','#2f8f63','#8fd3ff'];for(let i=0;i<8;i++){const x=402+i*21,y=50+16*(1-Math.pow((x-480)/88,2))*.5;f.appendChild(el('path',{d:`M${x} ${y} l18 0 l-9 18z`,fill:col[i%4]}));f.appendChild(el('text',{x:x+9,y:y+9,'font-size':8,'text-anchor':'middle',fill:'#1b2040','font-weight':'bold','font-family':'Trebuchet MS'},L[i]))}})();
 
 /* --- levels by Shipped --- */
-const LEVELS=[[3,'rPlant','a plant 🪴'],[5,'farm2','a second coop 🐔'],[6,'rFrame','a photo of you two 🖼️'],[10,'rLights','fairy lights ✨'],[12,'farm3','a feed mill 🏭'],[15,'rRug','a new rug'],[20,'rLamp','a reading lamp 💡'],[25,'farm4','a delivery truck 🚚'],[30,'rBunting','Afrifama bunting 🎏'],[40,'farm5','Fama 1.0 farms on the hills 🌱']];
+const LEVELS=[[3,'rPlant','a plant 🪴'],[5,'farm2','a second coop 🐔'],[6,'rFrame','a photo of you two 🖼️'],[10,'rLights','fairy lights ✨'],[12,'farm3','a feed mill 🏭'],[15,'rRug','a kikoi rug 🧶'],[20,'rLamp','a reading lamp 💡'],[25,'farm4','a delivery truck 🚚'],[30,'rBunting','Afrifama bunting 🎏'],[40,'farm5','Fama 1.0 farms on the hills 🌱']];
 function applyLevels(announce){
   let n=0;for(const [need,id,name] of LEVELS){const e=$(id);if(ship>=need&&!e.classList.contains('show')){e.classList.add('show');if(announce){n++;setTimeout(()=>{sfx.level();toast('🏠 Upgrade unlocked: '+name);e.classList.add('pop');burst(480,120,18)},400+n*900)}}}
 }
@@ -507,6 +531,7 @@ async function chickVisit(){
   if(Math.random()<.35){await adventure(my);return}
   await hopTo(275,262);if(my!==run)return;chick.style.opacity=0;chickHere=false;
 }
+$('logo').addEventListener('click',e=>{e.stopPropagation();sfx.cluck();$('logoComb').animate([{transform:'rotate(0)'},{transform:'rotate(-14deg)'},{transform:'rotate(10deg)'},{transform:'rotate(0)'}],{duration:500});setCap('Afrifama. Powered by chickens. 🐔')});
 chick.addEventListener('click',e=>{e.stopPropagation();if(!chickHere)return;stopChick();const my=++run;adventure(my)});
 setTimeout(chickVisit,5000);setInterval(()=>{if(Math.random()<.6)chickVisit()},24000);
 
