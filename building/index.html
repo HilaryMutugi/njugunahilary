@@ -297,6 +297,7 @@
   <button id="bIdea">💡 Idea</button>
   <button id="bCof">☕ Coffee</button>
   <button id="bShip">🚀 Ship it</button>
+  <button id="bChick">🐔 Chicken</button>
   <button id="bCake" class="special">🎂 Anita's surprise</button>
 </div>
 <div class="toast" id="toast"></div>
@@ -527,13 +528,14 @@ async function chickVisit(){
   face(-1);cset(275,262);chick.style.opacity=1;
   await hopTo(205,262);if(my!==run)return;
   peck(3);if(Math.random()<.5)setCap(['Tok tok tok. The flock wants a meeting. 🐔','A chicken is checking on your KPIs.','Even the hens think you should sleep.'][Math.random()*3|0]);
-  await wait(2400);if(my!==run)return;peck(4);await wait(1800);if(my!==run)return;
-  if(Math.random()<.35){await adventure(my);return}
+  await wait(2400);if(my!==run)return;peck(4);await wait(2200);if(my!==run)return;peck(3);await wait(1500);if(my!==run)return;
+  if(Math.random()<.6){await adventure(my);return}
   await hopTo(275,262);if(my!==run)return;chick.style.opacity=0;chickHere=false;
 }
 $('logo').addEventListener('click',e=>{e.stopPropagation();sfx.cluck();$('logoComb').animate([{transform:'rotate(0)'},{transform:'rotate(-14deg)'},{transform:'rotate(10deg)'},{transform:'rotate(0)'}],{duration:500});setCap('Afrifama. Powered by chickens. 🐔')});
 chick.addEventListener('click',e=>{e.stopPropagation();if(!chickHere)return;stopChick();const my=++run;adventure(my)});
-setTimeout(chickVisit,5000);setInterval(()=>{if(Math.random()<.6)chickVisit()},24000);
+setTimeout(chickVisit,3000);setInterval(()=>{if(Math.random()<.85)chickVisit()},13000);
+$('bChick').onclick=async()=>{if(chickHere){stopChick();adventure(++run);return}chickHere=true;const my=++run;face(-1);cset(275,262);chick.style.opacity=1;await hopTo(205,262,700);if(my!==run)return;peck(2);await wait(500);if(my===run)adventure(my)};
 
 /* --- Anita errands --- */
 let errT=[];
