@@ -19,6 +19,17 @@
 
 const ARTICLES = [
   {
+    title: "If You Knew the Cost, Would You Still Begin?",
+    slug: "founder-notes-if-you-knew-the-cost-would-you-still-begin.html",
+    date: "November 13, 2026",
+    dateISO: "2026-11-13",
+    excerpt: "A letter from 2016, ten years of becoming, and the question every founder eventually faces: if you knew the cost, would you still begin?",
+    tag: "Founder Notes",
+    image: "images/founder-notes-if-you-knew-the-cost-would-you-still-begin.webp",
+    readTime: "5 min read"
+  },
+
+  {
     title: "In Pursuit of a Better Future",
     slug: "founder-notes-eight-days-in-kigali.html",
     date: "October 23, 2026",
