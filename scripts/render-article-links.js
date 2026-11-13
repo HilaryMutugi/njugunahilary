@@ -40,6 +40,17 @@ const noteCards = articles.map((article, i) => `
   </div>${article.image ? `
   <a class="fn-thumb" href="${safePath(article.slug)}"><img src="${safePath(article.image)}" alt="" loading="lazy"></a>` : ''}
 </div>`).join('');
+const latest = articles[0];
+const featuredCard = latest ? `<article class="discovery-feature" aria-labelledby="discovery-heading">
+<div class="discovery-copy">
+<span class="discovery-kicker">Featured Founder Note</span>
+<h2 id="discovery-heading"><a href="${safePath(latest.slug)}">${escapeHtml(latest.title)}</a></h2>
+<p>${escapeHtml(latest.excerpt)}</p>
+<div class="discovery-meta"><time datetime="${escapeHtml(latest.dateISO)}">${escapeHtml(latest.date)}</time><span aria-hidden="true">&middot;</span><span>${escapeHtml(latest.readTime)}</span></div>
+<a class="discovery-read" href="${safePath(latest.slug)}">Read the note <span aria-hidden="true">&rarr;</span></a>
+</div>
+<a class="discovery-photo" href="${safePath(latest.slug)}" tabindex="-1" aria-hidden="true"><img src="${safePath(latest.image)}" alt="" loading="lazy" width="1200" height="800"></a>
+</article>` : '';
 
 function update(file, start, end, markup) {
   const html = fs.readFileSync(file, 'utf8');
@@ -51,6 +62,7 @@ function update(file, start, end, markup) {
 }
 
 update(homePath, '<!-- ARTICLE_HOME_START -->', '<!-- ARTICLE_HOME_END -->', homeCards);
+update(homePath, '<!-- ARTICLE_FEATURE_START -->', '<!-- ARTICLE_FEATURE_END -->', featuredCard);
 update(notesPath, '<!-- ARTICLE_LIST_START -->', '<!-- ARTICLE_LIST_END -->', noteCards);
 
 const notes = fs.readFileSync(notesPath, 'utf8')
@@ -60,7 +72,7 @@ fs.writeFileSync(notesPath, notes, 'utf8');
 
 let home = fs.readFileSync(homePath, 'utf8')
   .replace(/(<div class="notes-badge"><b id="notes-count">)[^<]*(<\/b>)/, `$1${articles.length}$2`);
-const [latest, second, third] = articles;
+const [, second, third] = articles;
 if (latest) {
   home = home
     .replace(/(<a class="notes-feature" id="notes-latest" href=")[^"]+/, `$1${safePath(latest.slug)}`)
